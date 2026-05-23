@@ -1,0 +1,1585 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Microbiology — Interactive Revision Mind Map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+<style>
+/* ── CSS VARIABLES ──────────────────────────────────────────── */
+:root {
+  --bg: #f4f5f9;
+  --surface: #ffffff;
+  --surface2: #f0f1f7;
+  --text: #1a1a2e;
+  --muted: #6b7280;
+  --border: #e2e4ef;
+  --shadow: rgba(30,27,75,0.10);
+  --header-h: 70px;
+
+  --u1: #2563eb; --u1-bg: #eff6ff; --u1-border: #bfdbfe;
+  --u2: #16a34a; --u2-bg: #f0fdf4; --u2-border: #bbf7d0;
+  --u3: #dc2626; --u3-bg: #fff5f5; --u3-border: #fecaca;
+  --u4: #9333ea; --u4-bg: #faf5ff; --u4-border: #e9d5ff;
+  --u5: #d97706; --u5-bg: #fffbeb; --u5-border: #fed7aa;
+  --u6: #0891b2; --u6-bg: #ecfeff; --u6-border: #a5f3fc;
+  --u7: #db2777; --u7-bg: #fdf2f8; --u7-border: #fbcfe8;
+  --u8: #65a30d; --u8-bg: #f7fee7; --u8-border: #d9f99d;
+  --u9: #7c3aed; --u9-bg: #f5f3ff; --u9-border: #ddd6fe;
+  --u10: #b45309; --u10-bg: #fef3c7; --u10-border: #fde68a;
+}
+
+[data-theme="dark"] {
+  --bg: #0f1117;
+  --surface: #1a1d27;
+  --surface2: #22263a;
+  --text: #e8e8f0;
+  --muted: #9ca3af;
+  --border: #2d3148;
+  --shadow: rgba(0,0,0,0.4);
+
+  --u1-bg: #0d1a3a; --u1-border: #1e3a6e;
+  --u2-bg: #0a1f14; --u2-border: #145a2d;
+  --u3-bg: #1f0a0a; --u3-border: #5a1414;
+  --u4-bg: #1a0a2e; --u4-border: #4a1a7a;
+  --u5-bg: #1f1200; --u5-border: #6b3a00;
+  --u6-bg: #001f26; --u6-border: #005566;
+  --u7-bg: #1f0a16; --u7-border: #6b0a3a;
+  --u8-bg: #0f1a00; --u8-border: #2d5200;
+  --u9-bg: #140a2e; --u9-border: #3d1a7a;
+  --u10-bg: #1f1200; --u10-border: #5a2e00;
+}
+
+/* ── RESET & BASE ───────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Source Sans 3', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background 0.3s, color 0.3s;
+  line-height: 1.6;
+}
+
+/* ── STICKY HEADER ──────────────────────────────────────────── */
+.site-header {
+  position: sticky; top: 0; z-index: 100;
+  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4338ca 100%);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.35);
+  padding: 0 24px;
+  height: var(--header-h);
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px;
+}
+.header-left { display: flex; flex-direction: column; }
+.site-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.45rem; font-weight: 700;
+  color: #fff; letter-spacing: 0.02em; line-height: 1.1;
+}
+.site-sub { font-size: 0.72rem; color: #a5b4fc; font-weight: 300; letter-spacing: 0.12em; text-transform: uppercase; }
+.toolbar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.btn {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.78rem; font-weight: 600;
+  border: none; border-radius: 8px; cursor: pointer;
+  padding: 6px 12px; transition: all 0.2s;
+  display: inline-flex; align-items: center; gap: 5px;
+}
+.btn-theme {
+  background: rgba(255,255,255,0.15);
+  color: #fff; border: 1px solid rgba(255,255,255,0.25);
+}
+.btn-theme:hover { background: rgba(255,255,255,0.28); }
+.btn-print {
+  background: #f59e0b; color: #1a1a2e;
+}
+.btn-print:hover { background: #fbbf24; }
+.btn-expand {
+  background: rgba(255,255,255,0.12);
+  color: #c7d2fe; border: 1px solid rgba(255,255,255,0.2);
+}
+.btn-expand:hover { background: rgba(255,255,255,0.22); }
+
+/* ── LEGEND BAR ─────────────────────────────────────────────── */
+.legend-bar {
+  background: var(--surface); border-bottom: 1px solid var(--border);
+  padding: 10px 24px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+  transition: background 0.3s, border-color 0.3s;
+}
+.legend-label { font-size: 0.7rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-right: 4px; }
+.legend-chip {
+  font-size: 0.72rem; font-weight: 600; padding: 3px 10px; border-radius: 20px;
+  cursor: pointer; border: 1.5px solid transparent; transition: all 0.2s; white-space: nowrap;
+}
+.legend-chip:hover { transform: translateY(-1px); box-shadow: 0 3px 8px var(--shadow); }
+.legend-chip.active { opacity: 1; }
+.legend-chip.hidden-unit { opacity: 0.38; }
+
+/* ── MAIN LAYOUT ────────────────────────────────────────────── */
+.main-wrap { max-width: 1400px; margin: 0 auto; padding: 28px 20px 60px; }
+
+/* ── UNIT SECTION ───────────────────────────────────────────── */
+.unit-section {
+  margin-bottom: 36px;
+  border-radius: 14px; overflow: hidden;
+  border: 1.5px solid var(--border);
+  box-shadow: 0 2px 12px var(--shadow);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.unit-section.hidden { display: none; }
+
+.unit-header {
+  padding: 16px 22px; cursor: pointer;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  user-select: none; transition: filter 0.2s;
+}
+.unit-header:hover { filter: brightness(1.06); }
+.unit-header-left { display: flex; align-items: center; gap: 12px; }
+.unit-badge {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; padding: 3px 10px; border-radius: 20px;
+  background: rgba(255,255,255,0.2); color: #fff;
+}
+.unit-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem; font-weight: 700; color: #fff; line-height: 1.2;
+}
+.unit-count { font-size: 0.72rem; color: rgba(255,255,255,0.7); }
+.chevron { font-size: 1rem; color: rgba(255,255,255,0.8); transition: transform 0.3s; }
+.unit-section.collapsed .chevron { transform: rotate(-90deg); }
+
+.unit-body { padding: 20px; background: var(--bg); transition: background 0.3s; }
+.unit-section.collapsed .unit-body { display: none; }
+
+/* ── CARDS GRID ─────────────────────────────────────────────── */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+/* ── TOPIC CARD ─────────────────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border-radius: 12px;
+  border: 1.5px solid var(--border);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.25s;
+  box-shadow: 0 1px 6px var(--shadow);
+}
+.card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px var(--shadow); }
+
+.card-header {
+  padding: 14px 16px;
+  display: flex; align-items: flex-start; gap: 10px;
+}
+.card-emoji { font-size: 1.5rem; line-height: 1; flex-shrink: 0; margin-top: 1px; }
+.card-title-wrap { flex: 1; }
+.card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.97rem; font-weight: 600;
+  line-height: 1.25; color: var(--text);
+}
+.card-preview { font-size: 0.74rem; color: var(--muted); margin-top: 3px; }
+.card-arrow { font-size: 0.8rem; color: var(--muted); transition: transform 0.25s; flex-shrink: 0; margin-top: 2px; }
+.card.open .card-arrow { transform: rotate(180deg); }
+
+.card-body {
+  display: none;
+  padding: 0 16px 16px;
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+  animation: fadeIn 0.2s ease;
+}
+.card.open .card-body { display: block; }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+
+.sub-group { margin-bottom: 12px; }
+.sub-heading {
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; margin-bottom: 5px; padding-bottom: 3px;
+  border-bottom: 1px solid var(--border);
+}
+.card-body ul { list-style: none; padding: 0; }
+.card-body li {
+  font-size: 0.82rem; color: var(--text); line-height: 1.55;
+  padding: 2px 0 2px 14px; position: relative;
+}
+.card-body li::before {
+  content: "▸"; position: absolute; left: 0;
+  font-size: 0.65rem; top: 4px;
+}
+.mnemonic-box {
+  margin-top: 8px; padding: 8px 12px; border-radius: 8px;
+  font-size: 0.78rem; font-style: italic; font-weight: 600;
+  border-left: 3px solid;
+}
+
+/* ── UNIT ACCENT THEMING ────────────────────────────────────── */
+.u1 .unit-header { background: linear-gradient(135deg, #1d4ed8, #2563eb); }
+.u1 .legend-chip-el { background: var(--u1-bg); color: var(--u1); border-color: var(--u1-border); }
+.u1 .card { border-top: 3px solid var(--u1); }
+.u1 .card-header { background: var(--u1-bg); }
+.u1 .sub-heading { color: var(--u1); }
+.u1 .card-body li::before { color: var(--u1); }
+.u1 .mnemonic-box { background: var(--u1-bg); border-color: var(--u1); color: var(--u1); }
+
+.u2 .unit-header { background: linear-gradient(135deg, #15803d, #16a34a); }
+.u2 .legend-chip-el { background: var(--u2-bg); color: var(--u2); border-color: var(--u2-border); }
+.u2 .card { border-top: 3px solid var(--u2); }
+.u2 .card-header { background: var(--u2-bg); }
+.u2 .sub-heading { color: var(--u2); }
+.u2 .card-body li::before { color: var(--u2); }
+.u2 .mnemonic-box { background: var(--u2-bg); border-color: var(--u2); color: var(--u2); }
+
+.u3 .unit-header { background: linear-gradient(135deg, #b91c1c, #dc2626); }
+.u3 .legend-chip-el { background: var(--u3-bg); color: var(--u3); border-color: var(--u3-border); }
+.u3 .card { border-top: 3px solid var(--u3); }
+.u3 .card-header { background: var(--u3-bg); }
+.u3 .sub-heading { color: var(--u3); }
+.u3 .card-body li::before { color: var(--u3); }
+.u3 .mnemonic-box { background: var(--u3-bg); border-color: var(--u3); color: var(--u3); }
+
+.u4 .unit-header { background: linear-gradient(135deg, #7e22ce, #9333ea); }
+.u4 .legend-chip-el { background: var(--u4-bg); color: var(--u4); border-color: var(--u4-border); }
+.u4 .card { border-top: 3px solid var(--u4); }
+.u4 .card-header { background: var(--u4-bg); }
+.u4 .sub-heading { color: var(--u4); }
+.u4 .card-body li::before { color: var(--u4); }
+.u4 .mnemonic-box { background: var(--u4-bg); border-color: var(--u4); color: var(--u4); }
+
+.u5 .unit-header { background: linear-gradient(135deg, #b45309, #d97706); }
+.u5 .legend-chip-el { background: var(--u5-bg); color: var(--u5); border-color: var(--u5-border); }
+.u5 .card { border-top: 3px solid var(--u5); }
+.u5 .card-header { background: var(--u5-bg); }
+.u5 .sub-heading { color: var(--u5); }
+.u5 .card-body li::before { color: var(--u5); }
+.u5 .mnemonic-box { background: var(--u5-bg); border-color: var(--u5); color: var(--u5); }
+
+.u6 .unit-header { background: linear-gradient(135deg, #0e7490, #0891b2); }
+.u6 .legend-chip-el { background: var(--u6-bg); color: var(--u6); border-color: var(--u6-border); }
+.u6 .card { border-top: 3px solid var(--u6); }
+.u6 .card-header { background: var(--u6-bg); }
+.u6 .sub-heading { color: var(--u6); }
+.u6 .card-body li::before { color: var(--u6); }
+.u6 .mnemonic-box { background: var(--u6-bg); border-color: var(--u6); color: var(--u6); }
+
+.u7 .unit-header { background: linear-gradient(135deg, #be185d, #db2777); }
+.u7 .legend-chip-el { background: var(--u7-bg); color: var(--u7); border-color: var(--u7-border); }
+.u7 .card { border-top: 3px solid var(--u7); }
+.u7 .card-header { background: var(--u7-bg); }
+.u7 .sub-heading { color: var(--u7); }
+.u7 .card-body li::before { color: var(--u7); }
+.u7 .mnemonic-box { background: var(--u7-bg); border-color: var(--u7); color: var(--u7); }
+
+.u8 .unit-header { background: linear-gradient(135deg, #4d7c0f, #65a30d); }
+.u8 .legend-chip-el { background: var(--u8-bg); color: var(--u8); border-color: var(--u8-border); }
+.u8 .card { border-top: 3px solid var(--u8); }
+.u8 .card-header { background: var(--u8-bg); }
+.u8 .sub-heading { color: var(--u8); }
+.u8 .card-body li::before { color: var(--u8); }
+.u8 .mnemonic-box { background: var(--u8-bg); border-color: var(--u8); color: var(--u8); }
+
+.u9 .unit-header { background: linear-gradient(135deg, #5b21b6, #7c3aed); }
+.u9 .legend-chip-el { background: var(--u9-bg); color: var(--u9); border-color: var(--u9-border); }
+.u9 .card { border-top: 3px solid var(--u9); }
+.u9 .card-header { background: var(--u9-bg); }
+.u9 .sub-heading { color: var(--u9); }
+.u9 .card-body li::before { color: var(--u9); }
+.u9 .mnemonic-box { background: var(--u9-bg); border-color: var(--u9); color: var(--u9); }
+
+.u10 .unit-header { background: linear-gradient(135deg, #92400e, #b45309); }
+.u10 .legend-chip-el { background: var(--u10-bg); color: var(--u10); border-color: var(--u10-border); }
+.u10 .card { border-top: 3px solid var(--u10); }
+.u10 .card-header { background: var(--u10-bg); }
+.u10 .sub-heading { color: var(--u10); }
+.u10 .card-body li::before { color: var(--u10); }
+.u10 .mnemonic-box { background: var(--u10-bg); border-color: var(--u10); color: var(--u10); }
+
+/* ── PRINT STYLES ───────────────────────────────────────────── */
+@media print {
+  .site-header .toolbar, .legend-bar, .no-print { display: none !important; }
+  .site-header { position: relative; height: auto; padding: 12px 20px; }
+  .unit-section.hidden { display: block !important; }
+  .unit-section.collapsed .unit-body { display: block !important; }
+  .card-body { display: block !important; }
+  .card { break-inside: avoid; box-shadow: none; }
+  .unit-section { break-inside: avoid; box-shadow: none; }
+  body { background: #fff !important; color: #000 !important; }
+  .card-arrow { display: none; }
+}
+
+/* ── RESPONSIVE ─────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .site-header { padding: 0 14px; }
+  .site-title { font-size: 1.1rem; }
+  .toolbar { gap: 5px; }
+  .btn { padding: 5px 9px; font-size: 0.72rem; }
+  .legend-bar { padding: 8px 14px; }
+  .main-wrap { padding: 16px 12px 48px; }
+  .cards-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header class="site-header">
+  <div class="header-left">
+    <span class="site-title">🔬 Microbiology</span>
+    <span class="site-sub">Interactive Revision Mind Map · 10 Units</span>
+  </div>
+  <div class="toolbar">
+    <button class="btn btn-expand" onclick="toggleAll(true)">⊞ Expand All</button>
+    <button class="btn btn-expand" onclick="toggleAll(false)">⊟ Collapse All</button>
+    <button class="btn btn-print no-print" onclick="window.print()">🖨️ Print / PDF</button>
+    <button class="btn btn-theme" id="themeBtn" onclick="toggleTheme()">🌙 Dark Mode</button>
+  </div>
+</header>
+
+<!-- ── LEGEND BAR ── -->
+<div class="legend-bar no-print" id="legendBar">
+  <span class="legend-label">Filter:</span>
+  <!-- chips injected by JS -->
+</div>
+
+<!-- ── MAIN ── -->
+<main class="main-wrap" id="mainWrap"></main>
+
+<script>
+// ══════════════════════════════════════════════════════════════
+// DATA
+// ══════════════════════════════════════════════════════════════
+const UNITS = [
+  {
+    id:"u1", num:"I",
+    title:"Structure & Classification of Microbes",
+    cards:[
+      {
+        emoji:"🔬", title:"Morphological Types of Bacteria",
+        preview:"Shapes & arrangements",
+        body:[
+          { h:"Basic Shapes", items:[
+            "Coccus (spherical) — e.g. Staphylococcus, Streptococcus",
+            "Bacillus (rod-shaped) — e.g. E. coli, Bacillus anthracis",
+            "Spirillum (rigid spiral) — e.g. Spirillum minus",
+            "Vibrio (comma-shaped) — e.g. Vibrio cholerae",
+            "Spirochaete (flexible spiral) — e.g. Treponema pallidum",
+            "Coccobacillus (oval, between coccus & bacillus) — e.g. Haemophilus influenzae"
+          ]},
+          { h:"Arrangements of Cocci", items:[
+            "Diplococcus — pairs (Streptococcus pneumoniae)",
+            "Streptococcus — chains (S. pyogenes)",
+            "Staphylococcus — grape-like clusters (S. aureus)",
+            "Tetrad — groups of 4 (Micrococcus)",
+            "Sarcina — cuboidal packets of 8"
+          ]},
+          { h:"Arrangements of Bacilli", items:[
+            "Single (E. coli), Pairs-diplobacilli, Chains-streptobacilli",
+            "Palisade — side by side (Corynebacterium)",
+            "Chinese-letter / cuneiform pattern (Corynebacterium diphtheriae)"
+          ]},
+          { mnemonic:"🧠 Mnemonic — Shapes: 'Cocci Bring Serious Viral Symptoms' → Coccus, Bacillus, Spirillum, Vibrio, Spirochaete" }
+        ]
+      },
+      {
+        emoji:"📏", title:"Size and Form of Bacteria",
+        preview:"Measurements & units",
+        body:[
+          { h:"Units of Measurement", items:[
+            "Micrometre (µm) = 10⁻⁶ m — used for bacteria",
+            "Nanometre (nm) = 10⁻⁹ m — used for viruses",
+            "Average bacterium: 0.5–5 µm in diameter"
+          ]},
+          { h:"Size Ranges", items:[
+            "Cocci: 0.5–1.5 µm diameter",
+            "Bacilli: 1–10 µm length × 0.3–1 µm width",
+            "Spirochaetes: 5–500 µm long (very long)",
+            "Largest bacterium: Thiomargarita namibiensis (~750 µm)",
+            "Smallest bacterium: Mycoplasma (~0.2 µm, no cell wall)"
+          ]},
+          { h:"Structural Forms", items:[
+            "Vegetative form — actively growing, metabolically active",
+            "Spore form (Endospore) — dormant, heat/chemical resistant; Bacillus & Clostridium",
+            "L-form — cell-wall deficient bacteria",
+            "Pleomorphic — variable shapes (e.g. Corynebacterium)"
+          ]}
+        ]
+      },
+      {
+        emoji:"🌀", title:"Motility in Bacteria",
+        preview:"Flagella & movement types",
+        body:[
+          { h:"Mechanism of Motility", items:[
+            "Flagella — whip-like appendages, primary mode in most bacteria",
+            "Flagellin protein subunits form the filament",
+            "Basal body anchored in cell wall/membrane acts as motor",
+            "Rotation speed: 100–1000 rpm"
+          ]},
+          { h:"Types by Flagella Position", items:[
+            "Monotrichous — single polar flagellum (Vibrio cholerae)",
+            "Lophotrichous — tuft at one or both poles (Pseudomonas)",
+            "Amphitrichous — single flagellum at each pole",
+            "Peritrichous — flagella all around (E. coli, Salmonella)",
+            "Atrichous — no flagella (non-motile; e.g. Klebsiella)"
+          ]},
+          { h:"Other Motility Types", items:[
+            "Gliding motility — no flagella, slides on surfaces (Myxobacteria)",
+            "Axial filaments — internal flagella in spirochaetes (endoflagella)",
+            "Twitching motility — pili-based movement (Pseudomonas aeruginosa)"
+          ]},
+          { mnemonic:"🧠 Flagella types: 'Many People Are Loving Microbiology' → Monotrichous, Peritrichous, Amphitrichous, Lophotrichous, Missing (Atrichous)" }
+        ]
+      },
+      {
+        emoji:"🗂️", title:"Classification of Microorganisms",
+        preview:"Taxonomy, Bergey's Manual, 5-kingdom",
+        body:[
+          { h:"Basis of Classification", items:[
+            "Morphology (shape, size, arrangement)",
+            "Staining properties (Gram stain, Acid-fast stain)",
+            "Biochemical properties (fermentation, enzyme tests)",
+            "Antigenic structure (serotyping)",
+            "Genetic analysis (16S rRNA sequencing — gold standard)",
+            "Phage typing, bacteriocin typing"
+          ]},
+          { h:"Major Groups of Microorganisms", items:[
+            "Bacteria (Prokaryotes) — no nucleus, 70S ribosomes",
+            "Fungi — eukaryotes, chitin cell wall",
+            "Protozoa — eukaryotes, unicellular, animal-like",
+            "Algae — eukaryotes, photosynthetic",
+            "Viruses — acellular, obligate intracellular parasites",
+            "Prions — misfolded proteins (e.g. Creutzfeldt-Jakob)"
+          ]},
+          { h:"Bergey's Manual", items:[
+            "Standard reference for bacterial classification",
+            "Bacteria divided into Domains: Bacteria & Archaea",
+            "Uses phenotypic + genotypic characters",
+            "Bacteria → Phylum → Class → Order → Family → Genus → Species"
+          ]},
+          { h:"Prokaryote vs Eukaryote", items:[
+            "Prokaryotes: no nuclear membrane, 70S ribosome, circular DNA, peptidoglycan wall",
+            "Eukaryotes: true nucleus, 80S ribosome, linear DNA, multiple organelles"
+          ]}
+        ]
+      }
+    ]
+  },
+  {
+    id:"u2", num:"II",
+    title:"Identification of Microorganisms",
+    cards:[
+      {
+        emoji:"🧪", title:"Laboratory Methods for Identification",
+        preview:"Microscopy, culture, biochemical tests",
+        body:[
+          { h:"Microscopy", items:[
+            "Light microscopy: bright-field (routine), dark-field (spirochaetes), phase-contrast (live organisms)",
+            "Fluorescence microscopy: fluorescent dyes, immunofluorescence",
+            "Electron microscopy: TEM (internal structure), SEM (surface morphology) — viruses",
+            "Total magnification = objective × eyepiece lens"
+          ]},
+          { h:"Staining Techniques", items:[
+            "Gram stain (most important): +ve = purple (thick peptidoglycan), −ve = pink",
+            "Acid-fast (Ziehl-Neelsen): Mycobacteria stain red — mycolic acid in wall",
+            "Spore stain (Schaeffer-Fulton): spores green, vegetative cells red",
+            "Capsule stain (Indian ink): clear halo around organism on dark background",
+            "Flagella stain (Leifson): silver impregnation"
+          ]},
+          { h:"Culture Methods", items:[
+            "Nutrient agar — basic growth medium",
+            "Blood agar — shows haemolysis (α, β, γ)",
+            "MacConkey agar — differentiates lactose fermenters (pink) from non-fermenters",
+            "Chocolate agar — for fastidious organisms (Neisseria, H. influenzae)",
+            "Selective media — inhibits unwanted organisms",
+            "Differential media — distinguishes different organisms"
+          ]},
+          { h:"Biochemical Tests", items:[
+            "Catalase test — Staphylococci (+ve) vs Streptococci (−ve)",
+            "Coagulase test — S. aureus (+ve) vs other Staph",
+            "Oxidase test — Gram-negative bacteria",
+            "IMViC tests (Indole, Methyl Red, Voges-Proskauer, Citrate) — E. coli: ++−−; Klebsiella: −−++",
+            "TSI (Triple Sugar Iron) agar — H₂S production, fermentation"
+          ]}
+        ]
+      },
+      {
+        emoji:"🩺", title:"Diagnosis of Bacterial Diseases",
+        preview:"Specimens, serology, molecular methods",
+        body:[
+          { h:"Specimen Collection Principles", items:[
+            "Collect before antibiotic therapy",
+            "Sterile containers; no contamination with normal flora",
+            "Label correctly: patient name, date, specimen type",
+            "Transport promptly to lab (most within 2 hrs)",
+            "Use transport media (Stuart's/Amies) for swabs"
+          ]},
+          { h:"Types of Specimens", items:[
+            "Blood — blood culture (bacteraemia/septicaemia)",
+            "Urine — MSU (mid-stream urine) for UTI",
+            "Sputum — respiratory infections, TB",
+            "Pus/wound swabs — wound infections",
+            "CSF — meningitis (immediately processed)",
+            "Stool — enteric infections"
+          ]},
+          { h:"Serological Methods", items:[
+            "Widal test — typhoid (agglutination antibodies against Salmonella H & O antigens)",
+            "ASO titre — Streptococcal infection (rheumatic fever)",
+            "ELISA (Enzyme-linked immunosorbent assay) — sensitive, widely used",
+            "Complement fixation test (CFT)",
+            "Agglutination tests — latex agglutination, slide agglutination"
+          ]},
+          { h:"Molecular Methods", items:[
+            "PCR (Polymerase Chain Reaction) — detects DNA/RNA, very sensitive",
+            "Real-time PCR (qPCR) — quantitative results",
+            "DNA hybridisation probes",
+            "MALDI-TOF mass spectrometry — rapid identification of colonies",
+            "Gene sequencing — 16S rRNA for definitive identification"
+          ]}
+        ]
+      }
+    ]
+  },
+  {
+    id:"u3", num:"III",
+    title:"Growth and Nutrition of Microbes",
+    cards:[
+      {
+        emoji:"🌡️", title:"Temperature & Microbial Growth",
+        preview:"Cardinal temperatures, growth curves",
+        body:[
+          { h:"Cardinal Temperatures", items:[
+            "Minimum temperature — lowest at which growth occurs",
+            "Optimum temperature — fastest growth rate",
+            "Maximum temperature — highest tolerated without death"
+          ]},
+          { h:"Temperature Groups", items:[
+            "Psychrophiles: opt 10–15°C (−5 to 20°C range); e.g. Listeria monocytogenes",
+            "Mesophiles: opt 35–37°C (20–45°C); most human pathogens",
+            "Thermophiles: opt 50–60°C (45–80°C); e.g. Bacillus stearothermophilus",
+            "Hyperthermophiles: opt >80°C; e.g. Pyrococcus (up to 121°C)"
+          ]},
+          { h:"Bacterial Growth Curve", items:[
+            "Lag phase — adaptation, no increase in numbers",
+            "Log (exponential) phase — rapid doubling, most metabolically active",
+            "Stationary phase — growth = death rate, nutrients depleted",
+            "Decline (death) phase — death > growth",
+            "Generation time (doubling time): E. coli ≈ 20 min"
+          ]},
+          { mnemonic:"🧠 Growth phases: 'Little Lambs Sleep Deeply' → Lag, Log, Stationary, Decline" }
+        ]
+      },
+      {
+        emoji:"💧", title:"Moisture & Microbial Growth",
+        preview:"Water activity, osmotic effects",
+        body:[
+          { h:"Water Requirements", items:[
+            "Water is essential for all metabolic processes",
+            "Water activity (aᵥᵥ) — measure of available water (1.0 = pure water)",
+            "Most bacteria need aᵥᵥ > 0.90",
+            "Staphylococcus aureus can grow at aᵥᵥ 0.86 (salt tolerant)",
+            "Xerophiles: organisms tolerating very low water activity (moulds)"
+          ]},
+          { h:"Effects of Desiccation", items:[
+            "Most vegetative bacteria die rapidly when dried",
+            "Spores can survive desiccation for years",
+            "Mycobacteria — relatively resistant to drying",
+            "Lyophilisation (freeze-drying) used to preserve cultures"
+          ]},
+          { h:"Osmotic Pressure", items:[
+            "Halophiles — require high NaCl; e.g. Vibrio parahaemolyticus",
+            "Osmophiles — grow in high sugar concentrations",
+            "Plasmolysis — cell shrinks in hypertonic solution",
+            "Plasmoptysis — cell bursts in hypotonic solution (prevented by cell wall)"
+          ]}
+        ]
+      },
+      {
+        emoji:"🩸", title:"Blood as Culture Medium",
+        preview:"Blood agar, haemolysis types",
+        body:[
+          { h:"Blood Agar Composition", items:[
+            "Nutrient agar base + 5–10% defibrinated sheep/horse blood",
+            "Enrichment medium for fastidious organisms",
+            "Provides haemin (X factor) and NAD (V factor)"
+          ]},
+          { h:"Types of Haemolysis", items:[
+            "Alpha (α) haemolysis — partial haemolysis; green/brown discolouration around colony (S. pneumoniae, S. viridans)",
+            "Beta (β) haemolysis — complete clear zone around colony; RBCs fully lysed (S. pyogenes, S. agalactiae)",
+            "Gamma (γ) haemolysis — no haemolysis; no change in medium (Enterococcus faecalis)"
+          ]},
+          { h:"Clinical Importance", items:[
+            "β-haemolysis confirms pathogenic Streptococci",
+            "CAMP test on blood agar — identifies Group B Streptococci",
+            "Optochin disc on blood agar — identifies S. pneumoniae (sensitive)",
+            "Bacitracin disc — S. pyogenes is sensitive"
+          ]}
+        ]
+      },
+      {
+        emoji:"🍽️", title:"Nutritional Requirements of Bacteria",
+        preview:"Carbon, nitrogen, growth factors",
+        body:[
+          { h:"Major Nutrients", items:[
+            "Carbon source — structural backbone; most use organic carbon",
+            "Nitrogen — for proteins and nucleic acids; NH₃, nitrates, amino acids",
+            "Sulfur — for cysteine, methionine",
+            "Phosphorus — for ATP, nucleic acids, phospholipids"
+          ]},
+          { h:"Growth Factors (Vitamins etc.)", items:[
+            "Auxotrophs — cannot synthesise essential growth factors",
+            "Prototrophs — synthesise all growth factors themselves",
+            "X factor (haemin) — required by Haemophilus influenzae",
+            "V factor (NAD) — required by H. influenzae",
+            "Both X+V on blood agar: H. influenzae shows satellitism near S. aureus"
+          ]},
+          { h:"Nutritional Classification", items:[
+            "Autotrophs — use CO₂ as carbon source (photosynthetic/chemosynthetic)",
+            "Heterotrophs — require organic carbon",
+            "Obligate parasites — can only grow inside living cells (Chlamydia, Rickettsia)",
+            "Fastidious organisms — require special nutrients (Neisseria, Brucella)"
+          ]}
+        ]
+      }
+    ]
+  },
+  {
+    id:"u4", num:"IV",
+    title:"Destruction of Microorganisms",
+    cards:[
+      {
+        emoji:"🔥", title:"Sterilisation & Disinfection",
+        preview:"Definitions, levels, methods",
+        body:[
+          { h:"Key Definitions", items:[
+            "Sterilisation — complete destruction of ALL microorganisms including spores",
+            "Disinfection — destruction of most pathogens (not necessarily spores)",
+            "Antiseptic — chemical applied to living tissue to inhibit/destroy microbes",
+            "Sanitisation — reduction to safe public health levels",
+            "Bactericidal — kills bacteria; Bacteriostatic — inhibits growth",
+            "Sporicidal — kills spores (highest level)"
+          ]},
+          { h:"Physical Methods of Sterilisation", items:[
+            "Autoclave (moist heat): 121°C, 15 psi, 15–20 min — gold standard for instruments",
+            "Dry heat oven: 160°C/60 min or 180°C/30 min — for glassware, oils",
+            "Incineration — complete destruction (e.g. contaminated waste)",
+            "UV radiation — damages DNA, used for air/surface disinfection",
+            "Ionising radiation (gamma rays) — sterilises heat-sensitive items (syringes, sutures)"
+          ]},
+          { h:"Chemical Disinfectants", items:[
+            "Phenol & derivatives (Lysol, Dettol) — disrupt cell membranes",
+            "Alcohols (70% ethanol, IPA) — denature proteins, not sporicidal",
+            "Chlorine compounds (bleach, NaOCl) — broad-spectrum, cheap",
+            "Glutaraldehyde 2% — high-level disinfection/sterilisation (endoscopes)",
+            "Formaldehyde — fumigation, fixation",
+            "Iodine/Iodophors (Povidone-iodine) — skin antiseptic",
+            "Hydrogen peroxide — oxidising agent, equipment sterilisation"
+          ]},
+          { mnemonic:"🧠 Levels: 'Sterilise Everything; Disinfect All Surfaces' → highest=Sterilisation, then Disinfection, then Antisepsis" }
+        ]
+      },
+      {
+        emoji:"💊", title:"Chemotherapy & Antibiotics",
+        preview:"Mechanisms, classes, resistance",
+        body:[
+          { h:"Antibiotic Mechanisms of Action", items:[
+            "Cell wall synthesis inhibition — Penicillins, Cephalosporins, Vancomycin (β-lactam ring)",
+            "Protein synthesis inhibition — 30S: Aminoglycosides, Tetracyclines; 50S: Macrolides, Chloramphenicol, Clindamycin",
+            "Nucleic acid synthesis — Fluoroquinolones (DNA gyrase), Rifampicin (RNA polymerase)",
+            "Cell membrane disruption — Polymyxins, Colistin",
+            "Antimetabolites — Sulphonamides & Trimethoprim (folate synthesis)"
+          ]},
+          { h:"Important Antibiotic Groups", items:[
+            "Penicillins: G (narrow), V (oral), Amoxicillin, Flucloxacillin (anti-staph)",
+            "Cephalosporins: 1st–5th generation (broader spectrum each generation)",
+            "Aminoglycosides: Gentamicin, Streptomycin, Amikacin — nephrotoxic & ototoxic",
+            "Macrolides: Erythromycin, Azithromycin — alternative to penicillin",
+            "Fluoroquinolones: Ciprofloxacin, Levofloxacin — UTI, respiratory",
+            "Metronidazole — anaerobes, protozoa (Giardia, Trichomonas)"
+          ]},
+          { h:"Antibiotic Resistance", items:[
+            "β-lactamase enzymes — break down β-lactam ring (MRSA: PBP2a mutation)",
+            "Efflux pumps — pump antibiotic out of cell",
+            "Target modification — altered ribosome",
+            "MRSA (Methicillin-resistant S. aureus) — treat with Vancomycin/Linezolid",
+            "ESBL producers (Extended-spectrum β-lactamase) — carbapenem needed",
+            "Antibiogram / sensitivity testing — Kirby-Bauer disc diffusion, MIC"
+          ]}
+        ]
+      },
+      {
+        emoji:"🌡️", title:"Effects of Heat and Cold",
+        preview:"Thermal destruction, refrigeration, freezing",
+        body:[
+          { h:"Effect of Heat on Microbes", items:[
+            "Heat denatures proteins and nucleic acids",
+            "Moist heat more effective than dry heat (at same temperature)",
+            "Thermal death point (TDP) — lowest temperature killing organism in 10 min",
+            "Thermal death time (TDT) — time to kill all at given temperature",
+            "D-value — time to reduce population by 90% at given temperature"
+          ]},
+          { h:"Pasteurisation", items:[
+            "HTST (High Temperature Short Time): 72°C for 15 sec — milk",
+            "LTH (Low Temperature Holding): 63°C for 30 min",
+            "UHT (Ultra High Temperature): 135°C for 2 sec — shelf-stable",
+            "Kills pathogens but not all organisms; extends shelf life"
+          ]},
+          { h:"Effect of Cold on Microbes", items:[
+            "Refrigeration (4°C) — bacteriostatic, slows growth",
+            "Freezing (−20°C) — halts growth; some organisms die over time",
+            "Deep freezing (−70°C) — long-term preservation of cultures",
+            "Psychrophilic pathogens (e.g. Listeria) can grow in refrigerator",
+            "Freeze-drying (Lyophilisation) — preserves organisms for decades"
+          ]}
+        ]
+      },
+      {
+        emoji:"🏥", title:"Hospital Infection Control & Role of Nurses",
+        preview:"HAIs, standard precautions, nursing role",
+        body:[
+          { h:"Hospital-Acquired Infections (HAIs)", items:[
+            "Also called nosocomial infections — occur ≥48 hrs after admission",
+            "Most common: UTI (40%), pneumonia (15–20%), surgical site infection, bacteraemia",
+            "Common organisms: E. coli, Klebsiella, Pseudomonas, S. aureus (MRSA), C. difficile",
+            "Risk factors: immunocompromised, invasive devices, prolonged hospitalisation"
+          ]},
+          { h:"Standard Precautions (for ALL patients)", items:[
+            "Hand hygiene — 5 moments (WHO); most effective infection control measure",
+            "PPE — gloves, apron, mask, eye protection as appropriate",
+            "Safe disposal of sharps — never re-cap needles",
+            "Safe handling of soiled linen and clinical waste",
+            "Respiratory hygiene/cough etiquette"
+          ]},
+          { h:"Transmission-Based Precautions", items:[
+            "Contact precautions — MRSA, VRE, C. difficile (gloves + apron)",
+            "Droplet precautions — Influenza, Meningitis (surgical mask, 1m distance)",
+            "Airborne precautions — TB, Measles, Chickenpox (N95 mask, negative pressure room)"
+          ]},
+          { h:"Role of the Nurse in Infection Control", items:[
+            "Strict aseptic technique during procedures (catheterisation, IV insertion, wound dressing)",
+            "Early identification and isolation of infected patients",
+            "Patient and family education on hand hygiene",
+            "Monitoring and reporting of infection clusters to IPC team",
+            "Ensuring proper sterilisation/disinfection of equipment",
+            "Care of urinary catheters, IV lines (bundle care) to prevent CAUTI and CLABSI"
+          ]}
+        ]
+      }
+    ]
+  },
+  {
+    id:"u5", num:"V",
+    title:"Disease-Producing Microorganisms",
+    cards:[
+      {
+        emoji:"🦠", title:"Gram-Positive Bacilli",
+        preview:"Corynebacterium, Bacillus, Listeria",
+        body:[
+          { h:"Corynebacterium diphtheriae", items:[
+            "Diphtheria — pseudomembrane in throat (grey-white), bull-neck appearance",
+            "Exotoxin — inhibits EF-2 (elongation factor 2), halts protein synthesis",
+            "Diagnosis: Löffler's serum slope (Albert's stain — metachromatic granules)",
+            "Elek's test — toxigenicity test",
+            "Treatment: Diphtheria antitoxin + Penicillin/Erythromycin",
+            "Prevention: DPT vaccine"
+          ]},
+          { h:"Bacillus anthracis (Anthrax)", items:[
+            "Spore-forming, Gram +ve bacillus — large, square-ended (boxcar shape)",
+            "Three forms: cutaneous (malignant pustule — black eschar), pulmonary (woolsorter's disease), GI",
+            "Exotoxin: protective antigen (PA) + lethal factor (LF) + oedema factor (EF)",
+            "Bioterrorism agent; zoonotic disease from cattle, sheep",
+            "Treatment: Ciprofloxacin, Doxycycline; Vaccine available"
+          ]},
+          { h:"Listeria monocytogenes", items:[
+            "Psychrophile — grows in refrigerator (4°C)",
+            "Causes listeriosis — meningitis, septicaemia, foetal loss",
+            "Tumbling motility; intracellular pathogen",
+            "High risk groups: pregnant women, neonates, immunocompromised",
+            "Source: unpasteurised dairy, deli meats, soft cheese",
+            "Treatment: Ampicillin + Gentamicin"
+          ]}
+        ]
+      },
+      {
+        emoji:"🫁", title:"Tuberculosis (TB)",
+        preview:"Mycobacterium tuberculosis, pathogenesis",
+        body:[
+          { h:"The Organism", items:[
+            "Mycobacterium tuberculosis — acid-fast bacillus (AFB), slow-growing (doubling time ~20 hrs)",
+            "Cell wall: mycolic acids (responsible for acid-fastness and drug resistance)",
+            "ZN stain: red bacilli on blue background ('red snappers in a blue sea')",
+            "Obligate aerobe; grows best in oxygen-rich apices of lungs"
+          ]},
+          { h:"Pathogenesis", items:[
+            "Droplet nuclei infection; primary Ghon focus in lungs",
+            "Ghon complex = Ghon focus + hilar lymph node",
+            "Latent TB: bacteria contained by granuloma (caseous necrosis + Langhans giant cells)",
+            "Reactivation TB — in immunocompromised; miliary TB (haematogenous spread)",
+            "Koch's phenomenon — hypersensitivity reaction"
+          ]},
+          { h:"Diagnosis & Treatment", items:[
+            "Mantoux (Tuberculin) test — Type IV (cell-mediated) hypersensitivity; >10mm = positive",
+            "Sputum ZN smear, culture on Löwenstein-Jensen (LJ) medium (6–8 weeks)",
+            "GeneXpert MTB/RIF — rapid PCR-based, detects rifampicin resistance",
+            "DOTS therapy (Directly Observed Treatment): RIPE — Rifampicin, Isoniazid, Pyrazinamide, Ethambutol (2 months intensive + 4 months continuation)",
+            "BCG vaccine — neonatal; protects against miliary & meningeal TB"
+          ]},
+          { mnemonic:"🧠 RIPE: Rifampicin, Isoniazid, Pyrazinamide, Ethambutol" }
+        ]
+      },
+      {
+        emoji:"🩹", title:"Leprosy (Hansen's Disease)",
+        preview:"Mycobacterium leprae, types, treatment",
+        body:[
+          { h:"The Organism", items:[
+            "Mycobacterium leprae — cannot be cultured in vitro; grown in armadillo footpad",
+            "Acid-fast, very slow growing (doubling time ~12 days)",
+            "Obligate intracellular parasite; affects skin & peripheral nerves",
+            "Portal of entry: skin or nasal mucosa; incubation 2–10 years"
+          ]},
+          { h:"Types of Leprosy", items:[
+            "Tuberculoid (TT): good immunity, few lesions, hypopigmented macules with anesthesia, AFB −ve (paucibacillary)",
+            "Lepromatous (LL): poor immunity, diffuse skin thickening, lion-face (facies leontina), AFB +ve (multibacillary)",
+            "Borderline (BT, BB, BL) — spectrum between extremes",
+            "Ridley-Jopling classification based on immune status"
+          ]},
+          { h:"Diagnosis & Treatment", items:[
+            "Slit-skin smear — stained with ZN for AFB (lepromin-negative in LL)",
+            "Lepromin test — assesses host immunity (Mitsuda reaction at 28 days)",
+            "MDT (Multi-Drug Therapy): Paucibacillary — Rifampicin + Dapsone (6 months); Multibacillary — + Clofazimine (12 months)",
+            "Reactions: Type 1 (reversal) — steroids; Type 2 (ENL) — thalidomide/steroids"
+          ]}
+        ]
+      },
+      {
+        emoji:"💨", title:"Anaerobes",
+        preview:"Clostridium, Bacteroides, gas gangrene",
+        body:[
+          { h:"Key Clostridial Species", items:[
+            "C. tetani — tetanus; spastic paralysis; 'drumstick' spore; exotoxin: tetanospasmin blocks inhibitory neurons (GABA/glycine)",
+            "C. botulinum — botulism; flaccid paralysis; blocks ACh release at NMJ; toxin A most common; food-borne",
+            "C. perfringens — gas gangrene (myonecrosis); lecithinase (α-toxin); also food poisoning",
+            "C. difficile — antibiotic-associated diarrhoea (AAD), pseudomembranous colitis; toxin A (enterotoxin) + B (cytotoxin)"
+          ]},
+          { h:"Pathogenesis & Diagnosis", items:[
+            "Clostridia: spore-forming, Gram +ve, obligate anaerobes",
+            "Gas in tissues on X-ray — hallmark of gas gangrene",
+            "C. difficile: ELISA for toxin, GDH antigen; colonoscopy shows pseudomembranes",
+            "Culture: Robertson's cooked meat medium, blood agar in anaerobic jar"
+          ]},
+          { h:"Treatment", items:[
+            "Gas gangrene: surgical debridement + Penicillin G; hyperbaric oxygen",
+            "Tetanus: wound debridement + TIG (Tetanus Immunoglobulin) + Metronidazole; TT vaccine",
+            "Botulism: antitoxin + supportive care",
+            "C. difficile: stop offending antibiotic; Metronidazole or Vancomycin (oral); Fidaxomicin for recurrence"
+          ]}
+        ]
+      },
+      {
+        emoji:"🔵", title:"Pathogenic Cocci",
+        preview:"Staph, Strep, Neisseria",
+        body:[
+          { h:"Staphylococcus aureus", items:[
+            "Gram +ve cocci in grape-like clusters; golden-yellow colonies; β-haemolysis",
+            "Coagulase positive — key identifier",
+            "Virulence: protein A, leucocidin, TSST-1 (toxic shock), exfoliative toxin (scalded skin)",
+            "Diseases: skin infections, osteomyelitis, pneumonia, endocarditis, food poisoning (enterotoxin)",
+            "MRSA — resistant to β-lactams; treat with Vancomycin"
+          ]},
+          { h:"Streptococcus pyogenes (Group A)", items:[
+            "Gram +ve cocci in chains; β-haemolysis; Bacitracin sensitive",
+            "M protein — anti-phagocytic; basis of serotyping (Lancefield grouping)",
+            "Diseases: pharyngitis, scarlet fever (erythrogenic toxin), cellulitis, impetigo, erysipelas",
+            "Post-infectious sequelae: Rheumatic fever (molecular mimicry), PSGN (post-streptococcal glomerulonephritis)",
+            "ASO titre elevated in post-strep complications"
+          ]},
+          { h:"Neisseria species", items:[
+            "Gram −ve diplococci (kidney-bean shaped); oxidase positive",
+            "N. meningitidis: meningitis + meningococcaemia; petechial/purpuric rash; serogroups A,B,C,Y,W135",
+            "N. gonorrhoeae: gonorrhoea (urethritis, PID, ophthalmia neonatorum); no vaccine",
+            "Culture on chocolate agar / Thayer-Martin; intracellular diplococci in PMNs on smear"
+          ]}
+        ]
+      },
+      {
+        emoji:"🌀", title:"Spirochaetes",
+        preview:"Treponema, Leptospira, Borrelia",
+        body:[
+          { h:"Treponema pallidum (Syphilis)", items:[
+            "Thin, tightly coiled; cannot be grown in vitro; visualised by dark-field microscopy",
+            "Stages: Primary (painless chancre), Secondary (macular rash on palms & soles, condylomata lata), Tertiary (gumma, CVS — Aortitis, CNS — Tabes dorsalis, GPI)",
+            "Congenital syphilis: Hutchinson's triad (interstitial keratitis, notched incisors, sensorineural deafness)",
+            "Serology: VDRL/RPR (non-treponemal screening); TPHA/FTA-ABS (confirmatory)",
+            "Treatment: Benzathine Penicillin G (DOC)"
+          ]},
+          { h:"Leptospira interrogans", items:[
+            "Hook-shaped ends; aerobic; zoonotic from rats (via urine)",
+            "Weil's disease (severe leptospirosis): jaundice + renal failure + haemorrhage",
+            "Diagnosis: MAT (microscopic agglutination test), IgM ELISA, PCR",
+            "Treatment: Doxycycline (mild), Penicillin/Cephalosporin (severe)"
+          ]},
+          { h:"Borrelia burgdorferi (Lyme disease)", items:[
+            "Transmitted by Ixodes tick; Erythema migrans (bullseye rash) pathognomonic",
+            "Three stages: localised → disseminated (carditis, neuroborreliosis) → late (arthritis)",
+            "Diagnosis: ELISA + Western blot; serology",
+            "Treatment: Doxycycline; Amoxicillin; Ceftriaxone (severe)"
+          ]}
+        ]
+      },
+      {
+        emoji:"🪲", title:"Rickettsiae",
+        preview:"Obligate intracellular, vector-borne",
+        body:[
+          { h:"General Properties", items:[
+            "Gram −ve (stain poorly); obligate intracellular parasites",
+            "Vector-transmitted: ticks, lice, mites, fleas",
+            "Replicate in cytoplasm of endothelial cells → vasculitis",
+            "Stain: Giemsa; visualised as purple bodies within cells"
+          ]},
+          { h:"Important Species & Diseases", items:[
+            "R. prowazekii — Epidemic typhus (body louse Pediculus); Brill-Zinsser (recurrence)",
+            "R. typhi — Murine (endemic) typhus (rat flea)",
+            "R. rickettsii — Rocky Mountain Spotted Fever (RMSF); tick-borne; rash spreads centripetally (palms/soles → trunk)",
+            "Orientia tsutsugamushi — Scrub typhus (mite chigger); eschar at bite site; common in India",
+            "Coxiella burnetii — Q fever; inhaled (no vector); atypical pneumonia; endocarditis"
+          ]},
+          { h:"Diagnosis & Treatment", items:[
+            "Weil-Felix reaction — cross-reacting agglutinins with Proteus OX strains (screening; low specificity)",
+            "IFA (Indirect immunofluorescence) — gold standard serology",
+            "PCR, cell culture (BSL-3 facility for Coxiella)",
+            "Treatment: Doxycycline (DOC for all rickettsial diseases); Chloramphenicol alternative"
+          ]}
+        ]
+      }
+    ]
+  },
+  {
+    id:"u6", num:"VI",
+    title:"Pathogenic Fungi",
+    cards:[
+      {
+        emoji:"🍄", title:"Dermatophytes",
+        preview:"Ringworm, tinea infections, lab diagnosis",
+        body:[
+          { h:"General Properties", items:[
+            "Dermatophytes infect only keratinised tissues (skin, hair, nails)",
+            "Three genera: Trichophyton, Microsporum, Epidermophyton",
+            "Produce keratinase enzymes; grow as moulds (hyphae + conidia)",
+            "Transmitted by direct contact; zoophilic/geophilic/anthropophilic species"
+          ]},
+          { h:"Clinical Syndromes (Tinea)", items:[
+            "Tinea capitis — scalp ringworm; hair loss; commonest in children",
+            "Tinea corporis — smooth skin (ringworm); annular scaly lesion",
+            "Tinea pedis — athlete's foot; maceration between toes",
+            "Tinea unguium (Onychomycosis) — nail thickening, discolouration, crumbling",
+            "Tinea cruris — groin (jock itch); not caused by Epidermophyton alone",
+            "Tinea versicolor — caused by Malassezia furfur (not a true dermatophyte); hypo/hyperpigmented patches"
+          ]},
+          { h:"Laboratory Diagnosis", items:[
+            "KOH (10–20%) mount — shows hyphae/arthroconidia in skin scrapings",
+            "Wood's lamp — greenish fluorescence (Microsporum species)",
+            "Culture: Sabouraud's dextrose agar (SDA) at 25–30°C, 2–4 weeks",
+            "Colony and microscopy morphology — identify genus/species",
+            "Treatment: Topical clotrimazole/miconazole; systemic Terbinafine or Griseofulvin (nails)"
+          ]}
+        ]
+      },
+      {
+        emoji:"🫁", title:"Systemic Mycotic Infections",
+        preview:"Candida, Aspergillus, Cryptococcus",
+        body:[
+          { h:"Candida albicans", items:[
+            "Most common fungal pathogen in humans; commensal of GI/genital tract",
+            "Dimorphic: yeast at 37°C (body); pseudohyphae in tissue",
+            "Germ tube test — positive in 37°C serum (identifies C. albicans within 2 hrs)",
+            "Diseases: oral thrush, oesophageal candidiasis, vulvovaginitis (cottage cheese discharge), systemic candidiasis in immunocompromised",
+            "Risk factors: antibiotics, steroids, diabetes, HIV, neutropenia",
+            "Treatment: Nystatin (topical), Fluconazole (systemic), Amphotericin B (severe)"
+          ]},
+          { h:"Aspergillus fumigatus", items:[
+            "Mould; septate hyphae with 45° angle branching (V-shape); flask-shaped vesicle with phialides",
+            "Diseases: Aspergilloma (fungal ball in pre-existing cavity), Invasive pulmonary aspergillosis (IPA) in neutropenic patients, Allergic bronchopulmonary aspergillosis (ABPA) in asthmatics/CF",
+            "Galactomannan antigen test (serum/BAL) — screening in immunocompromised",
+            "Treatment: Voriconazole (DOC for invasive); Amphotericin B; Caspofungin"
+          ]},
+          { h:"Cryptococcus neoformans", items:[
+            "Encapsulated yeast; India ink shows capsule as clear halo",
+            "Associated with pigeon droppings; immunocompromised host (HIV/AIDS — CD4 <100)",
+            "Cryptococcal meningitis — insidious onset; CSF: India ink +ve, cryptococcal antigen (CrAg) +ve",
+            "Treatment: Amphotericin B + Flucytosine (induction) → Fluconazole (consolidation/maintenance)"
+          ]},
+          { h:"Histoplasma & Other Dimorphic Fungi", items:[
+            "Dimorphic fungi: mould at room temperature → yeast at 37°C ('mold in cold, yeast in heat')",
+            "Histoplasma capsulatum — histoplasmosis; bird/bat droppings; Ohio Valley USA",
+            "Blastomyces dermatitidis — blastomycosis; broad-based budding yeast",
+            "Coccidioides immitis — coccidioidomycosis; spherules with endospores; soil in arid regions"
+          ]}
+        ]
+      },
+      {
+        emoji:"🧫", title:"Laboratory Diagnosis of Mycotic Infections",
+        preview:"Specimens, media, methods",
+        body:[
+          { h:"Specimen Collection", items:[
+            "Skin: scrapings from active edge of lesion; nail clippings",
+            "Hair: epilate with forceps; Wood's lamp fluorescent hairs",
+            "Sputum/BAL — pulmonary fungal infections",
+            "CSF — cryptococcal meningitis",
+            "Blood cultures — systemic candidiasis, histoplasmosis",
+            "Biopsy — invasive fungal disease"
+          ]},
+          { h:"Direct Examination Methods", items:[
+            "KOH wet mount — dissolves keratin, shows fungal elements",
+            "India ink — Cryptococcus capsule",
+            "Calcofluor white — binds chitin in fungal cell walls; fluorescence microscopy",
+            "Gram stain — Candida shows Gram +ve pseudohyphae",
+            "PAS stain / GMS (Grocott-Gomori methenamine silver) — histopathology"
+          ]},
+          { h:"Culture & Identification", items:[
+            "Sabouraud's dextrose agar (SDA) — standard fungal medium; acidic pH inhibits bacteria",
+            "Cycloheximide — added to inhibit saprophytic fungi",
+            "CHROM agar — colour-based identification of Candida species",
+            "API 20C / VITEK-2 — biochemical identification",
+            "MALDI-TOF — rapid identification",
+            "Antigen tests: Cryptococcal antigen (CrAg), Galactomannan, Beta-D-glucan (panfungal)"
+          ]}
+        ]
+      }
+    ]
+  },
+  {
+    id:"u7", num:"VII",
+    title:"Immunity",
+    cards:[
+      {
+        emoji:"🛡️", title:"Immunity & Hypersensitivity",
+        preview:"Innate vs adaptive, Gell & Coombs types",
+        body:[
+          { h:"Types of Immunity", items:[
+            "Innate (Non-specific): first line; no memory; physical barriers (skin, mucus), phagocytes, NK cells, complement, fever, inflammation",
+            "Adaptive (Specific): lymphocytes; has memory; two arms — humoral (B cells, antibodies) and cellular (T cells)",
+            "Active immunity: produced by own immune system (natural infection or vaccination); long-lasting",
+            "Passive immunity: ready-made antibodies transferred; immediate but short-lived (e.g. maternal IgG, antitoxin serum)"
+          ]},
+          { h:"Gell & Coombs Classification of Hypersensitivity", items:[
+            "Type I — Immediate/Anaphylactic: IgE mediated; mast cell degranulation; histamine release; anaphylaxis, asthma, urticaria, hay fever",
+            "Type II — Cytotoxic: IgG/IgM against cell surface antigens; complement activated; haemolytic anaemia, ABO incompatibility, Goodpasture's",
+            "Type III — Immune Complex: IgG/IgM complexes deposited in tissues; complement activation; SLE, serum sickness, post-strep GN, Arthus reaction",
+            "Type IV — Delayed/Cell-mediated: T-cell mediated (Th1); 48–72 hrs; contact dermatitis, tuberculin test, graft rejection, granulomas"
+          ]},
+          { mnemonic:"🧠 'ACID': Anaphylactic (I), Cytotoxic (II), Immune complex (III), Delayed (IV)" }
+        ]
+      },
+      {
+        emoji:"🔬", title:"Skin Tests in Immunology",
+        preview:"Mantoux, Lepromin, Schick, Dick tests",
+        body:[
+          { h:"Tuberculin (Mantoux) Test", items:[
+            "0.1 ml PPD (Purified Protein Derivative) intradermally into forearm",
+            "Read at 48–72 hrs; measure INDURATION (not erythema)",
+            "≥10 mm = positive in general population; ≥5 mm in immunocompromised/high risk",
+            "Type IV (delayed) hypersensitivity reaction",
+            "False negative: immunosuppression, miliary TB, sarcoidosis, recent live vaccine",
+            "BCG vaccination can cause false positive"
+          ]},
+          { h:"Other Skin Tests", items:[
+            "Lepromin test (Mitsuda reaction at 28 days) — assesses CMI to M. leprae; NOT diagnostic, measures host immunity",
+            "Schick test — tests susceptibility to diphtheria toxin (now replaced by vaccination)",
+            "Dick test — susceptibility to Scarlet fever toxin (historical)",
+            "Casoni test — hydatid disease (Echinococcus)",
+            "Kveim test — sarcoidosis (historical)"
+          ]}
+        ]
+      },
+      {
+        emoji:"⚗️", title:"Antigen & Antibody Reactions",
+        preview:"Serology tests, immunoglobulins",
+        body:[
+          { h:"Immunoglobulin Classes", items:[
+            "IgG — most abundant; crosses placenta; memory responses; 4 subclasses",
+            "IgA — mucosal immunity; secretory IgA in tears, saliva, breast milk",
+            "IgM — first antibody produced; pentameric; fixes complement; agglutination",
+            "IgE — allergy and parasitic infections; lowest concentration; binds mast cells",
+            "IgD — on naive B cell surface; role in B cell activation"
+          ]},
+          { h:"Antigen-Antibody Reactions", items:[
+            "Agglutination — antibody + particulate antigen → clumping (Widal, blood grouping)",
+            "Precipitation — soluble antigen + antibody → precipitate (Ouchterlony, immunoelectrophoresis)",
+            "Complement fixation — antibody + antigen + complement → lysis; VDRL, CFT",
+            "Neutralisation — antibody neutralises toxin/virus",
+            "ELISA — enzyme-linked; quantitative antibody/antigen detection; very widely used",
+            "Western blot — protein specific; confirmatory (HIV, Lyme disease)"
+          ]},
+          { h:"Laws of Antigen-Antibody Reactions", items:[
+            "Specificity — antibody reacts with specific antigen",
+            "Cross-reactivity — related antigens may react with same antibody",
+            "Reversibility — reactions are reversible (dynamic equilibrium)",
+            "Non-covalent bonds — hydrogen bonds, ionic, hydrophobic, van der Waals"
+          ]}
+        ]
+      },
+      {
+        emoji:"💉", title:"Immunisation in Disease",
+        preview:"Vaccines, schedule, types",
+        body:[
+          { h:"Types of Vaccines", items:[
+            "Live attenuated — weakened pathogen; strong CMI + humoral; BCG, OPV (Sabin), MMR, Varicella",
+            "Killed/inactivated — whole killed organism; IPV (Salk), Rabies, Pertussis (wP), Influenza (inj)",
+            "Toxoid — inactivated toxin; Tetanus, Diphtheria",
+            "Subunit/Recombinant — specific antigen; Hepatitis B (HBsAg), HPV, Acellular pertussis",
+            "Conjugate — polysaccharide + carrier protein; Hib, Meningococcal, Pneumococcal PCV",
+            "mRNA vaccines — COVID-19 (Pfizer, Moderna)"
+          ]},
+          { h:"National Immunisation Schedule (India)", items:[
+            "Birth: BCG, OPV-0, Hepatitis B-1",
+            "6 weeks: DPT-1, OPV-1, IPV-1, Hep B-2, Hib-1, Rotavirus-1, PCV-1",
+            "14 weeks: DPT-3, OPV-3, IPV-2, Hib-3, Rotavirus-3, PCV-3",
+            "9–12 months: Measles-1 (MCV1), JE-1, Vitamin A",
+            "16–24 months: DPT booster, OPV booster, MCV2, JE-2",
+            "5 years: DPT booster; 10 years & 16 years: Td booster"
+          ]},
+          { h:"Cold Chain", items:[
+            "Vaccines must be kept at 2–8°C throughout storage/transport",
+            "Live vaccines most sensitive to heat (BCG, OPV, MMR)",
+            "Freeze-sensitive vaccines: DPT, Hepatitis B, IPV",
+            "VVM (Vaccine Vial Monitor) — heat-sensitive label on vials",
+            "Ice-lined refrigerator (ILR) at PHC level"
+          ]}
+        ]
+      }
+    ]
+  },
+  {
+    id:"u8", num:"VIII",
+    title:"Parasites & Vectors",
+    cards:[
+      {
+        emoji:"🦠", title:"Classification of Parasites",
+        preview:"Protozoa, helminths, ectoparasites",
+        body:[
+          { h:"Definition & Types", items:[
+            "Parasite — organism that lives on/in another organism (host) at host's expense",
+            "Obligate parasite — cannot survive without host",
+            "Facultative parasite — can live free or as parasite",
+            "Endoparasite — inside host; Ectoparasite — on host's surface"
+          ]},
+          { h:"Major Parasite Groups", items:[
+            "Protozoa — unicellular eukaryotes; 4 groups: Amoeba, Flagellates, Ciliates, Sporozoa",
+            "Helminths (worms) — multicellular; Nematodes (roundworms), Trematodes (flukes), Cestodes (tapeworms)",
+            "Ectoparasites — lice, ticks, mites, fleas, mosquitoes"
+          ]},
+          { h:"Host-Parasite Relationships", items:[
+            "Definitive host — sexual reproduction of parasite occurs",
+            "Intermediate host — asexual reproduction; larval stages",
+            "Reservoir host — maintains parasite without disease; source of infection for humans",
+            "Paratenic host — parasite is carried without development (transport host)"
+          ]}
+        ]
+      },
+      {
+        emoji:"🤢", title:"Protozoal Infections — Amoebiasis",
+        preview:"Entamoeba histolytica, life cycle, diagnosis",
+        body:[
+          { h:"Entamoeba histolytica", items:[
+            "Only pathogenic amoeba; exists as trophozoite (invasive) and cyst (infective)",
+            "Cyst: 4 nuclei; transmitted via faecal-oral route (contaminated water/food)",
+            "Trophozoite: ingests RBCs (haematophagous) — diagnostic feature",
+            "Attacks colon: flask-shaped ulcers with undermined edges"
+          ]},
+          { h:"Clinical Features", items:[
+            "Intestinal amoebiasis: amoebic dysentery — blood & mucus in stool, colicky pain",
+            "Amoebic liver abscess (ALA): RUQ pain, fever, 'anchovy sauce' pus",
+            "Amoeboma — granulomatous lesion in colon mimicking cancer",
+            "Non-pathogenic amoeba: E. dispar (morphologically identical, non-invasive)"
+          ]},
+          { h:"Diagnosis & Treatment", items:[
+            "Fresh stool microscopy: trophozoites with ingested RBCs (hot stool within 30 min)",
+            "Cysts: Lugol's iodine stain (4 nuclei visible)",
+            "Serology: ELISA, IFAT — useful for liver abscess (high titre)",
+            "PCR — differentiates E. histolytica from E. dispar",
+            "Treatment: Metronidazole (tissue amoebiasis) + Diloxanide furoate (luminal cyst eradicator)"
+          ]}
+        ]
+      },
+      {
+        emoji:"🦟", title:"Other Protozoal Infections",
+        preview:"Malaria, Leishmania, Giardia, Toxoplasma",
+        body:[
+          { h:"Malaria (Plasmodium spp.)", items:[
+            "4 species: P. falciparum (most dangerous, cerebral malaria), P. vivax (relapse), P. malariae, P. ovale",
+            "Vector: Female Anopheles mosquito (bites dawn/dusk)",
+            "Erythrocytic cycle → rupture → fever (tertian 48h / quartan 72h)",
+            "P. vivax/ovale: hypnozoites in liver cause relapse; add Primaquine to clear hypnozoites",
+            "Diagnosis: Thick & thin blood smear (Giemsa), RDT (HRP-2 antigen for P. falciparum), PCR",
+            "Treatment: Artemisinin-based combination therapy (ACT); Chloroquine for sensitive P. vivax"
+          ]},
+          { h:"Leishmania (Kala-azar)", items:[
+            "L. donovani — visceral leishmaniasis (Kala-azar); splenomegaly, pancytopenia, black skin",
+            "Vector: Phlebotomus sandfly; transmitted as metacyclic promastigotes",
+            "Intracellular in macrophages as amastigotes (Leishman-Donovan bodies)",
+            "Diagnosis: rK39 antigen RDT (highly sensitive), spleen/bone marrow biopsy",
+            "Treatment: Liposomal Amphotericin B, Miltefosine (oral)"
+          ]},
+          { h:"Giardia & Toxoplasma", items:[
+            "Giardia lamblia: flagellated protozoan; cysts in water; causes malabsorption & fatty diarrhoea; 'falling-leaf motility'; treatment: Metronidazole",
+            "Toxoplasma gondii: obligate intracellular; cats are definitive host; congenital toxoplasmosis ('TORCH'); causes chorioretinitis, hydrocephalus; reactivation in HIV (cerebral abscess); treatment: Pyrimethamine + Sulfadiazine"
+          ]}
+        ]
+      },
+      {
+        emoji:"🐛", title:"Helminthic Infections",
+        preview:"Roundworms, tapeworms, flukes",
+        body:[
+          { h:"Nematodes (Roundworms)", items:[
+            "Ascaris lumbricoides — largest intestinal nematode; Löffler's pneumonia (larval migration); abdominal pain, malnutrition",
+            "Enterobius vermicularis — pinworm; perianal itching at night; Scotch tape test for eggs",
+            "Ancylostoma duodenale / Necator americanus — hookworm; hypochromic microcytic anaemia (blood loss)",
+            "Trichuris trichiura — whipworm; rectal prolapse in heavy infection",
+            "Wuchereria bancrofti — filariasis; lymphoedema (elephantiasis); microfilariae in blood at night; vector: Culex mosquito",
+            "Treatment: Albendazole, Mebendazole (DOC for most intestinal helminths)"
+          ]},
+          { h:"Cestodes (Tapeworms)", items:[
+            "Taenia solium — pork tapeworm; cysticercosis (larvae in brain/muscle) — neurocysticercosis → seizures",
+            "Taenia saginata — beef tapeworm; only intestinal, no cysticercosis in humans",
+            "Echinococcus granulosus — hydatid cyst in liver/lung; anaphylaxis if cyst ruptures; Casoni skin test",
+            "Diagnosis: proglottid morphology, stool microscopy; CT scan for tissue cysts",
+            "Treatment: Praziquantel (tapeworms); Albendazole for cysticercosis/hydatid"
+          ]},
+          { h:"Trematodes (Flukes)", items:[
+            "Schistosoma spp. — blood flukes; transmitted through skin (water exposure); causes bilharzia; hepatosplenic disease",
+            "Paragonimus westermani — lung fluke; crab/crayfish ingestion; haemoptysis, chest X-ray shadows",
+            "Diagnosis: stool/urine/sputum microscopy for ova; serological tests",
+            "Treatment: Praziquantel (DOC for all flukes)"
+          ]}
+        ]
+      },
+      {
+        emoji:"🦟", title:"Vectors & Vector-Borne Diseases",
+        preview:"Mosquitoes, ticks, flies, fleas",
+        body:[
+          { h:"Important Vectors & Diseases", items:[
+            "Anopheles mosquito → Malaria (Plasmodium), Wuchereria bancrofti",
+            "Culex mosquito → Japanese encephalitis, Filariasis, West Nile virus",
+            "Aedes aegypti → Dengue, Chikungunya, Yellow fever, Zika",
+            "Phlebotomus sandfly → Leishmaniasis (Kala-azar), Sandfly fever",
+            "Ixodes tick → Lyme disease (Borrelia), Rocky Mountain SF, Babesiosis",
+            "Dermacentor tick → Rocky Mountain SF (R. rickettsii), Tularaemia",
+            "Pediculus humanus (body louse) → Epidemic typhus (R. prowazekii), Relapsing fever (Borrelia recurrentis)",
+            "Pulex (rat flea) → Murine typhus, Plague (Yersinia pestis)",
+            "Tsetse fly (Glossina) → African sleeping sickness (Trypanosoma brucei)",
+            "Blackfly (Simulium) → Onchocerciasis (river blindness)"
+          ]},
+          { h:"Vector Control Measures", items:[
+            "Environmental: eliminate breeding sites (stagnant water), drainage",
+            "Biological: Bacillus thuringiensis israelensis (Bti), larvivorous fish (Gambusia)",
+            "Chemical: insecticides (DDT, malathion), larvicides (temephos)",
+            "Personal protection: bed nets (LLIN — long-lasting insecticidal nets), repellents (DEET), protective clothing"
+          ]}
+        ]
+      }
+    ]
+  },
+  {
+    id:"u9", num:"IX",
+    title:"Viruses",
+    cards:[
+      {
+        emoji:"🦠", title:"Classification & General Characters of Viruses",
+        preview:"Structure, replication, Baltimore classification",
+        body:[
+          { h:"Nature of Viruses", items:[
+            "Acellular; 20–300 nm (visible only by EM); obligate intracellular parasites",
+            "Contain only ONE type of nucleic acid (DNA or RNA), not both",
+            "No cell organelles, no ribosomes; use host cell machinery for replication",
+            "No metabolism outside host cell"
+          ]},
+          { h:"Viral Structure", items:[
+            "Nucleic acid core — genome (DNA or RNA; SS or DS; linear or circular; segmented or non-segmented)",
+            "Capsid — protein coat (protomers → capsomeres); protects genome",
+            "Capsid symmetry: Icosahedral (spherical), Helical (tubular), Complex (poxvirus, bacteriophage)",
+            "Envelope — lipid bilayer derived from host membrane; surface glycoprotein spikes (haemagglutinin, neuraminidase in influenza)",
+            "Enveloped viruses: sensitive to ether/detergent/drying; Non-enveloped (naked): resistant"
+          ]},
+          { h:"Baltimore Classification (by genome type)", items:[
+            "Class I: dsDNA — Adenovirus, Herpesvirus, Poxvirus",
+            "Class II: ssDNA — Parvovirus",
+            "Class III: dsRNA — Reovirus, Rotavirus",
+            "Class IV: (+)ssRNA — Picornavirus (Poliovirus, HAV), Coronavirus, Flavivirus",
+            "Class V: (−)ssRNA — Influenza, Rabies, Measles",
+            "Class VI: ssRNA-RT (Retroviruses) — HIV, HTLV",
+            "Class VII: dsDNA-RT (Hepadnaviruses) — Hepatitis B virus"
+          ]},
+          { h:"Viral Replication Steps", items:[
+            "Adsorption → Penetration → Uncoating → Biosynthesis (replication of genome + protein synthesis) → Assembly → Release (lysis or budding)"
+          ]}
+        ]
+      },
+      {
+        emoji:"🤒", title:"Viral Diseases in Humans — Part 1",
+        preview:"Respiratory, GI, hepatitis viruses",
+        body:[
+          { h:"Respiratory Viruses", items:[
+            "Influenza (Orthomyxovirus): RNA, segmented; H (haemagglutinin) and N (neuraminidase) antigens; Antigenic drift (minor, annual epidemics), Shift (major, pandemics)",
+            "SARS-CoV-2: β-coronavirus; spike protein binds ACE2; COVID-19",
+            "Adenovirus: dsDNA; pharyngo-conjunctival fever, keratoconjunctivitis, URTIs",
+            "RSV (Respiratory Syncytial Virus): commonest cause of bronchiolitis in infants; Palivizumab prophylaxis for high-risk",
+            "Rhinovirus: >100 serotypes; most common cold"
+          ]},
+          { h:"GI Viruses", items:[
+            "Rotavirus: dsRNA, segmented; leading cause of infantile gastroenteritis worldwide; Rota vaccine in NIS",
+            "Norovirus: (+)ssRNA Calicivirus; cruise ship outbreaks; vomiting predominant; short incubation (12–48 hrs)",
+            "HAV (Hepatitis A): Picornavirus; faecal-oral; no chronic carrier; vaccine available",
+            "Poliovirus: Enterovirus; faecal-oral; bulbar polio/flaccid paralysis; eradicated (India polio-free 2014)"
+          ]},
+          { h:"Hepatitis Viruses", items:[
+            "HBV: dsDNA-RT; sexual/parenteral/vertical; chronic carrier; HBsAg (surface), HBeAg (infectivity), anti-HBs (immunity); cirrhosis, HCC",
+            "HCV: RNA flavivirus; IV drug use; high chronicity (80%); Direct-acting antivirals (DAAs); no vaccine",
+            "HDV (delta): defective RNA virus; needs HBV for replication (coinfection/superinfection)",
+            "HEV: RNA; faecal-oral like HAV; high mortality in pregnancy (20–25%)"
+          ]}
+        ]
+      },
+      {
+        emoji:"🧠", title:"Viral Diseases in Humans — Part 2",
+        preview:"Neurotropic, exanthematous, HIV",
+        body:[
+          { h:"Neurotropic Viruses", items:[
+            "Rabies (Rhabdovirus): bullet-shaped, (−)ssRNA; transmitted by dog bite; Negri bodies (inclusion bodies in hippocampus); 100% fatal once symptomatic; PEP (wound wash + RIG + vaccine)",
+            "Herpes Simplex Virus (HSV): dsDNA; HSV-1 (orolabial), HSV-2 (genital); latency in sensory ganglia; neonatal herpes; encephalitis; Aciclovir treatment",
+            "Japanese Encephalitis: flavivirus; Culex mosquito; endemic in India; JE vaccine in NIS",
+            "Measles (Paramyxovirus): Koplik's spots (buccal mucosa — pathognomonic); maculopapular rash centrifugal; SSPE (subacute sclerosing panencephalitis) — rare late complication; MMR vaccine"
+          ]},
+          { h:"Exanthematous & Other Viruses", items:[
+            "Varicella-Zoster Virus (VZV): primary = chickenpox (centripetal rash, all stages simultaneously); reactivation = shingles (dermatomal); Aciclovir treatment",
+            "Dengue (Flavivirus): Aedes aegypti; 4 serotypes; dengue haemorrhagic fever (DHF) in secondary infection; thrombocytopenia; tourniquet test; no specific antiviral",
+            "Ebola (Filovirus): zoonotic from fruit bats; viral haemorrhagic fever; high mortality; BSL-4"
+          ]},
+          { h:"HIV/AIDS", items:[
+            "Retrovirus (Lentivirus); ssRNA; reverse transcriptase → DNA → integrates into host genome (provirus)",
+            "Targets CD4+ T helper cells; normal CD4 count 500–1500; AIDS defined as CD4 <200 cells/µl",
+            "Transmission: sexual, parenteral (blood), vertical (MTCT)",
+            "Diagnosis: ELISA (screening) → Western blot (confirmation) → CD4 count + viral load",
+            "Treatment: ART (Antiretroviral Therapy) — TDF+3TC+DTG (first-line WHO 2019)",
+            "Opportunistic infections: PCP (Pneumocystis jirovecii), CMV retinitis, cryptococcal meningitis, TB, toxoplasmosis"
+          ]}
+        ]
+      }
+    ]
+  },
+  {
+    id:"u10", num:"X",
+    title:"Microorganisms Transmitted Through Food",
+    cards:[
+      {
+        emoji:"🍔", title:"Food Poisoning",
+        preview:"Staphylococcal, Bacillus, Clostridium food poisoning",
+        body:[
+          { h:"Staphylococcal Food Poisoning", items:[
+            "S. aureus enterotoxin (A–E) — heat-stable (survives 100°C for 30 min), pre-formed in food",
+            "Rapid onset: 1–6 hours after ingestion",
+            "Symptoms: vomiting, nausea, abdominal cramps (diarrhoea variable); NO fever",
+            "Common foods: custard, cream, egg salad, meat, mayonnaise; handled by carrier",
+            "Self-limiting (12–24 hrs); oral rehydration; antibiotics NOT needed"
+          ]},
+          { h:"Bacillus cereus Food Poisoning", items:[
+            "Two syndromes: Emetic (reheated rice, 1–6 hrs, vomiting like Staph food poisoning) and Diarrhoeal (meat, vegetables, 8–16 hrs, profuse watery diarrhoea)",
+            "Spores survive cooking; germinate on cooling and storage",
+            "Heat-stable emetic toxin (cereulide), heat-labile diarrhoeal toxin"
+          ]},
+          { h:"Clostridium perfringens Food Poisoning", items:[
+            "Type A enterotoxin; spores survive cooking; germinate during slow cooling",
+            "Onset: 8–16 hours; profuse watery diarrhoea + cramping; rarely vomiting; no fever",
+            "Common: cooked meat, poultry, stews",
+            "Self-limiting 12–24 hrs"
+          ]},
+          { h:"Botulism (C. botulinum)", items:[
+            "Preformed toxin in improperly home-canned/preserved foods; onset 12–72 hrs",
+            "Descending flaccid paralysis; diplopia, dysarthria, dysphagia → respiratory failure",
+            "Toxin types A,B,E most common in food-borne; Toxin A most potent biological toxin",
+            "Treatment: antitoxin + supportive; respiratory support"
+          ]}
+        ]
+      },
+      {
+        emoji:"🦠", title:"Food-Borne Infections",
+        preview:"Salmonella, E. coli, Cholera, Listeria",
+        body:[
+          { h:"Salmonella (Enteric Fever & Gastroenteritis)", items:[
+            "S. typhi — typhoid fever; bacteraemia then localisation; Rose spots on abdomen; Widal test; relative bradycardia",
+            "S. paratyphi A, B, C — paratyphoid; milder disease",
+            "Non-typhoidal Salmonella (NTS) — gastroenteritis; eggs, poultry, reptiles; diarrhoea + fever + nausea",
+            "Diagnosis: blood culture (1st week typhoid), stool culture (2nd–3rd week)",
+            "Treatment: Ceftriaxone or Azithromycin (fluoroquinolone resistance increasing); Ciprofloxacin"
+          ]},
+          { h:"E. coli Infections", items:[
+            "ETEC — traveller's diarrhoea (watery, LT+ST toxins)",
+            "EPEC — infantile gastroenteritis",
+            "EHEC (O157:H7) — haemorrhagic colitis; Haemolytic Uraemic Syndrome (HUS) — Shiga toxin; undercooked beef",
+            "EIEC — dysentery-like illness (invasive)",
+            "Diagnosis: stool culture; sorbitol-MacConkey agar (EHEC); stool PCR/culture"
+          ]},
+          { h:"Vibrio cholerae", items:[
+            "Cholera: 'rice-water stools' — profuse watery diarrhoea; dehydration; Vibrio O139 & O1",
+            "Cholera toxin — activates adenylyl cyclase → ↑cAMP → massive Cl⁻ secretion",
+            "Rapid dehydration — 10–20 L/day fluid loss; metabolic acidosis, hypokalemia",
+            "Treatment: ORS (Oral Rehydration Solution) is KEY; Doxycycline/Tetracycline to reduce shedding",
+            "Control: safe water, sanitation, hygiene (WASH)"
+          ]},
+          { h:"Food Safety & Prevention", items:[
+            "5 Keys to Safer Food (WHO): Keep clean; Separate raw and cooked; Cook thoroughly; Keep food at safe temperatures; Use safe water and raw materials",
+            "Danger zone: 5–63°C (bacteria multiply rapidly)",
+            "Cook poultry to ≥74°C (165°F) internal temperature",
+            "Pasteurisation of milk, adequate water chlorination",
+            "HACCP (Hazard Analysis Critical Control Points) — food safety management system",
+            "FSSAI (Food Safety and Standards Authority of India) — regulatory body in India"
+          ]}
+        ]
+      }
+    ]
+  }
+];
+
+// ══════════════════════════════════════════════════════════════
+// RENDER
+// ══════════════════════════════════════════════════════════════
+function buildBody(card, unitClass) {
+  let html = '';
+  card.body.forEach(block => {
+    if (block.mnemonic) {
+      html += `<div class="mnemonic-box">${block.mnemonic}</div>`;
+    } else {
+      html += `<div class="sub-group"><div class="sub-heading">${block.h}</div><ul>`;
+      block.items.forEach(i => { html += `<li>${i}</li>`; });
+      html += `</ul></div>`;
+    }
+  });
+  return html;
+}
+
+function render() {
+  const wrap = document.getElementById('mainWrap');
+  const legend = document.getElementById('legendBar');
+
+  UNITS.forEach((unit, ui) => {
+    const uClass = unit.id;
+    const colorVar = `--${uClass}`;
+
+    // Legend chip
+    const chip = document.createElement('span');
+    chip.className = `legend-chip legend-chip-el ${uClass}`;
+    chip.id = `chip-${uClass}`;
+    chip.textContent = `Unit ${unit.num}`;
+    chip.style.background = `var(${colorVar}-bg)`;
+    chip.style.color = `var(${colorVar})`;
+    chip.style.borderColor = `var(${colorVar}-border)`;
+    chip.classList.add('active');
+    chip.onclick = () => toggleUnit(uClass);
+    legend.appendChild(chip);
+
+    // Section
+    const sec = document.createElement('section');
+    sec.className = `unit-section ${uClass}`;
+    sec.id = `sec-${uClass}`;
+
+    const hdr = document.createElement('div');
+    hdr.className = 'unit-header';
+    hdr.innerHTML = `
+      <div class="unit-header-left">
+        <span class="unit-badge">Unit ${unit.num}</span>
+        <span class="unit-title">${unit.title}</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <span class="unit-count">${unit.cards.length} topic${unit.cards.length>1?'s':''}</span>
+        <span class="chevron">▾</span>
+      </div>`;
+    hdr.onclick = () => sec.classList.toggle('collapsed');
+
+    const body = document.createElement('div');
+    body.className = 'unit-body';
+
+    const grid = document.createElement('div');
+    grid.className = 'cards-grid';
+
+    unit.cards.forEach((card, ci) => {
+      const cardEl = document.createElement('div');
+      cardEl.className = 'card';
+      cardEl.innerHTML = `
+        <div class="card-header">
+          <span class="card-emoji">${card.emoji}</span>
+          <div class="card-title-wrap">
+            <div class="card-title">${card.title}</div>
+            <div class="card-preview">${card.preview}</div>
+          </div>
+          <span class="card-arrow">▾</span>
+        </div>
+        <div class="card-body">${buildBody(card, uClass)}</div>`;
+      cardEl.onclick = () => cardEl.classList.toggle('open');
+      grid.appendChild(cardEl);
+    });
+
+    body.appendChild(grid);
+    sec.appendChild(hdr);
+    sec.appendChild(body);
+    wrap.appendChild(sec);
+  });
+}
+
+// ══════════════════════════════════════════════════════════════
+// INTERACTIONS
+// ══════════════════════════════════════════════════════════════
+function toggleUnit(uClass) {
+  const sec = document.getElementById(`sec-${uClass}`);
+  const chip = document.getElementById(`chip-${uClass}`);
+  sec.classList.toggle('hidden');
+  chip.classList.toggle('hidden-unit');
+  chip.classList.toggle('active');
+}
+
+function toggleAll(expand) {
+  document.querySelectorAll('.unit-section').forEach(s => {
+    if (expand) s.classList.remove('collapsed');
+    else s.classList.add('collapsed');
+  });
+  if (expand) {
+    document.querySelectorAll('.card').forEach(c => c.classList.add('open'));
+  } else {
+    document.querySelectorAll('.card').forEach(c => c.classList.remove('open'));
+  }
+}
+
+// ══════════════════════════════════════════════════════════════
+// DARK / LIGHT MODE
+// ══════════════════════════════════════════════════════════════
+function setTheme(dark) {
+  document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+  document.getElementById('themeBtn').textContent = dark ? '☀️ Light Mode' : '🌙 Dark Mode';
+  localStorage.setItem('mb-theme', dark ? 'dark' : 'light');
+}
+
+function toggleTheme() {
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  setTheme(!isDark);
+}
+
+// ══════════════════════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════════════════════
+render();
+
+const saved = localStorage.getItem('mb-theme');
+if (saved) {
+  setTheme(saved === 'dark');
+} else {
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  setTheme(prefersDark);
+}
+</script>
+</body>
+</html>
