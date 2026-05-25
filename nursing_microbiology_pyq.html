@@ -1,0 +1,2849 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Microbiology PYQ — Post Basic BSc Nursing</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+/* ===== CSS VARIABLES ===== */
+:root {
+  --bg: #f4f5fa;
+  --surface: #ffffff;
+  --surface2: #f0f1f8;
+  --text: #1a1a2e;
+  --text-muted: #5c6382;
+  --border: #dde1f0;
+  --shadow: 0 2px 12px rgba(30,27,75,0.10);
+  --shadow-lg: 0 8px 32px rgba(30,27,75,0.15);
+  --header-h: 72px;
+  --radius: 14px;
+  --radius-sm: 8px;
+  --transition: 0.22s cubic-bezier(.4,0,.2,1);
+}
+[data-theme="dark"] {
+  --bg: #0f1117;
+  --surface: #1a1d27;
+  --surface2: #22263a;
+  --text: #e8e8f0;
+  --text-muted: #9ca3af;
+  --border: #2d3148;
+  --shadow: 0 2px 12px rgba(0,0,0,0.4);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.5);
+}
+
+/* ===== RESET ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Source Sans 3', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+
+/* ===== HEADER ===== */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 55%, #4338ca 100%);
+  box-shadow: 0 2px 20px rgba(30,27,75,0.45);
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  gap: 16px;
+}
+.header-brand {
+  flex: 1;
+}
+.header-brand h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+.header-brand p {
+  font-size: 0.78rem;
+  color: #c7d2fe;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+}
+.header-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.btn-action {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1.5px solid rgba(255,255,255,0.25);
+  background: rgba(255,255,255,0.10);
+  color: #fff;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition);
+  white-space: nowrap;
+}
+.btn-action:hover { background: rgba(255,255,255,0.20); border-color: rgba(255,255,255,0.5); }
+
+/* ===== MAIN CONTAINER ===== */
+main { max-width: 1400px; margin: 0 auto; padding: 28px 20px 60px; }
+
+/* ===== TOOLBAR ===== */
+.toolbar {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 22px;
+  margin-bottom: 28px;
+  box-shadow: var(--shadow);
+}
+.toolbar-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+.filter-btn {
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 2px solid transparent;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition);
+  background: var(--surface2);
+  color: var(--text-muted);
+}
+.filter-btn.active, .filter-btn:hover { color: #fff; }
+.filter-btn[data-unit="all"] { background: #4338ca; color: #fff; border-color: #4338ca; }
+.filter-btn[data-unit="all"].active { background: #4338ca; }
+
+/* Unit filter colors */
+.filter-btn[data-unit="1"].active,.filter-btn[data-unit="1"]:hover{background:#2563eb;border-color:#2563eb;color:#fff;}
+.filter-btn[data-unit="2"].active,.filter-btn[data-unit="2"]:hover{background:#16a34a;border-color:#16a34a;color:#fff;}
+.filter-btn[data-unit="3"].active,.filter-btn[data-unit="3"]:hover{background:#dc2626;border-color:#dc2626;color:#fff;}
+.filter-btn[data-unit="4"].active,.filter-btn[data-unit="4"]:hover{background:#9333ea;border-color:#9333ea;color:#fff;}
+.filter-btn[data-unit="5"].active,.filter-btn[data-unit="5"]:hover{background:#d97706;border-color:#d97706;color:#fff;}
+.filter-btn[data-unit="6"].active,.filter-btn[data-unit="6"]:hover{background:#0891b2;border-color:#0891b2;color:#fff;}
+.filter-btn[data-unit="7"].active,.filter-btn[data-unit="7"]:hover{background:#be185d;border-color:#be185d;color:#fff;}
+.filter-btn[data-unit="8"].active,.filter-btn[data-unit="8"]:hover{background:#059669;border-color:#059669;color:#fff;}
+.filter-btn[data-unit="9"].active,.filter-btn[data-unit="9"]:hover{background:#7c3aed;border-color:#7c3aed;color:#fff;}
+.filter-btn[data-unit="10"].active,.filter-btn[data-unit="10"]:hover{background:#b45309;border-color:#b45309;color:#fff;}
+
+/* ===== LEGEND ===== */
+.legend-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+.legend-dot {
+  width: 11px; height: 11px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ===== UNIT SECTION ===== */
+.unit-section { margin-bottom: 36px; }
+.unit-section[data-hidden="true"] { display: none; }
+
+.unit-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 22px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  user-select: none;
+  margin-bottom: 16px;
+  position: relative;
+  overflow: hidden;
+  transition: filter var(--transition);
+}
+.unit-header::before {
+  content: '';
+  position: absolute; inset: 0;
+  opacity: 0.12;
+  transition: opacity var(--transition);
+}
+.unit-header:hover::before { opacity: 0.20; }
+.unit-header-left { display: flex; align-items: center; gap: 12px; flex: 1; }
+.unit-badge {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.22);
+  color: #fff;
+  white-space: nowrap;
+}
+.unit-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #fff;
+}
+.unit-count {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.75);
+  font-weight: 500;
+}
+.unit-chevron {
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.85);
+  transition: transform 0.3s ease;
+}
+.unit-section.collapsed .unit-chevron { transform: rotate(-90deg); }
+.unit-section.collapsed .cards-grid { display: none; }
+
+/* Unit header colors */
+.unit-section[data-unit="1"] .unit-header { background: linear-gradient(135deg, #1d4ed8, #2563eb, #3b82f6); }
+.unit-section[data-unit="2"] .unit-header { background: linear-gradient(135deg, #15803d, #16a34a, #22c55e); }
+.unit-section[data-unit="3"] .unit-header { background: linear-gradient(135deg, #b91c1c, #dc2626, #ef4444); }
+.unit-section[data-unit="4"] .unit-header { background: linear-gradient(135deg, #7e22ce, #9333ea, #a855f7); }
+.unit-section[data-unit="5"] .unit-header { background: linear-gradient(135deg, #b45309, #d97706, #f59e0b); }
+.unit-section[data-unit="6"] .unit-header { background: linear-gradient(135deg, #0e7490, #0891b2, #06b6d4); }
+.unit-section[data-unit="7"] .unit-header { background: linear-gradient(135deg, #9d174d, #be185d, #ec4899); }
+.unit-section[data-unit="8"] .unit-header { background: linear-gradient(135deg, #047857, #059669, #10b981); }
+.unit-section[data-unit="9"] .unit-header { background: linear-gradient(135deg, #5b21b6, #7c3aed, #8b5cf6); }
+.unit-section[data-unit="10"] .unit-header { background: linear-gradient(135deg, #92400e, #b45309, #d97706); }
+
+/* ===== CARDS GRID ===== */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 18px;
+}
+
+/* ===== CARD ===== */
+.card {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: box-shadow var(--transition), transform var(--transition), border-color var(--transition);
+  cursor: pointer;
+}
+.card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+.card.open { box-shadow: var(--shadow-lg); }
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px;
+  border-bottom: 1.5px solid transparent;
+  transition: border-color var(--transition);
+}
+.card.open .card-header { border-bottom-color: var(--border); }
+
+.card-emoji {
+  font-size: 1.6rem;
+  flex-shrink: 0;
+  line-height: 1;
+}
+.card-title-wrap { flex: 1; }
+.card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+.card-tag {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin-top: 2px;
+}
+.card-arrow {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+.card.open .card-arrow { transform: rotate(180deg); }
+
+/* Unit accent on card */
+.unit-section[data-unit="1"] .card-header { border-left: 4px solid #2563eb; }
+.unit-section[data-unit="2"] .card-header { border-left: 4px solid #16a34a; }
+.unit-section[data-unit="3"] .card-header { border-left: 4px solid #dc2626; }
+.unit-section[data-unit="4"] .card-header { border-left: 4px solid #9333ea; }
+.unit-section[data-unit="5"] .card-header { border-left: 4px solid #d97706; }
+.unit-section[data-unit="6"] .card-header { border-left: 4px solid #0891b2; }
+.unit-section[data-unit="7"] .card-header { border-left: 4px solid #be185d; }
+.unit-section[data-unit="8"] .card-header { border-left: 4px solid #059669; }
+.unit-section[data-unit="9"] .card-header { border-left: 4px solid #7c3aed; }
+.unit-section[data-unit="10"] .card-header { border-left: 4px solid #b45309; }
+
+.unit-section[data-unit="1"] .card-tag { color: #2563eb; }
+.unit-section[data-unit="2"] .card-tag { color: #16a34a; }
+.unit-section[data-unit="3"] .card-tag { color: #dc2626; }
+.unit-section[data-unit="4"] .card-tag { color: #9333ea; }
+.unit-section[data-unit="5"] .card-tag { color: #d97706; }
+.unit-section[data-unit="6"] .card-tag { color: #0891b2; }
+.unit-section[data-unit="7"] .card-tag { color: #be185d; }
+.unit-section[data-unit="8"] .card-tag { color: #059669; }
+.unit-section[data-unit="9"] .card-tag { color: #7c3aed; }
+.unit-section[data-unit="10"] .card-tag { color: #b45309; }
+
+/* ===== CARD BODY ===== */
+.card-body {
+  display: none;
+  padding: 18px 20px 20px;
+}
+.card.open .card-body { display: block; }
+
+.card-body h4 {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  margin: 18px 0 8px;
+  padding-bottom: 4px;
+  border-bottom: 1.5px solid var(--border);
+  color: var(--text-muted);
+}
+.card-body h4:first-child { margin-top: 0; }
+
+.card-body ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.card-body ul li {
+  font-size: 0.88rem;
+  color: var(--text);
+  padding-left: 18px;
+  position: relative;
+  line-height: 1.55;
+}
+.card-body ul li::before {
+  content: '▸';
+  position: absolute;
+  left: 2px;
+  top: 0;
+  font-size: 0.7rem;
+  top: 2px;
+  opacity: 0.6;
+}
+.card-body .sub-ul { margin-top: 4px; padding-left: 16px; }
+.card-body .sub-ul li::before { content: '–'; }
+
+.mnemonic-box {
+  background: var(--surface2);
+  border: 1.5px dashed var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  margin-top: 12px;
+  font-size: 0.83rem;
+}
+.mnemonic-box strong { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); display: block; margin-bottom: 4px; }
+
+.table-small {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+  margin-top: 8px;
+}
+.table-small th {
+  background: var(--surface2);
+  padding: 6px 10px;
+  text-align: left;
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+.table-small td {
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  vertical-align: top;
+  line-height: 1.45;
+}
+.table-small tr:nth-child(even) td { background: var(--surface2); }
+
+/* ===== SEARCH ===== */
+.search-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 2px;
+}
+.search-wrap {
+  position: relative;
+  flex: 1;
+  max-width: 520px;
+}
+.search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.9rem;
+  pointer-events: none;
+}
+.search-input {
+  width: 100%;
+  padding: 9px 36px 9px 36px;
+  border-radius: 10px;
+  border: 1.5px solid var(--border);
+  background: var(--surface2);
+  color: var(--text);
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.88rem;
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+.search-input:focus {
+  border-color: #4338ca;
+  box-shadow: 0 0 0 3px rgba(67,56,202,0.12);
+}
+.search-clear {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.75rem;
+  display: none;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+.search-clear:hover { background: var(--border); }
+.search-count {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  white-space: nowrap;
+}
+mark.hl {
+  background: #fde047;
+  color: #1a1a2e;
+  border-radius: 2px;
+  padding: 0 1px;
+}
+[data-theme="dark"] mark.hl { background: #854d0e; color: #fef9c3; }
+.card.search-hidden { display: none; }
+.util-btn {
+  background: var(--surface2) !important;
+  color: var(--text-muted) !important;
+  border: 1.5px solid var(--border) !important;
+}
+.util-btn:hover { background: var(--border) !important; color: var(--text) !important; }
+
+/* ===== PRINT STYLES ===== */
+@media print {
+  header, .toolbar, .legend-bar, .no-print { display: none !important; }
+  body { background: #fff; color: #000; }
+  .card { break-inside: avoid; box-shadow: none; border: 1px solid #ccc; }
+  .card-body { display: block !important; }
+  .unit-section[data-hidden="true"] { display: block !important; }
+  .unit-section.collapsed .cards-grid { display: grid !important; }
+  .card-arrow { display: none; }
+  .unit-header { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  main { padding: 0; max-width: 100%; }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 640px) {
+  header { padding: 0 14px; gap: 10px; }
+  .header-brand h1 { font-size: 1rem; }
+  .btn-action span { display: none; }
+  .btn-action { padding: 8px 10px; }
+  main { padding: 16px 12px 40px; }
+  .toolbar { padding: 14px 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-brand">
+    <h1>🔬 Microbiology PYQ</h1>
+    <p>Post Basic BSc Nursing · All 10 Units</p>
+  </div>
+  <div class="header-actions">
+    <button class="btn-action no-print" id="themeToggle" onclick="toggleTheme()">
+      <span id="themeIcon">🌙</span><span id="themeLabel"> Dark Mode</span>
+    </button>
+    <button class="btn-action no-print" onclick="window.print()">
+      🖨️<span> Print / PDF</span>
+    </button>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main>
+
+  <!-- TOOLBAR -->
+  <div class="toolbar no-print">
+    <div class="search-row">
+      <div class="search-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" class="search-input" placeholder="Search topics, diseases, organisms…" oninput="handleSearch(this.value)" autocomplete="off"/>
+        <button class="search-clear" id="searchClear" onclick="clearSearch()">✕</button>
+      </div>
+      <span class="search-count" id="searchCount"></span>
+    </div>
+    <div class="toolbar-label" style="margin-top:14px;">Filter by Unit</div>
+    <div class="filter-row" id="filterRow">
+      <button class="filter-btn active" data-unit="all" onclick="filterUnits('all',this)">All Units</button>
+      <button class="filter-btn" data-unit="1" onclick="filterUnits('1',this)">Unit I</button>
+      <button class="filter-btn" data-unit="2" onclick="filterUnits('2',this)">Unit II</button>
+      <button class="filter-btn" data-unit="3" onclick="filterUnits('3',this)">Unit III</button>
+      <button class="filter-btn" data-unit="4" onclick="filterUnits('4',this)">Unit IV</button>
+      <button class="filter-btn" data-unit="5" onclick="filterUnits('5',this)">Unit V</button>
+      <button class="filter-btn" data-unit="6" onclick="filterUnits('6',this)">Unit VI</button>
+      <button class="filter-btn" data-unit="7" onclick="filterUnits('7',this)">Unit VII</button>
+      <button class="filter-btn" data-unit="8" onclick="filterUnits('8',this)">Unit VIII</button>
+      <button class="filter-btn" data-unit="9" onclick="filterUnits('9',this)">Unit IX</button>
+      <button class="filter-btn" data-unit="10" onclick="filterUnits('10',this)">Unit X</button>
+      <span style="flex:1"></span>
+      <button class="filter-btn util-btn" onclick="expandAll()">▾ Expand All</button>
+      <button class="filter-btn util-btn" onclick="collapseAll()">▸ Collapse All</button>
+    </div>
+  </div>
+
+  <!-- LEGEND -->
+  <div class="legend-bar no-print">
+    <div class="legend-item"><span class="legend-dot" style="background:#2563eb"></span>Unit I – Intro</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#16a34a"></span>Unit II – Identification</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#dc2626"></span>Unit III – Culture & Growth</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#9333ea"></span>Unit IV – Sterilization & HAI</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#d97706"></span>Unit V – Bacterial Diseases</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#0891b2"></span>Unit VI – Mycology</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#be185d"></span>Unit VII – Immunology</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#059669"></span>Unit VIII – Parasitology</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#7c3aed"></span>Unit IX – Virology</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#b45309"></span>Unit X – Food Microbiology</div>
+  </div>
+
+  <!-- ===================== UNIT 1 ===================== -->
+  <div class="unit-section" data-unit="1" id="unit-1">
+    <div class="unit-header" onclick="toggleUnit('unit-1')">
+      <div class="unit-header-left">
+        <span class="unit-badge">Unit I</span>
+        <span class="unit-title">Introduction to Microbiology</span>
+        <span class="unit-count">3 topics</span>
+      </div>
+      <span class="unit-chevron">▾</span>
+    </div>
+    <div class="cards-grid">
+
+      <!-- Card 1.1 -->
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-header">
+          <span class="card-emoji">🦠</span>
+          <div class="card-title-wrap">
+            <div class="card-title">Structures & Classification of Microbes</div>
+            <div class="card-tag">Unit I · Long Answer</div>
+          </div>
+          <span class="card-arrow">▾</span>
+        </div>
+        <div class="card-body">
+          <h4>Definition</h4>
+          <ul>
+            <li>Microorganisms (microbes) are living entities too small to be seen by the naked eye (&lt;0.1 mm)</li>
+            <li>Studied using microscopes; include bacteria, viruses, fungi, protozoa, algae, and prions</li>
+          </ul>
+          <h4>Classification of Microbes</h4>
+          <table class="table-small">
+            <tr><th>Group</th><th>Cell Type</th><th>Examples</th></tr>
+            <tr><td>Bacteria</td><td>Prokaryote</td><td>E. coli, Staph, Strep</td></tr>
+            <tr><td>Fungi</td><td>Eukaryote</td><td>Candida, Aspergillus</td></tr>
+            <tr><td>Protozoa</td><td>Eukaryote</td><td>Plasmodium, Entamoeba</td></tr>
+            <tr><td>Algae</td><td>Eukaryote</td><td>Chlorella</td></tr>
+            <tr><td>Viruses</td><td>Acellular</td><td>HIV, Influenza</td></tr>
+            <tr><td>Prions</td><td>Protein only</td><td>CJD agent</td></tr>
+          </table>
+          <h4>Bacterial Structure</h4>
+          <ul>
+            <li><strong>Cell wall:</strong> Rigid outer layer; composed of peptidoglycan; determines Gram reaction</li>
+            <li><strong>Cell membrane:</strong> Semi-permeable phospholipid bilayer; site of enzymes and transport</li>
+            <li><strong>Cytoplasm:</strong> Contains ribosomes (70S), enzymes, inclusions</li>
+            <li><strong>Nucleoid:</strong> Circular DNA — no membrane-bound nucleus</li>
+            <li><strong>Plasmids:</strong> Extrachromosomal circular DNA; carries resistance genes</li>
+            <li><strong>Capsule:</strong> Polysaccharide slime layer; anti-phagocytic virulence factor</li>
+            <li><strong>Flagella:</strong> Protein appendages for motility (flagellin protein)</li>
+            <li><strong>Pili/Fimbriae:</strong> Attachment organelles; sex pilus for conjugation</li>
+            <li><strong>Spores (endospores):</strong> Resistant dormant structures — Bacillus, Clostridium</li>
+            <li><strong>Ribosomes:</strong> 70S (50S + 30S) — target of many antibiotics</li>
+            <li><strong>Mesosome:</strong> Infolding of membrane — aids in cell division</li>
+          </ul>
+          <h4>Classification by Shape (Morphology)</h4>
+          <ul>
+            <li><strong>Cocci:</strong> Spherical — Staphylococcus (grape clusters), Streptococcus (chains), Diplococci (pairs)</li>
+            <li><strong>Bacilli:</strong> Rod-shaped — E. coli, Bacillus anthracis</li>
+            <li><strong>Spirilla:</strong> Rigid spiral — Spirillum</li>
+            <li><strong>Spirochaetes:</strong> Flexible spiral — Treponema, Leptospira</li>
+            <li><strong>Vibrio:</strong> Comma-shaped — Vibrio cholerae</li>
+            <li><strong>Coccobacilli:</strong> Intermediate — Haemophilus influenzae</li>
+          </ul>
+          <h4>Classification by Gram Stain</h4>
+          <ul>
+            <li><strong>Gram Positive (+):</strong> Thick peptidoglycan wall; retain crystal violet; appear purple — Staph, Strep, Bacillus</li>
+            <li><strong>Gram Negative (−):</strong> Thin peptidoglycan + outer membrane; decolorized; appear red — E. coli, Klebsiella, Pseudomonas</li>
+            <li><strong>Acid-Fast:</strong> Waxy cell wall (mycolic acid); resist decolorization — Mycobacterium</li>
+          </ul>
+          <h4>Classification by Oxygen Requirement</h4>
+          <ul>
+            <li><strong>Obligate aerobe:</strong> Needs O₂ — Mycobacterium TB</li>
+            <li><strong>Obligate anaerobe:</strong> Dies in O₂ — Clostridium</li>
+            <li><strong>Facultative anaerobe:</strong> Grows with or without O₂ — E. coli</li>
+            <li><strong>Microaerophile:</strong> Needs small O₂ — Helicobacter pylori</li>
+            <li><strong>Aerotolerant:</strong> Survives O₂ but doesn't use it — Lactobacillus</li>
+          </ul>
+          <div class="mnemonic-box">
+            <strong>🧠 Mnemonic — Bacterial Structures: "Some People Can Find Naked Cell Parts"</strong>
+            S=Spore, P=Pili, C=Capsule, F=Flagella, N=Nucleoid, C=Cell wall, P=Plasmid
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 1.2 -->
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-header">
+          <span class="card-emoji">🌀</span>
+          <div class="card-title-wrap">
+            <div class="card-title">Motility of Bacteria: Types & Significance</div>
+            <div class="card-tag">Unit I · Short/Long Answer</div>
+          </div>
+          <span class="card-arrow">▾</span>
+        </div>
+        <div class="card-body">
+          <h4>Definition</h4>
+          <ul>
+            <li>Motility = the ability of bacteria to move independently in a liquid medium</li>
+            <li>Not all bacteria are motile; it is a key characteristic for identification</li>
+          </ul>
+          <h4>Types of Motility</h4>
+          <ul>
+            <li><strong>1. Flagellar Motility (Swimming):</strong> Most common; flagella rotate like propellers; driven by proton motive force</li>
+            <li><strong>2. Gliding Motility:</strong> Slow movement over surfaces without flagella — Myxobacteria, Cytophaga</li>
+            <li><strong>3. Spirochaetal Motility (Corkscrew):</strong> Axial filaments (endoflagella) between inner and outer membranes — Treponema, Borrelia</li>
+            <li><strong>4. Swarming Motility:</strong> Coordinated group movement on solid surfaces — Proteus mirabilis</li>
+            <li><strong>5. Twitching Motility:</strong> Jerky movement via retractile pili — Pseudomonas aeruginosa</li>
+          </ul>
+          <h4>Types by Flagella Arrangement</h4>
+          <ul>
+            <li><strong>Atrichous:</strong> No flagella — non-motile — Klebsiella</li>
+            <li><strong>Monotrichous:</strong> Single polar flagellum — Vibrio cholerae</li>
+            <li><strong>Lophotrichous:</strong> Tufts at one or both poles — Spirillum</li>
+            <li><strong>Amphitrichous:</strong> Flagella at both ends</li>
+            <li><strong>Peritrichous:</strong> Flagella all around — E. coli, Salmonella</li>
+          </ul>
+          <h4>Significance of Motility</h4>
+          <ul>
+            <li><strong>Pathogenicity:</strong> Enables bacteria to reach target tissues; spread infection (e.g., H. pylori penetrates gastric mucus)</li>
+            <li><strong>Chemotaxis:</strong> Movement toward nutrients or away from toxins</li>
+            <li><strong>Identification:</strong> Hanging drop / stab culture motility tests help identify organisms</li>
+            <li><strong>Biofilm formation:</strong> Motility essential for initial colonization of surfaces</li>
+            <li><strong>Dissemination of infection:</strong> Flagellated organisms spread faster in host tissues</li>
+            <li><strong>Antigenicity:</strong> H-antigen of flagella used in serotyping (e.g., Salmonella typhi H antigen)</li>
+          </ul>
+          <h4>Detection of Motility</h4>
+          <ul>
+            <li><strong>Hanging drop preparation:</strong> Direct microscopy; observe Brownian vs true motility</li>
+            <li><strong>Semisolid agar stab:</strong> Motile = diffuse turbidity; non-motile = growth only along stab line</li>
+            <li><strong>Electron microscopy:</strong> Visualize flagella structure</li>
+          </ul>
+          <div class="mnemonic-box">
+            <strong>🧠 Flagella types: "A Monkey Loves Playing Around"</strong>
+            A=Atrichous, M=Monotrichous, L=Lophotrichous, P=Peritrichous, A=Amphitrichous
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 1.3 -->
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-header">
+          <span class="card-emoji">📚</span>
+          <div class="card-title-wrap">
+            <div class="card-title">Define Microbiology & Its Essence in Nursing</div>
+            <div class="card-tag">Unit I · Definition + Application</div>
+          </div>
+          <span class="card-arrow">▾</span>
+        </div>
+        <div class="card-body">
+          <h4>Definition</h4>
+          <ul>
+            <li>Microbiology = study of microorganisms (micro = small; bios = life; logos = study)</li>
+            <li>Includes study of bacteria, viruses, fungi, protozoa, algae, and prions</li>
+            <li>Father of Microbiology: <strong>Antonie van Leeuwenhoek</strong> (first microscope, 1676)</li>
+            <li>Louis Pasteur — Germ theory of disease; Robert Koch — Koch's postulates</li>
+          </ul>
+          <h4>Branches of Microbiology</h4>
+          <ul>
+            <li><strong>Bacteriology:</strong> Study of bacteria</li>
+            <li><strong>Virology:</strong> Study of viruses</li>
+            <li><strong>Mycology:</strong> Study of fungi</li>
+            <li><strong>Parasitology:</strong> Study of parasites</li>
+            <li><strong>Immunology:</strong> Study of immune system</li>
+            <li><strong>Medical/Clinical Microbiology:</strong> Applied to patient care</li>
+          </ul>
+          <h4>Essence in Nursing Practice</h4>
+          <ul>
+            <li><strong>Infection Prevention & Control:</strong> Knowledge of pathogens guides proper hand hygiene, PPE use, and Standard Precautions</li>
+            <li><strong>Aseptic Technique:</strong> Understanding sterility prevents HAIs during invasive procedures</li>
+            <li><strong>Specimen Collection:</strong> Correct collection, labeling, and transport of clinical specimens</li>
+            <li><strong>Drug Administration:</strong> Understanding antibiotic mechanism of action and resistance ensures proper use</li>
+            <li><strong>Patient Education:</strong> Nurse educates patients on disease transmission and prevention</li>
+            <li><strong>Wound Care:</strong> Identification of wound infection and appropriate dressing change</li>
+            <li><strong>Sterilization & Disinfection:</strong> Nurses implement appropriate methods for instruments, environment, and skin</li>
+            <li><strong>Epidemiology:</strong> Tracking of outbreak patterns in wards; reporting notifiable diseases</li>
+            <li><strong>Immunization:</strong> Understanding vaccines — live attenuated, killed, toxoid</li>
+            <li><strong>Laboratory Liaison:</strong> Interpreting culture and sensitivity reports for doctors</li>
+          </ul>
+          <h4>Koch's Postulates (Important for Exams)</h4>
+          <ul>
+            <li>The pathogen must be present in all cases of disease</li>
+            <li>It must be isolated and grown in pure culture</li>
+            <li>Inoculation of pure culture must cause the disease in healthy host</li>
+            <li>The pathogen must be re-isolated from the experimentally infected host</li>
+          </ul>
+        </div>
+      </div>
+
+    </div><!-- /cards-grid -->
+  </div><!-- /unit-1 -->
+
+  <!-- ===================== UNIT 2 ===================== -->
+  <div class="unit-section" data-unit="2" id="unit-2">
+    <div class="unit-header" onclick="toggleUnit('unit-2')">
+      <div class="unit-header-left">
+        <span class="unit-badge">Unit II</span>
+        <span class="unit-title">Microbial Identification Methods</span>
+        <span class="unit-count">3 topics</span>
+      </div>
+      <span class="unit-chevron">▾</span>
+    </div>
+    <div class="cards-grid">
+
+      <!-- Card 2.1 -->
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-header">
+          <span class="card-emoji">🔍</span>
+          <div class="card-title-wrap">
+            <div class="card-title">Methods of Identification of Microorganisms</div>
+            <div class="card-tag">Unit II · Long Answer</div>
+          </div>
+          <span class="card-arrow">▾</span>
+        </div>
+        <div class="card-body">
+          <h4>I. Microscopic Methods</h4>
+          <ul>
+            <li><strong>Light microscopy:</strong> Most common; magnifies up to 1000× with oil immersion</li>
+            <li><strong>Dark field microscopy:</strong> For spirochaetes (Treponema pallidum) that can't be stained</li>
+            <li><strong>Phase contrast:</strong> Live unstained specimens; sees internal structures</li>
+            <li><strong>Fluorescence microscopy:</strong> Uses fluorescent dyes (auramine-rhodamine for TB)</li>
+            <li><strong>Electron microscopy:</strong> Visualize viruses; ultrafine structure; TEM & SEM</li>
+          </ul>
+          <h4>II. Staining Methods</h4>
+          <ul>
+            <li><strong>Simple staining:</strong> Single dye; shows shape and arrangement</li>
+            <li><strong>Gram staining:</strong> Differentiates G+ve and G-ve bacteria</li>
+            <li><strong>Acid-fast staining (ZN stain):</strong> Mycobacterium tuberculosis</li>
+            <li><strong>Spore staining (Schaeffer-Fulton):</strong> Detects endospores — green spores, red vegetative cells</li>
+            <li><strong>Capsule staining (Quellung/India ink):</strong> Negative staining — Cryptococcus, Klebsiella</li>
+            <li><strong>Flagella staining:</strong> Leifson's method — visualizes flagella</li>
+          </ul>
+          <h4>III. Culture Methods</h4>
+          <ul>
+            <li><strong>Nutrient agar / Broth:</strong> General growth media</li>
+            <li><strong>Selective & Differential media:</strong> CLED, MacConkey, TCBS, Blood agar</li>
+            <li><strong>Colony morphology:</strong> Size, shape, color, hemolysis — preliminary ID</li>
+          </ul>
+          <h4>IV. Biochemical Tests</h4>
+          <ul>
+            <li><strong>IMViC tests:</strong> Indole, Methyl red, Voges-Proskauer, Citrate — identifies Enterobacteriaceae</li>
+            <li><strong>Catalase test:</strong> Differentiates Staphylococcus (+) from Streptococcus (−)</li>
+            <li><strong>Coagulase test:</strong> Identifies S. aureus (coagulase +ve)</li>
+            <li><strong>Oxidase test:</strong> Pseudomonas (positive)</li>
+            <li><strong>Sugar fermentation:</strong> Identifies organisms by fermentation pattern</li>
+          </ul>
+          <h4>V. Serological / Immunological Methods</h4>
+          <ul>
+            <li><strong>Agglutination:</strong> Widal test (Typhoid), ASO titre (Strep)</li>
+            <li><strong>ELISA:</strong> HIV, Hepatitis B, Dengue</li>
+            <li><strong>Western Blot:</strong> Confirmatory for HIV</li>
+            <li><strong>Complement fixation test:</strong> VDRL for syphilis</li>
+            <li><strong>Latex agglutination:</strong> Rapid antigen detection</li>
+          </ul>
+          <h4>VI. Molecular Methods</h4>
+          <ul>
+            <li><strong>PCR (Polymerase Chain Reaction):</strong> Amplifies specific DNA; gold standard for many diseases</li>
+            <li><strong>RT-PCR:</strong> For RNA viruses (SARS-CoV-2, HIV)</li>
+            <li><strong>DNA sequencing / 16S rRNA:</strong> Definitive species identification</li>
+            <li><strong>CBNAAT (GeneXpert):</strong> Rapid TB + rifampicin resistance detection</li>
+          </ul>
+          <h4>VII. Animal Inoculation</h4>
+          <ul>
+            <li>Used when organism cannot be cultured on media</li>
+            <li>Viruses (embryonated eggs), Toxin testing (mice), M. leprae (armadillo footpad)</li>
+          </ul>
+          <h4>VIII. Antibiogram (Sensitivity Testing)</h4>
+          <ul>
+            <li><strong>Kirby-Bauer Disc Diffusion:</strong> Standard antibiotic susceptibility</li>
+            <li><strong>MIC (Minimum Inhibitory Concentration):</strong> Broth dilution</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Card 2.2 -->
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-header">
+          <span class="card-emoji">🟣</span>
+          <div class="card-title-wrap">
+            <div class="card-title">Gram Staining & Acid-Fast Staining</div>
+            <div class="card-tag">Unit II · Most Important</div>
+          </div>
+          <span class="card-arrow">▾</span>
+        </div>
+        <div class="card-body">
+          <h4>Gram Staining — Principle</h4>
+          <ul>
+            <li>Developed by <strong>Hans Christian Gram (1884)</strong></li>
+            <li>Based on differences in <strong>cell wall peptidoglycan thickness</strong></li>
+            <li>G+ve: Thick peptidoglycan → retains crystal violet → <strong>PURPLE</strong></li>
+            <li>G-ve: Thin PG + outer lipopolysaccharide membrane → decolorized → counterstained → <strong>PINK/RED</strong></li>
+          </ul>
+          <h4>Gram Staining — Steps (PVSI)</h4>
+          <ul>
+            <li><strong>Step 1 – Primary stain:</strong> Apply Crystal Violet (1 min) → smear turns purple</li>
+            <li><strong>Step 2 – Mordant:</strong> Apply Gram's Iodine (1 min) → forms crystal violet-iodine complex; mordant fixes the stain</li>
+            <li><strong>Step 3 – Decolorization:</strong> Acetone-alcohol (10–20 sec) → G+ve retain purple; G-ve lose colour</li>
+            <li><strong>Step 4 – Counterstain:</strong> Safranin or Neutral Red (1 min) → G-ve stain pink/red</li>
+            <li><strong>Step 5 – Wash, dry, examine under oil immersion (100×)</strong></li>
+          </ul>
+          <div class="mnemonic-box">
+            <strong>🧠 Gram Stain Steps: "Please Don't Cry Sweetly"</strong>
+            P=Primary stain (Crystal Violet), D=Decolorizer, C=Counterstain (Safranin) — or remember "Crystal Iodine Acetone Safranin" = CIAS
+          </div>
+          <h4>Gram Results & Examples</h4>
+          <table class="table-small">
+            <tr><th>Gram +ve (Purple)</th><th>Gram -ve (Pink)</th></tr>
+            <tr><td>Staphylococcus aureus</td><td>E. coli</td></tr>
+            <tr><td>Streptococcus pyogenes</td><td>Klebsiella pneumoniae</td></tr>
+            <tr><td>Bacillus anthracis</td><td>Pseudomonas aeruginosa</td></tr>
+            <tr><td>Clostridium tetani</td><td>Salmonella typhi</td></tr>
+            <tr><td>Corynebacterium diphth.</td><td>Neisseria meningitidis</td></tr>
+          </table>
+
+          <h4>Acid-Fast Staining (Ziehl-Neelsen Stain) — Principle</h4>
+          <ul>
+            <li>Used to identify <strong>Mycobacterium</strong> species (TB, leprosy)</li>
+            <li>Mycobacteria have cell walls rich in <strong>mycolic acids</strong> (lipid-rich, waxy)</li>
+            <li>Resist decolorization with acid-alcohol → called "acid-fast" bacilli (AFB)</li>
+            <li>AFB appear <strong>red</strong>; non-acid-fast organisms appear <strong>blue</strong> (background)</li>
+          </ul>
+          <h4>ZN Staining — Steps</h4>
+          <ul>
+            <li><strong>Step 1 – Primary stain:</strong> Carbol fuchsin (red dye) applied; smear heated with flame (until steaming — 3×5 min) to drive dye into waxy wall</li>
+            <li><strong>Step 2 – Decolorization:</strong> 20% H₂SO₄ (acid-alcohol) — non-AFB decolorize; AFB remain red</li>
+            <li><strong>Step 3 – Counterstain:</strong> Malachite green or Methylene blue (1–2 min) — background turns blue</li>
+            <li><strong>Examine:</strong> AFB = bright red rods on blue background</li>
+          </ul>
+          <h4>Cold Method (Kinyoun's Stain)</h4>
+          <ul>
+            <li>No heating required — carbol fuchsin used at room temperature with higher concentrations</li>
+            <li>Suitable when heat application is not possible</li>
+          </ul>
+          <h4>Grading of AFB Smears (WHO/RNTCP)</h4>
+          <ul>
+            <li>Negative: No AFB seen in 100 fields</li>
+            <li>1+ : 1–9 AFB/100 fields</li>
+            <li>2+ : 10–99 AFB/100 fields</li>
+            <li>3+ : 1–10 AFB/field</li>
+            <li>Scanty: 1–9 AFB in 100 fields — report exact number</li>
+          </ul>
+          <h4>Organisms That Are Acid-Fast</h4>
+          <ul>
+            <li><strong>Mycobacterium tuberculosis</strong> (TB)</li>
+            <li><strong>Mycobacterium leprae</strong> (leprosy)</li>
+            <li><strong>Mycobacterium avium complex (MAC)</strong></li>
+            <li><strong>Nocardia</strong> (weakly acid-fast)</li>
+            <li><strong>Cryptosporidium oocysts</strong> (parasitology)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Card 2.3 -->
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-header">
+          <span class="card-emoji">💧</span>
+          <div class="card-title-wrap">
+            <div class="card-title">Hanging Drop Preparation: Procedure</div>
+            <div class="card-tag">Unit II · Practical Procedure</div>
+          </div>
+          <span class="card-arrow">▾</span>
+        </div>
+        <div class="card-body">
+          <h4>Purpose</h4>
+          <ul>
+            <li>Used to study <strong>motility of living bacteria</strong> in wet preparations</li>
+            <li>Also used to study Brownian motion, size, shape of organisms</li>
+            <li>Differentiates true motility (purposeful movement) from Brownian motion (random vibration)</li>
+          </ul>
+          <h4>Requirements</h4>
+          <ul>
+            <li>Hollow-ground (concave) slide or cavity slide</li>
+            <li>Cover slip</li>
+            <li>Petroleum jelly (Vaseline) or paraffin wax</li>
+            <li>Broth culture of bacteria (6–8 hour culture for maximum motility)</li>
+            <li>Wire loop, microscope</li>
+          </ul>
+          <h4>Procedure — Step by Step</h4>
+          <ul>
+            <li><strong>Step 1:</strong> Apply a ring of petroleum jelly to the four edges of a clean cover slip using a cotton swab</li>
+            <li><strong>Step 2:</strong> Place a small loopful (10 µL) of fresh broth culture in the <strong>centre</strong> of the cover slip</li>
+            <li><strong>Step 3:</strong> Invert the cavity slide so the concavity faces downward and press gently onto the cover slip</li>
+            <li><strong>Step 4:</strong> Turn the assembly upright quickly — the drop now hangs down into the concavity</li>
+            <li><strong>Step 5:</strong> Seal edges with petroleum jelly to prevent drying</li>
+            <li><strong>Step 6:</strong> Place on microscope stage; focus with low power (10×), then switch to high power (40×)</li>
+            <li><strong>Step 7:</strong> Observe — the drop should be visible at the edge; bacteria appear as small refractile bodies</li>
+            <li><strong>Do NOT use oil immersion (100×)</strong> as the cover slip may be damaged</li>
+          </ul>
+          <h4>Observations & Interpretation</h4>
+          <ul>
+            <li><strong>True motility:</strong> Bacteria move in definite directions, change direction purposefully — organism is MOTILE</li>
+            <li><strong>Brownian motion:</strong> All particles (including non-living) show random vibration due to molecular bombardment — does NOT indicate motility</li>
+            <li><strong>Non-motile bacteria:</strong> Only Brownian motion seen; organisms drift with fluid currents</li>
+          </ul>
+          <h4>Motile vs Non-Motile Examples</h4>
+          <ul>
+            <li><strong>Motile:</strong> Vibrio cholerae (darting motility — most characteristic), E. coli, Salmonella, Proteus</li>
+            <li><strong>Non-motile:</strong> Klebsiella, Shigella, Staphylococcus, Streptococcus</li>
+          </ul>
+          <h4>Advantages & Limitations</h4>
+          <ul>
+            <li>✅ Simple, inexpensive, rapid; uses live organisms; no staining needed</li>
+            <li>✅ Can see actual movement in real time</li>
+            <li>❌ Risk of infection — requires biohazard precautions</li>
+            <li>❌ Cannot identify organisms; only motility status</li>
+            <li>❌ Difficult to distinguish Brownian motion from very sluggish motility</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- /unit-2 -->
+
+  <!-- ===================== UNIT 3 ===================== -->
+  <div class="unit-section" data-unit="3" id="unit-3">
+    <div class="unit-header" onclick="toggleUnit('unit-3')">
+      <div class="unit-header-left">
+        <span class="unit-badge">Unit III</span>
+        <span class="unit-title">Culture, Growth & Clinical Specimens</span>
+        <span class="unit-count">4 topics</span>
+      </div>
+      <span class="unit-chevron">▾</span>
+    </div>
+    <div class="cards-grid">
+
+      <!-- Card 3.1 -->
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-header">
+          <span class="card-emoji">🧫</span>
+          <div class="card-title-wrap">
+            <div class="card-title">Culture Media: Types & Uses</div>
+            <div class="card-tag">Unit III · Long Answer</div>
+          </div>
+          <span class="card-arrow">▾</span>
+        </div>
+        <div class="card-body">
+          <h4>Definition</h4>
+          <ul>
+            <li>Culture media = Nutrient preparations used to grow microorganisms in laboratory</li>
+            <li>Must provide carbon, nitrogen, mineral salts, water, and growth factors</li>
+          </ul>
+          <h4>Classification by Physical State</h4>
+          <ul>
+            <li><strong>Liquid / Broth media:</strong> No solidifying agent; used for large volumes, blood culture, MIC — e.g., Nutrient broth, Peptone water</li>
+            <li><strong>Solid media:</strong> Contains 2% agar (seaweed polysaccharide); used for colony isolation — e.g., Nutrient agar</li>
+            <li><strong>Semi-solid media:</strong> 0.5% agar; used for motility testing and antigen preservation — e.g., Hugh-Leifson media</li>
+          </ul>
+          <h4>Classification by Composition & Purpose</h4>
+          <ul>
+            <li><strong>Simple/Basal media:</strong> Nutrient agar, peptone water — supports most organisms; used as a base for enriched media</li>
+            <li><strong>Enriched media:</strong> Added blood, serum, eggs; for fastidious organisms — Blood agar (fastidious + shows hemolysis), Chocolate agar (Neisseria, Haemophilus), Löwenstein-Jensen (LJ) for M. tuberculosis</li>
+            <li><strong>Selective media:</strong> Contains inhibitory agents to suppress unwanted flora; allows specific organisms to grow
+              <ul class="sub-ul">
+                <li>MacConkey agar → G-ve Enterobacteriaceae (inhibits G+ve)</li>
+                <li>TCBS → Vibrio cholerae (yellow colonies)</li>
+                <li>CLED agar → Urinary pathogens</li>
+                <li>Thayer-Martin → Neisseria gonorrhoeae</li>
+                <li>Mannitol Salt Agar → Staphylococcus</li>
+              </ul>
+            </li>
+            <li><strong>Differential media:</strong> Differentiates organisms by biochemical reactions based on colony colour/appearance
+              <ul class="sub-ul">
+                <li>MacConkey → Lactose fermenters (pink) vs non-fermenters (colourless)</li>
+                <li>Blood agar → α, β, γ hemolysis pattern</li>
+                <li>XLD agar → Salmonella (pink with black centers) vs others</li>
+              </ul>
+            </li>
+            <li><strong>Enrichment media:</strong> Broth media favouring a specific organism over others — Alkaline peptone water (Vibrio), Selenite F broth (Salmonella), Tetrathionate broth (Salmonella/Shigella)</li>
+            <li><strong>Transport media:</strong> Preserve viability during transit — Stuart's medium (common), VR (Vibrio), Pike's (Streptococcus), Amies medium</li>
+            <li><strong>Anaerobic media:</strong> Robertson's Cooked Meat medium, Thioglycollate broth</li>
+            <li><strong>Indicator media:</strong> Contains pH indicators — MacConkey (neutral red), CLED (bromothymol blue)</li>
+          </ul>
+          <h4>Hemolysis on Blood Agar</h4>
+          <ul>
+            <li><strong>α-hemolysis (partial):</strong> Green discolouration — Streptococcus viridans, S. pneumoniae</li>
+            <li><strong>β-hemolysis (complete):</strong> Clear zone — S. pyogenes (Group A Strep), S. aureus</li>
+            <li><strong>γ-hemolysis (no hemolysis):</strong> Enterococcus faecalis</li>
+          </ul>
+          <div class="mnemonic-box">
+            <strong>🧠 Key media memory:</strong>
+            MacConkey = Mac-Pink for lactose fermenters | TCBS = TC-Yellow for Vibrio | LJ = TB grows | Blood agar = hemolysis pattern | Thayer-Martin = Neisseria
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3.2 -->
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-header">
+          <span class="card-emoji">🧪</span>
+          <div class="card-title-wrap">
+            <div class="card-title">Handling & Transport of Clinical Specimens</div>
+            <div class="card-tag">Unit III · Nursing Application</div>
+          </div>
+          <span class="card-arrow">▾</span>
+        </div>
+        <div class="card-body">
+          <h4>Importance</h4>
+          <ul>
+            <li>Proper collection ensures accurate culture results, correct diagnosis, and appropriate antibiotic therapy</li>
+            <li>Improper handling leads to false results, contamination, or organism death</li>
+          </ul>
+          <h4>General Principles (CATS Rule)</h4>
+          <ul>
+            <li><strong>C</strong>ollect before antibiotics are started</li>
+            <li><strong>A</strong>septic technique must be used</li>
+            <li><strong>T</strong>ransport immediately to lab (&lt;2 hours)</li>
+            <li><strong>S</strong>ufficient quantity; use correct container</li>
+          </ul>
+          <h4>Common Specimens & Collection</h4>
+          <table class="table-small">
+            <tr><th>Specimen</th><th>Container / Notes</th><th>Transport</th></tr>
+            <tr><td>Blood (culture)</td><td>Sterile blood culture bottle (aerobic + anaerobic); 10 mL adult</td><td>37°C incubator or room temp</td></tr>
+            <tr><td>Urine (MSU)</td><td>Clean-catch midstream; sterile screw-cap bottle</td><td>Within 2 hrs; refrigerate if delayed</td></tr>
+            <tr><td>Sputum (TB)</td><td>3 early morning specimens (3 days); sterile leak-proof container</td><td>Room temp; process ASAP</td></tr>
+            <tr><td>Stool</td><td>Walnut-sized amount; no urine contamination; plastic container</td><td>Cary-Blair medium for enteric pathogens; within 2 hrs</td></tr>
+            <tr><td>Wound swab</td><td>Sterile cotton swab; collect from margins of wound (not surface)</td><td>Stuart's / Amies transport medium</td></tr>
+            <tr><td>CSF</td><td>Plain sterile tubes; 3 tubes (culture, biochem, cell count)</td><td>Immediate; keep at 37°C (never refrigerate!)</td></tr>
+            <tr><td>HVS (Vaginal)</td><td>Sterile swab; transport medium</td><td>Stuart's medium</td></tr>
+            <tr><td>Throat swab</td><td>Swab from tonsillar fossa; avoid tongue/uvula</td><td>Stuart's/Pike's medium</td></tr>
+          </table>
+          <h4>Labelling Requirements</h4>
+          <ul>
+            <li>Patient name, age, sex, ward/IP number</li>
+            <li>Type of specimen; date and time of collection</li>
+            <li>Clinical diagnosis; investigations requested</li>
+            <li>Antibiotic history of patient</li>
+          </ul>
+          <h4>Nursing Responsibilities</h4>
+          <ul>
+            <li>Explain procedure to patient; ensure patient consent and comfort</li>
+            <li>Use PPE (gloves, mask) during collection</li>
+            <li>Follow standard precautions; treat all specimens as potentially infectious</li>
+            <li>Never refrigerate CSF; do not delay transport</li>
+            <li>Record collection time; document any pre-treatment antibiotics</li>
+            <li>Dispose of collection materials safely in biohazard waste</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Card 3.3 -->
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-header">
+          <span class="card-emoji">📈</span>
+          <div class="card-title-wrap">
+            <div class="card-title">Growth Curve of Bacteria & Phases</div>
+            <div class="card-tag">Unit III · Graph Question</div>
+          </div>
+          <span class="card-arrow">▾</span>
+        </div>
+        <div class="card-body">
+          <h4>Definition</h4>
+          <ul>
+            <li>When bacteria are inoculated into fresh liquid medium, their growth follows a characteristic pattern called the <strong>bacterial growth curve</strong></li>
+            <li>It is plotted as log of number of viable cells vs time</li>
+            <li>Binary fission is the primary mode of reproduction: 1 → 2 → 4 → 8... (exponential)</li>
+          </ul>
+          <h4>4 Phases of Bacterial Growth</h4>
+          <ul>
+            <li><strong>Phase 1 — Lag Phase:</strong>
+              <ul class="sub-ul">
+                <li>No increase in cell number</li>
+                <li>Bacteria adapt to new environment; synthesize enzymes, proteins, and RNA</li>
+                <li>Preparation for division; metabolically active but not dividing</li>
+                <li>Duration depends on age of culture and composition of medium</li>
+              </ul>
+            </li>
+            <li><strong>Phase 2 — Log (Exponential) Phase:</strong>
+              <ul class="sub-ul">
+                <li>Rapid, geometric (exponential) increase in cell number</li>
+                <li>Cells are most metabolically active, uniform in size and staining</li>
+                <li><strong>Most sensitive to antibiotics</strong> and antimicrobials</li>
+                <li>Doubling time is constant and at its minimum here</li>
+                <li>Best phase for antibiotic studies and vaccine production</li>
+              </ul>
+            </li>
+            <li><strong>Phase 3 — Stationary Phase:</strong>
+              <ul class="sub-ul">
+                <li>Growth rate equals death rate → population remains constant</li>
+                <li>Nutrients depleted; waste/toxins accumulate; pH changes</li>
+                <li>Endospore formation occurs here (Bacillus, Clostridium)</li>
+                <li>Bacteria may produce secondary metabolites, exotoxins, and antibiotics</li>
+              </ul>
+            </li>
+            <li><strong>Phase 4 — Decline (Death) Phase:</strong>
+              <ul class="sub-ul">
+                <li>Death rate exceeds growth rate; viable count falls sharply</li>
+                <li>Complete nutrient depletion; lethal accumulation of toxic metabolic products</li>
+                <li>Some cells may remain viable for long periods (survivors)</li>
+              </ul>
+            </li>
+          </ul>
+          <h4>Doubling (Generation) Time</h4>
+          <ul>
+            <li>Time taken for the population to double</li>
+            <li>E. coli: ~20 minutes under optimal conditions</li>
+            <li>M. tuberculosis: ~18 hours (explains slow disease progression)</li>
+          </ul>
+          <h4>Clinical Significance</h4>
+          <ul>
+            <li>Antibiotics act best in log phase when bacteria are actively dividing</li>
+            <li>Stationary phase bacteria may be more antibiotic-resistant</li>
+            <li>M. TB slow growth explains need for prolonged ATT (6–9 months)</li>
+          </ul>
+          <div class="mnemonic-box">
+            <strong>🧠 Phases: "Lazy Logs Stall & Die"</strong>
+            L=Lag, L=Log, S=Stationary, D=Decline/Death
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3.4 -->
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-header">
+          <span class="card-emoji">🌡️</span>
+          <div class="card-title-wrap">
+            <div class="card-title">Factors Affecting Microbial Growth</div>
+            <div class="card-tag">Unit III · Important</div>
+          </div>
+          <span class="card-arrow">▾</span>
+        </div>
+        <div class="card-body">
+          <h4>A. Physical Factors</h4>
+          <ul>
+            <li><strong>Temperature:</strong>
+              <ul class="sub-ul">
+                <li>Psychrophiles: −5 to 15°C (cold-loving) — Listeria</li>
+                <li>Mesophiles: 20–45°C (optimal 37°C) — most pathogens including E. coli, S. aureus</li>
+                <li>Thermophiles: 50–70°C — Bacillus stearothermophilus (used in autoclave testing)</li>
+                <li>Hyperthermophiles: &gt;80°C — Archaea</li>
+              </ul>
+            </li>
+            <li><strong>pH:</strong>
+              <ul class="sub-ul">
+                <li>Neutrophiles: pH 6.5–7.5 — most bacteria</li>
+                <li>Acidophiles: pH &lt;5.5 — Lactobacillus, Helicobacter pylori</li>
+                <li>Alkaliphiles: pH &gt;8.5 — Vibrio cholerae (prefers pH 8–9)</li>
+              </ul>
+            </li>
+            <li><strong>Osmotic pressure:</strong> Halophiles need high salt (Vibrio parahaemolyticus); most bacteria prefer isotonic conditions</li>
+            <li><strong>Moisture/Water activity (aw):</strong> Most bacteria need aw &gt;0.90; fungi can tolerate lower aw (drier conditions)</li>
+            <li><strong>Light:</strong> UV light is bactericidal; most pathogens prefer darkness</li>
+          </ul>
+          <h4>B. Chemical Factors</h4>
+          <ul>
+            <li><strong>Oxygen:</strong> Aerobes, anaerobes, facultative anaerobes, microaerophiles (as classified above)</li>
+            <li><strong>Carbon dioxide:</strong> Some organisms are capnophiles (need 5–10% CO₂) — Neisseria, Brucella; use candle jar or CO₂ incubator</li>
+            <li><strong>Nutrients:</strong> Carbon source, nitrogen, mineral salts (S, P, Mg, Fe), vitamins and growth factors required</li>
+            <li><strong>Growth factors:</strong> Haemophilus needs Factor X (hemin) + Factor V (NAD); can't grow on simple agar</li>
+          </ul>
+          <h4>C. Biological Factors</h4>
+          <ul>
+            <li><strong>Antibiosis:</strong> Inhibition by antibiotics or products of other microbes</li>
+            <li><strong>Competition:</strong> Normal flora compete with pathogens; disruption leads to opportunistic infections</li>
+            <li><strong>Bacteriophages:</strong> Viruses of bacteria — can limit bacterial growth</li>
+          </ul>
+          <h4>Nursing Implications</h4>
+          <ul>
+            <li>Refrigeration slows but doesn't kill organisms — food safety relevance</li>
+            <li>Proper temperature and humidity control in wards reduces pathogen survival</li>
+            <li>Antiseptics alter pH and chemical environment, inhibiting growth</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- /unit-3 -->
+
+  <!-- ===================== UNIT 4 ===================== -->
+  <div class="unit-section" data-unit="4" id="unit-4">
+    <div class="unit-header" onclick="toggleUnit('unit-4')">
+      <div class="unit-header-left">
+        <span class="unit-badge">Unit IV</span>
+        <span class="unit-title">Sterilization, Disinfection & Hospital Infections</span>
+        <span class="unit-count">3 topics</span>
+      </div>
+      <span class="unit-chevron">▾</span>
+    </div>
+    <div class="cards-grid">
+
+      <!-- Card 4.1 -->
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-header">
+          <span class="card-emoji">🔥</span>
+          <div class="card-title-wrap">
+            <div class="card-title">Effects of Heat & Cold on Microorganisms</div>
+            <div class="card-tag">Unit IV · Theory</div>
+          </div>
+          <span class="card-arrow">▾</span>
+        </div>
+        <div class="card-body">
+          <h4>Effects of Heat</h4>
+          <ul>
+            <li><strong>Mechanism:</strong> Heat denatures proteins and enzymes, disrupts membranes, and causes coagulation of cellular proteins</li>
+            <li><strong>Thermal Death Point (TDP):</strong> Lowest temperature that kills all organisms in a suspension in 10 minutes</li>
+            <li><strong>Thermal Death Time (TDT):</strong> Minimum time to kill all organisms at a given temperature</li>
+            <li><strong>D-value (Decimal Reduction Time):</strong> Time to reduce viable count by 90% at a specific temperature</li>
+          </ul>
+          <h4>Moist Heat Methods</h4>
+          <ul>
+            <li><strong>Boiling (100°C):</strong> Kills vegetative bacteria, viruses, fungi in 10–30 min; does NOT kill spores</li>
+            <li><strong>Autoclaving (121°C / 15 lbs/sq in / 15 min):</strong> Kills ALL including spores; most reliable sterilization method; uses saturated steam under pressure</li>
+            <li><strong>Pasteurization:</strong>
+              <ul class="sub-ul">
+                <li>HTST: 71.7°C for 15 seconds — kills pathogens in milk without affecting taste</li>
+                <li>LTLT: 63°C for 30 minutes</li>
+                <li>UHT: 135°C for 2 seconds — sterile milk (long shelf life)</li>
+              </ul>
+            </li>
+            <li><strong>Tyndallization (Fractional sterilization):</strong> 100°C for 30 min on 3 consecutive days — kills spores that germinate between sessions; used for heat-sensitive media</li>
+            <li><strong>Inspissation:</strong> 80°C for 1 hour on 3 days — coagulates egg-containing media like LJ medium</li>
+          </ul>
+          <h4>Dry Heat Methods</h4>
+          <ul>
+            <li><strong>Hot Air Oven (Red Heat / Flaming):</strong> 160°C for 1 hour OR 180°C for 30 min; for glassware, metal, oils, powders (items that can't be autoclaved)</li>
+            <li><strong>Incineration:</strong> Complete burning; for pathological waste, cadavers, contaminated disposables</li>
+            <li><strong>Flaming:</strong> Passing over Bunsen burner flame; for inoculation loops</li>
+            <li><strong>Red heat:</strong> Holding metal objects in flame till red-hot</li>
+          </ul>
+          <h4>Comparison: Moist vs Dry Heat</h4>
+          <table class="table-small">
+            <tr><th>Feature</th><th>Moist Heat</th><th>Dry Heat</th></tr>
+            <tr><td>Mechanism</td><td>Protein coagulation</td><td>Protein oxidation</td></tr>
+            <tr><td>Temperature needed</td><td>Lower</td><td>Higher</td></tr>
+            <tr><td>Efficiency</td><td>More efficient</td><td>Less efficient</td></tr>
+            <tr><td>Penetration</td><td>Better</td><td>Poor</td></tr>
+          </table>
+          <h4>Effects of Cold</h4>
+          <ul>
+            <li><strong>Cold is bacteriostatic</strong> — slows/stops metabolism but generally does NOT kill bacteria</li>
+            <li><strong>Refrigeration (4°C):</strong> Slows growth; used to preserve specimens and vaccines; Listeria and Yersinia can grow even at 4°C</li>
+            <li><strong>Freezing (−20°C):</strong> Stops all growth; ice crystal formation damages cells; not used for routine sterilization</li>
+            <li><strong>Deep freezing (−70°C):</strong> Used for long-term preservation of cultures, blood products, and vaccines</li>
+            <li><strong>Lyophilization (Freeze-drying):</strong> Freezing + vacuum drying; excellent for long-term preservation of vaccines and organisms (no ice crystals)</li>
+            <li>Exceptions: Some bacteria like Vibrio cholerae die rapidly at cold temperatures</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Card 4.2 -->
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-header">
+          <span class="card-emoji">🏥</span>
+          <div class="card-title-wrap">
+            <div class="card-title">Hospital-Acquired Infections (HAI)</div>
+            <div class="card-tag">Unit IV · Most Important</div>
+          </div>
+          <span class="card-arrow">▾</span>
+        </div>
+        <div class="card-body">
+          <h4>Definition</h4>
+          <ul>
+            <li>Also called <strong>Nosocomial infections</strong> or <strong>Healthcare-Associated Infections (HCAIs)</strong></li>
+            <li>Infection acquired in a hospital or healthcare facility that was NOT present or incubating at the time of admission</li>
+            <li>Typically manifest ≥48 hours after admission (or within 30 days of healthcare contact)</li>
+          </ul>
+          <h4>Epidemiology</h4>
+          <ul>
+            <li>Affect ~7–10% of hospitalized patients globally</li>
+            <li>Leading cause of morbidity, mortality, and increased hospital stay/costs</li>
+            <li>ICU patients are at highest risk</li>
+          </ul>
+          <h4>Common Types (CAUTI, CLABSI, VAP, SSI)</h4>
+          <ul>
+            <li><strong>UTI (most common HAI — ~40%):</strong> Catheter-Associated UTI (CAUTI); E. coli, Klebsiella, Pseudomonas</li>
+            <li><strong>Surgical Site Infection (SSI):</strong> Post-operative wound infection; S. aureus (MRSA), Gram-negatives</li>
+            <li><strong>Ventilator-Associated Pneumonia (VAP):</strong> Pneumonia in intubated patients; Pseudomonas, Acinetobacter, Klebsiella</li>
+            <li><strong>Bloodstream Infection (CLABSI):</strong> Central line associated; S. aureus, CoNS, Candida</li>
+            <li><strong>C. difficile infection (CDI):</strong> Post-antibiotic diarrhea; pseudomembranous colitis</li>
+            <li><strong>MRSA (Methicillin-Resistant S. aureus):</strong> Major multidrug-resistant nosocomial pathogen</li>
+          </ul>
+          <h4>Sources & Reservoir</h4>
+          <ul>
+            <li><strong>Endogenous:</strong> Patient's own flora (most common) — normal flora becomes pathogenic in immunocompromised</li>
+            <li><strong>Exogenous:</strong> Healthcare workers (hands!), equipment, water/air systems, other patients</li>
+            <li>Common reservoirs: Sinks, IV lines, ventilators, urinary catheters, hands of HCWs</li>
+          </ul>
+          <h4>Mode of Transmission</h4>
+          <ul>
+            <li><strong>Contact (most common):</strong> Direct (patient-to-patient) or indirect (contaminated hands/equipment)</li>
+            <li><strong>Droplet:</strong> Influenza, RSV, Meningococcal</li>
+            <li><strong>Airborne:</strong> TB, Chickenpox, Measles</li>
+            <li><strong>Common vehicle:</strong> Contaminated IV fluids, food, blood products</li>
+            <li><strong>Vector-borne:</strong> Less common in hospital settings</li>
+          </ul>
+          <h4>Risk Factors</h4>
+          <ul>
+            <li>Invasive devices: Urinary catheters, IV lines, ventilators, NG tubes</li>
+            <li>Surgical procedures; burns; immunocompromise (HIV, cancer, steroid use)</li>
+            <li>Extreme ages (neonates, elderly); prolonged hospitalization</li>
+            <li>Broad-spectrum antibiotics → disruption of normal flora + selection of resistant organisms</li>
+          </ul>
+          <h4>Prevention — Bundle Approach</h4>
+          <ul>
+            <li><strong>Hand Hygiene:</strong> WHO 5 moments — most effective single intervention; ABHR preferred; soap+water for C. difficile</li>
+            <li><strong>CAUTI Bundle:</strong> Insert only when necessary; maintain closed drainage; daily review of catheter need; aseptic insertion; secure catheter</li>
+            <li><strong>VAP Bundle:</strong> Head of bed elevation 30–45°; daily sedation breaks; oral care with chlorhexidine; cuff pressure monitoring</li>
+            <li><strong>CLABSI Bundle:</strong> Hand hygiene; maximal barrier precautions; chlorhexidine skin prep; optimal site selection; daily review</li>
+            <li><strong>SSI Prevention:</strong> Preoperative skin prep; prophylactic antibiotics; normothermia; sterile technique</li>
+            <li><strong>Isolation precautions:</strong> Standard, contact, droplet, airborne as applicable</li>
+            <li><strong>Antimicrobial stewardship:</strong> Rational antibiotic use; avoid unnecessary broad-spectrum antibiotics</li>
+            <li><strong>Surveillance:</strong> Active monitoring for HAI rates; microbiological environmental sampling</li>
+          </ul>
+          <h4>Role of Nurse in HAI Prevention</h4>
+          <ul>
+            <li>Strictly follow hand hygiene — before and after every patient contact</li>
+            <li>Perform aseptic technique for all invasive procedures</li>
+            <li>Daily assessment of necessity of invasive devices</li>
+            <li>Proper waste segregation (biohazard) and linen management</li>
+            <li>Patient and visitor education about hand hygiene</li>
+            <li>Report HAI trends to Infection Control Committee</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Card 4.3 -->
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-header">
+          <span class="card-emoji">⚗️</span>
+          <div class="card-title-wrap">
+            <div class="card-title">Sterilization Methods: Physical, Chemical, Mechanical</div>
+            <div class="card-tag">Unit IV · Long Answer</div>
+          </div>
+          <span class="card-arrow">▾</span>
+        </div>
+        <div class="card-body">
+          <h4>Definitions</h4>
+          <ul>
+            <li><strong>Sterilization:</strong> Complete destruction/removal of ALL microorganisms including spores</li>
+            <li><strong>Disinfection:</strong> Reduces/destroys pathogenic organisms but NOT spores</li>
+            <li><strong>Antisepsis:</strong> Disinfection applied to living tissue (skin, mucous membranes)</li>
+            <li><strong>Sanitization:</strong> Reduces microbial count to safe levels (used for food equipment)</li>
+            <li><strong>Decontamination:</strong> Removal of contamination including chemical hazards</li>
+          </ul>
+          <h4>I. Physical Methods</h4>
+          <ul>
+            <li><strong>Heat (most reliable):</strong>
+              <ul class="sub-ul">
+                <li>Autoclave: 121°C, 15 psi, 15–20 min — gold standard; surgical instruments, dressings, media</li>
+                <li>Hot Air Oven: 160°C/1hr or 180°C/30min — glassware, oils, powders</li>
+                <li>Incineration — biological waste</li>
+                <li>Tyndallization — heat-sensitive culture media</li>
+              </ul>
+            </li>
+            <li><strong>Radiation:</strong>
+              <ul class="sub-ul">
+                <li>UV radiation (254 nm): Non-ionizing; damages DNA (thymine dimers); used for air disinfection in OTs, labs; poor penetration</li>
+                <li>Gamma rays (ionizing): Cobalt-60; used for industrial sterilization of single-use medical devices, sutures, implants; excellent penetration</li>
+                <li>X-rays and electron beam: Industrial use</li>
+              </ul>
+            </li>
+            <li><strong>Desiccation/Drying:</strong> Removes water; bacteriostatic; used for food preservation</li>
+            <li><strong>Ultrasonic waves:</strong> Disrupts cells; used in laboratory equipment cleaning</li>
+          </ul>
+          <h4>II. Chemical Methods</h4>
+          <ul>
+            <li><strong>Glutaraldehyde (2%):</strong> High-level disinfectant/cold sterilant; endoscopes (20 min high-level; 3–10 hr sterilization); broad spectrum including spores</li>
+            <li><strong>Formaldehyde (formalin):</strong> Sterilization of rooms (fumigation), preservation of specimens; toxic, carcinogenic</li>
+            <li><strong>Ethylene oxide (ETO gas):</strong> Low-temperature gaseous sterilization; for heat-sensitive items — electronics, plastics, catheters; toxic, flammable; requires aeration period</li>
+            <li><strong>Hydrogen peroxide (3–6%):</strong> Antiseptic/disinfectant; vapour phase used for equipment; rapid oxidizing action</li>
+            <li><strong>Hypochlorite (bleach):</strong> 0.5–1% for surfaces; 0.05% for drinking water; effective against HIV, HBV, C. difficile spores</li>
+            <li><strong>Iodine / Iodophors (Betadine):</strong> Skin antisepsis; broad spectrum; iodophors less irritating</li>
+            <li><strong>Chlorhexidine:</strong> Pre-op skin prep; broad spectrum; residual activity; preferred over povidone-iodine in CLABSI bundles</li>
+            <li><strong>Alcohol (70% ethanol/isopropanol):</strong> Rapid handwash; denatures proteins; NOT effective against spores; evaporates quickly</li>
+            <li><strong>Phenol/phenolics:</strong> Lister's original antiseptic; Lysol for floor/environment disinfection</li>
+          </ul>
+          <h4>III. Mechanical Methods</h4>
+          <ul>
+            <li><strong>Filtration:</strong>
+              <ul class="sub-ul">
+                <li>Membrane filters (0.22 µm): Remove bacteria from heat-sensitive fluids (IV solutions, antibiotics, serum)</li>
+                <li>HEPA filters (0.3 µm): Remove 99.97% of particles; used in laminar flow hoods, OT HVAC, isolation rooms</li>
+                <li>Berkefeld / Chamberland filters (old): Candle-type; study of filterable viruses</li>
+              </ul>
+            </li>
+            <li><strong>Ultracentrifugation:</strong> Separates organisms from fluids; laboratory use</li>
+          </ul>
+          <h4>Spaulding Classification of Medical Devices</h4>
+          <table class="table-small">
+            <tr><th>Category</th><th>Examples</th><th>Required Level</th></tr>
+            <tr><td>Critical</td><td>Surgical instruments, needles, implants</td><td>Sterilization</td></tr>
+            <tr><td>Semi-critical</td><td>Endoscopes, laryngoscopes</td><td>High-level disinfection</td></tr>
+            <tr><td>Non-critical</td><td>Stethoscopes, BP cuffs, floors</td><td>Low/intermediate level</td></tr>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- /unit-4 -->
+
+  <!-- ===================== UNIT 5 ===================== -->
+  <div class="unit-section" data-unit="5" id="unit-5">
+    <div class="unit-header" onclick="toggleUnit('unit-5')">
+      <div class="unit-header-left">
+        <span class="unit-badge">Unit V</span>
+        <span class="unit-title">Bacterial Diseases</span>
+        <span class="unit-count">4 topics</span>
+      </div>
+      <span class="unit-chevron">▾</span>
+    </div>
+    <div class="cards-grid">
+
+      <!-- Card 5.1 -->
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-header">
+          <span class="card-emoji">🤍</span>
+          <div class="card-title-wrap">
+            <div class="card-title">Leprosy (Hansen's Disease)</div>
+            <div class="card-tag">Unit V · Long Answer</div>
+          </div>
+          <span class="card-arrow">▾</span>
+        </div>
+        <div class="card-body">
+          <h4>Causative Organism</h4>
+          <ul>
+            <li><strong>Mycobacterium leprae</strong> — discovered by Armauer Hansen in 1873; called "Hansen's bacillus"</li>
+            <li>Obligate intracellular organism; cannot be cultured on artificial media</li>
+            <li>Acid-fast bacillus (AFB); arranged in bundles called "globi"</li>
+            <li>Slowest growing bacterial pathogen (doubling time ~13 days)</li>
+            <li>Animal model: Armadillo footpad; mouse footpad</li>
+          </ul>
+          <h4>Epidemiology</h4>
+          <ul>
+            <li>One of the oldest known diseases; India has highest prevalence globally</li>
+            <li>Source: Nasal secretions of untreated patients (most infective); skin lesions</li>
+            <li>Mode: Droplet inhalation; prolonged close contact; skin-to-skin (rare)</li>
+            <li>Incubation period: 2–5 years (range: 6 months–10 years)</li>
+          </ul>
+          <h4>Classification (Ridley-Jopling)</h4>
+          <ul>
+            <li><strong>Tuberculoid (TT):</strong> Strong immunity; few lesions; AFB negative; hypopigmented anaesthetic macules</li>
+            <li><strong>Lepromatous (LL):</strong> Weak immunity; many lesions; AFB positive (3+); leonine facies; glove and stocking anaesthesia</li>
+            <li><strong>Borderline (BT, BB, BL):</strong> Intermediate forms</li>
+          </ul>
+          <h4>WHO Classification (for Treatment)</h4>
+          <ul>
+            <li><strong>Paucibacillary (PB):</strong> 1–5 skin lesions; AFB smear negative — TT, BT</li>
+            <li><strong>Multibacillary (MB):</strong> &gt;5 skin lesions; AFB smear positive — BB, BL, LL</li>
+          </ul>
+          <h4>Pathogenesis</h4>
+          <ul>
+            <li>Infects peripheral nerves (Schwann cells) and skin macrophages</li>
+            <li>Targets cooler parts of body: skin, peripheral nerves, anterior eye, testes, upper respiratory mucosa</li>
+            <li>Nerve damage → anaesthesia, muscle weakness, deformities</li>
+            <li>Thickened peripheral nerves: Ulnar, radial cutaneous, common peroneal, great auricular, posterior tibial</li>
+          </ul>
+          <h4>Clinical Features</h4>
+          <ul>
+            <li>Hypopigmented or reddish skin patches with loss of sensation</li>
+            <li>Thickened peripheral nerves (palpable)</li>
+            <li>Claw hand (ulnar nerve), foot drop (peroneal), lagophthalmos (facial nerve)</li>
+            <li>Leonine facies (LL type) — thickening of facial skin</li>
+            <li>Lepra reactions: Type 1 (reversal) and Type 2 (Erythema Nodosum Leprosum — ENL)</li>
+          </ul>
+          <h4>Diagnosis</h4>
+          <ul>
+            <li>Clinical triad: Skin lesion + nerve enlargement + AFB in smear</li>
+            <li><strong>Slit-skin smear (AFB):</strong> Ear lobules, chin, forehead, lesion edges</li>
+            <li><strong>Lepromin test (Mitsuda test):</strong> Skin test; measures immune response; NOT diagnostic; determines type (positive in TT, negative in LL)</li>
+            <li>Skin biopsy: Histopathology</li>
+          </ul>
+          <h4>Treatment (MDT — Multi-Drug Therapy)</h4>
+          <ul>
+            <li><strong>PB (6 months):</strong> Dapsone + Rifampicin (monthly supervised)</li>
+            <li><strong>MB (12 months):</strong> Dapsone + Rifampicin (monthly supervised) + Clofazimine daily and monthly</li>
+          </ul>
+          <h4>Prevention & Control</h4>
+          <ul>
+            <li>Early detection and treatment; MDT provided free by WHO/Government</li>
+            <li>BCG vaccination offers partial protection (~50%)</li>
+            <li>Health education; reduce stigma; rehabilitation of deformed patients</li>
+            <li>Leprosaria/community-based rehabilitation</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Card 5.2 -->
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-header">
+          <span class="card-emoji">🫁</span>
+          <div class="card-title-wrap">
+            <div class="card-title">Tuberculosis (TB)</div>
+            <div class="card-tag">Unit V · Most Important</div>
+          </div>
+          <span class="card-arrow">▾</span>
+        </div>
+        <div class="card-body">
+          <h4>Causative Organism</h4>
+          <ul>
+            <li><strong>Mycobacterium tuberculosis</strong> — "Koch's bacillus"; discovered by Robert Koch in 1882</li>
+            <li>Obligate aerobe; intracellular pathogen; thick mycolic acid cell wall</li>
+            <li>Slow-growing (18-hour doubling time); slender, slightly curved AFB</li>
+            <li>Other species: M. bovis (cattle; from unpasteurized milk), M. africanum</li>
+          </ul>
+          <h4>Epidemiology</h4>
+          <ul>
+            <li>India has highest TB burden globally; leading infectious disease killer worldwide</li>
+            <li>Source: Infected humans (open cases — sputum AFB positive)</li>
+            <li>Mode: Airborne droplet nuclei (&lt;5 µm); inhaled into alveoli</li>
+            <li>Incubation: 4–8 weeks (primary infection); reactivation can occur years later</li>
+            <li>Risk: HIV/AIDS (50× increased risk), malnutrition, diabetes, silicosis, immunosuppression</li>
+          </ul>
+          <h4>Pathogenesis</h4>
+          <ul>
+            <li><strong>Primary TB:</strong> First infection; Ghon focus forms in mid-lung zone; draining lymph nodes enlarged; Ghon complex = Ghon focus + lymph nodes; usually self-limiting</li>
+            <li><strong>Primary progressive:</strong> In immunocompromised — spreads → miliary TB, meningitis</li>
+            <li><strong>Post-primary (Reactivation) TB:</strong> Reactivation of latent focus; upper lobe; cavitation; cough productive of AFB — highly infectious</li>
+            <li><strong>Granuloma formation:</strong> Macrophages engulf bacilli → epithelioid cells → Langhan's giant cells → granuloma → central <strong>caseous necrosis</strong></li>
+          </ul>
+          <h4>Clinical Features</h4>
+          <ul>
+            <li>Constitutional: Fever (evening rise), night sweats, weight loss, fatigue (≥2 weeks)</li>
+            <li>Pulmonary: Chronic cough ≥2 weeks, haemoptysis, chest pain</li>
+            <li>Extrapulmonary: TB lymphadenitis (most common extra-pulmonary), TB meningitis, renal TB, skeletal TB (Pott's spine), abdominal TB</li>
+          </ul>
+          <h4>Diagnosis</h4>
+          <ul>
+            <li><strong>Sputum AFB smear:</strong> Rapid, cheap; 3 samples (2 spot + 1 early morning)</li>
+            <li><strong>CBNAAT (GeneXpert MTB/RIF):</strong> Detects M. tuberculosis AND rifampicin resistance in 2 hours; first-line test in India (NTEP)</li>
+            <li><strong>Culture (LJ medium):</strong> Gold standard; takes 4–8 weeks; used for DST</li>
+            <li><strong>Mantoux test (TST):</strong> Intradermal PPD; read at 48–72 hrs; ≥10 mm = positive (≥5 mm in HIV); tests previous exposure, NOT active disease</li>
+            <li><strong>Chest X-ray:</strong> Upper lobe infiltrates, cavities, fibrosis</li>
+            <li><strong>IGRA (Interferon Gamma Release Assay):</strong> QuantiFERON; more specific than Mantoux; for latent TB</li>
+            <li><strong>TrueNat:</strong> Chip-based nucleic acid amplification; point-of-care</li>
+          </ul>
+          <h4>Treatment (NTEP Regimens)</h4>
+          <ul>
+            <li><strong>Drug-Susceptible TB:</strong> 2HRZE (Intensive) + 4HR (Continuation) = 6 months total; <strong>H</strong>INH, <strong>R</strong>ifampicin, <strong>Z</strong>Pyrazinamide, <strong>E</strong>thambutol</li>
+            <li><strong>Drug-Resistant TB (MDR-TB):</strong> Resistant to at least H + R; treated with longer regimens (18–24 months) with second-line drugs; Bedaquiline, Linezolid, Clofazimine</li>
+            <li><strong>Directly Observed Treatment Short-course (DOTS):</strong> Core strategy of NTEP; ensures adherence</li>
+          </ul>
+          <h4>Prevention</h4>
+          <ul>
+            <li><strong>BCG vaccine:</strong> Given at birth; protects against severe childhood TB (miliary, meningitis)</li>
+            <li>DOTS; early case detection and treatment</li>
+            <li>Contact tracing; preventive therapy for contacts (6H)</li>
+            <li>Airborne isolation for hospitalised open TB cases (negative pressure room, N95 mask)</li>
+            <li>Nikshay portal — digital patient tracking (NTEP India)</li>
+            <li>TB-Free India target: Eliminate TB by 2025 (National target)</li>
+          </ul>
+          <div class="mnemonic-box">
+            <strong>🧠 TB drugs: "RIPE" = Rifampicin, INH, Pyrazinamide, Ethambutol</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5.3 -->
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-header">
+          <span class="card-emoji">⚙️</span>
+          <div class="card-title-wrap">
+            <div class="card-title">Disease Processes Caused by Microorganisms</div>
+            <div class="card-tag">Unit V · Theory</div>
+          </div>
+          <span class="card-arrow">▾</span>
+        </div>
+        <div class="card-body">
+          <h4>Steps in Disease Process (Chain of Infection)</h4>
+          <ul>
+            <li><strong>1. Infectious Agent:</strong> Pathogen with sufficient virulence, infectivity, and pathogenicity</li>
+            <li><strong>2. Reservoir:</strong> Natural habitat — humans, animals, soil, water, food</li>
+            <li><strong>3. Portal of Exit:</strong> Respiratory tract, GI tract, GU tract, skin/wound, blood</li>
+            <li><strong>4. Mode of Transmission:</strong> Contact, droplet, airborne, vector-borne, vehicle-borne</li>
+            <li><strong>5. Portal of Entry:</strong> Respiratory, GI, GU, skin, conjunctiva, placenta</li>
+            <li><strong>6. Susceptible Host:</strong> Determined by age, immunity, nutritional status, underlying disease</li>
+          </ul>
+          <h4>Virulence Factors</h4>
+          <ul>
+            <li><strong>Adhesins:</strong> Pili, surface proteins — allow attachment to host cells</li>
+            <li><strong>Toxins:</strong>
+              <ul class="sub-ul">
+                <li>Exotoxins: Secreted proteins; highly potent; heat-labile; tetanus toxin, cholera toxin, diphtheria toxin</li>
+                <li>Endotoxins: LPS of G-ve cell wall; heat-stable; released on death; causes fever, septic shock</li>
+              </ul>
+            </li>
+            <li><strong>Enzymes:</strong> Hyaluronidase (spreading factor), streptokinase, coagulase, collagenase</li>
+            <li><strong>Capsule:</strong> Anti-phagocytic — Klebsiella, Streptococcus pneumoniae</li>
+            <li><strong>Intracellular survival:</strong> Mycobacteria, Salmonella survive inside macrophages</li>
+            <li><strong>Biofilm formation:</strong> Protects from antibiotics and phagocytes</li>
+          </ul>
+          <h4>Types of Infection</h4>
+          <ul>
+            <li><strong>Primary infection:</strong> First infection in a healthy host</li>
+            <li><strong>Secondary infection:</strong> Infection on top of existing disease</li>
+            <li><strong>Latent infection:</strong> Organism persists dormant — HSV, TB, VZV</li>
+            <li><strong>Opportunistic infection:</strong> Infections in immunocompromised — PCP in AIDS, CMV retinitis</li>
+            <li><strong>Subclinical (inapparent) infection:</strong> No symptoms but serology positive</li>
+            <li><strong>Carrier state:</strong> Person harbours organism without symptoms — Typhoid (Mary Mallon)</li>
+            <li><strong>Acute, Subacute, Chronic infections</strong> classified by duration</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Card 5.4 -->
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-header">
+          <span class="card-emoji">🦟</span>
+          <div class="card-title-wrap">
+            <div class="card-title">Rickettsial & Non-Anaerobic Infections (Short Notes)</div>
+            <div class="card-tag">Unit V · Short Notes</div>
+          </div>
+          <span class="card-arrow">▾</span>
+        </div>
+        <div class="card-body">
+          <h4>Rickettsial Infections</h4>
+          <ul>
+            <li>Caused by <strong>Rickettsia</strong> — obligate intracellular Gram-negative bacteria</li>
+            <li>Transmitted by arthropod vectors: lice, fleas, ticks, mites</li>
+            <li>Classic triad: <strong>Fever + Headache + Rash</strong> (after 4–5 days)</li>
+          </ul>
+          <table class="table-small">
+            <tr><th>Disease</th><th>Organism</th><th>Vector</th></tr>
+            <tr><td>Epidemic typhus</td><td>R. prowazekii</td><td>Body louse</td></tr>
+            <tr><td>Endemic typhus</td><td>R. typhi</td><td>Rat flea</td></tr>
+            <tr><td>Scrub typhus</td><td>Orientia tsutsugamushi</td><td>Mite (chigger)</td></tr>
+            <tr><td>Rocky Mountain SF</td><td>R. rickettsii</td><td>Tick</td></tr>
+            <tr><td>Q fever</td><td>Coxiella burnetii</td><td>No arthropod; inhaled</td></tr>
+          </table>
+          <ul>
+            <li><strong>Eschar:</strong> Painless black necrotic lesion at bite site — pathognomonic of scrub typhus</li>
+            <li><strong>Diagnosis:</strong> Weil-Felix reaction (serological agglutination); immunofluorescence; PCR</li>
+            <li><strong>Treatment:</strong> Doxycycline (DOC for all rickettsial); Chloramphenicol in pregnancy</li>
+            <li><strong>Not grown on artificial media</strong> — grown in embryonated eggs, tissue culture</li>
+          </ul>
+          <h4>Non-Anaerobic Clostridial Infections (Important Anaerobes)</h4>
+          <ul>
+            <li>Clostridium = Gram-positive, spore-forming, obligate anaerobic rods</li>
+            <li><strong>C. tetani:</strong> Tetanospasmin toxin → inhibits inhibitory neurons → spastic paralysis (lockjaw, risus sardonicus, opisthotonos); drumbstick spore</li>
+            <li><strong>C. botulinum:</strong> Botulinum toxin (most potent biological toxin) → flaccid paralysis; foodborne (tinned food), infant botulism</li>
+            <li><strong>C. perfringens:</strong> Gas gangrene (myonecrosis); alpha toxin (lecithinase); wound infection; food poisoning</li>
+            <li><strong>C. difficile:</strong> Pseudomembranous colitis; post-antibiotic diarrhoea; toxin A (enterotoxin) + toxin B (cytotoxin)</li>
+            <li>Treatment: Penicillin + debridement for gas gangrene; Metronidazole/Vancomycin for C. diff</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- /unit-5 -->
+
+  <!-- ===================== UNIT 6 ===================== -->
+  <div class="unit-section" data-unit="6" id="unit-6">
+    <div class="unit-header" onclick="toggleUnit('unit-6')">
+      <div class="unit-header-left">
+        <span class="unit-badge">Unit VI</span>
+        <span class="unit-title">Mycology — Fungal Diseases</span>
+        <span class="unit-count">3 topics</span>
+      </div>
+      <span class="unit-chevron">▾</span>
+    </div>
+    <div class="cards-grid">
+
+      <!-- Card 6.1 -->
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-header">
+          <span class="card-emoji">🍄</span>
+          <div class="card-title-wrap">
+            <div class="card-title">Systemic Mycoses Including Histoplasmosis</div>
+            <div class="card-tag">Unit VI · Long Answer</div>
+          </div>
+          <span class="card-arrow">▾</span>
+        </div>
+        <div class="card-body">
+          <h4>Definition</h4>
+          <ul>
+            <li>Systemic mycoses = deep fungal infections that involve internal organs; usually begin in lungs and disseminate</li>
+            <li>Often opportunistic in immunocompromised; some (dimorphic fungi) affect healthy hosts</li>
+          </ul>
+          <h4>Dimorphic Fungi (Important Category)</h4>
+          <ul>
+            <li>Exist as moulds at room temperature (25°C) and yeasts at body temperature (37°C)</li>
+            <li><strong>Mnemonic: "B H C P S"</strong> — Blastomyces, Histoplasma, Coccidioides, Paracoccidioides, Sporothrix</li>
+          </ul>
+          <h4>Histoplasmosis</h4>
+          <ul>
+            <li><strong>Organism:</strong> Histoplasma capsulatum</li>
+            <li><strong>Source:</strong> Soil enriched with bird/bat droppings (caves, chicken coops); bird excreta</li>
+            <li><strong>Transmission:</strong> Inhalation of microconidia (NOT person-to-person)</li>
+            <li><strong>Distribution:</strong> Ohio and Mississippi River valleys (USA); worldwide tropical/subtropical</li>
+            <li><strong>Pathogenesis:</strong> Inhaled spores → engulfed by macrophages → yeasts multiply inside macrophages → granuloma formation; resembles TB</li>
+            <li><strong>Clinical forms:</strong>
+              <ul class="sub-ul">
+                <li>Asymptomatic (90%)</li>
+                <li>Acute pulmonary: Flu-like illness; self-limiting</li>
+                <li>Chronic pulmonary: Resembles TB (upper lobe cavities)</li>
+                <li>Disseminated (in AIDS, immunocompromised): Fever, hepatosplenomegaly, lymphadenopathy, pancytopenia</li>
+              </ul>
+            </li>
+            <li><strong>Diagnosis:</strong> Culture (blood, bone marrow); histopathology (yeast inside macrophages — PAS stain); urinary antigen test (most sensitive in disseminated); serology</li>
+            <li><strong>Treatment:</strong> Itraconazole (mild/moderate); Amphotericin B (severe/disseminated)</li>
+          </ul>
+          <h4>Other Systemic Mycoses</h4>
+          <ul>
+            <li><strong>Cryptococcosis:</strong> Cryptococcus neoformans; pigeon droppings; capsulated yeast; meningitis in AIDS (most common fungal meningitis); India ink shows capsule; latex agglutination antigen test; treat with Ampho B + Flucytosine</li>
+            <li><strong>Aspergillosis:</strong> Aspergillus fumigatus; inhalation of conidia; invasive aspergillosis in neutropenia; fungal ball (aspergilloma) in pre-existing cavity; allergic bronchopulmonary aspergillosis (ABPA)</li>
+            <li><strong>Candidiasis:</strong> Candida albicans; commonest opportunistic fungal infection; oral thrush, oesophagitis, vaginal, bloodstream (candidemia); germ tube test positive for C. albicans</li>
+            <li><strong>Mucormycosis:</strong> Rhizopus, Mucor; "Black Fungus"; angioinvasive; rhinocerebral form in diabetics; COVID-19 association; treat with Ampho B + surgical debridement</li>
+            <li><strong>Blastomycosis:</strong> Blastomyces dermatitidis; North America; lungs + skin + bone</li>
+          </ul>
+          <h4>Key Antifungal Drugs</h4>
+          <ul>
+            <li>Amphotericin B: Broad spectrum; binds ergosterol; for severe infections</li>
+            <li>Azoles (fluconazole, itraconazole, voriconazole): Inhibit ergosterol synthesis</li>
+            <li>Echinocandins (caspofungin): Inhibit cell wall glucan synthesis</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Card 6.2 -->
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-header">
+          <span class="card-emoji">🔬</span>
+          <div class="card-title-wrap">
+            <div class="card-title">Pathogenic Fungi: Classification with Examples</div>
+            <div class="card-tag">Unit VI · Classification</div>
+          </div>
+          <span class="card-arrow">▾</span>
+        </div>
+        <div class="card-body">
+          <h4>General Features of Fungi</h4>
+          <ul>
+            <li>Eukaryotes; have cell wall with chitin and glucan (NOT peptidoglycan)</li>
+            <li>Cell membrane contains ergosterol (target of antifungal drugs)</li>
+            <li>Heterotrophic; reproduce by spores (sexual and asexual)</li>
+            <li>Types: Yeasts (unicellular), Moulds/Hyphae (multicellular), Dimorphic</li>
+          </ul>
+          <h4>Classification by Site of Infection</h4>
+          <ul>
+            <li><strong>1. Superficial mycoses:</strong> Outermost layers; no tissue reaction
+              <ul class="sub-ul">
+                <li>Pityriasis versicolor — Malassezia furfur; "spaghetti and meatballs" on KOH; hypopigmented/hyperpigmented patches</li>
+                <li>Tinea nigra — Exophiala werneckii; dark brown patches on palms</li>
+                <li>White piedra — Trichosporon; soft nodules on hair</li>
+                <li>Black piedra — Piedraia hortae; hard black nodules on scalp hair</li>
+              </ul>
+            </li>
+            <li><strong>2. Cutaneous mycoses (Dermatophytoses):</strong> Skin, hair, nails; contain keratin
+              <ul class="sub-ul">
+                <li>Trichophyton, Microsporum, Epidermophyton — see Dermatophytes card</li>
+              </ul>
+            </li>
+            <li><strong>3. Subcutaneous mycoses:</strong> Implanted into subcutaneous tissue
+              <ul class="sub-ul">
+                <li>Sporotrichosis — Sporothrix schenckii; rose thorn prick; ulcers along lymphatics</li>
+                <li>Mycetoma (Madura foot) — chronic granulomatous; grains in discharge; foot</li>
+                <li>Chromoblastomycosis — verrucous skin nodules; sclerotic (Medlar) bodies</li>
+              </ul>
+            </li>
+            <li><strong>4. Systemic/Deep mycoses:</strong> Internal organs (covered in previous card)</li>
+            <li><strong>5. Opportunistic mycoses:</strong> In immunocompromised — Candida, Aspergillus, Cryptococcus, Mucor</li>
+          </ul>
+          <h4>Morphology-Based Classification</h4>
+          <table class="table-small">
+            <tr><th>Type</th><th>Morphology</th><th>Examples</th></tr>
+            <tr><td>Yeasts</td><td>Unicellular; budding</td><td>Candida, Cryptococcus, Saccharomyces</td></tr>
+            <tr><td>Moulds</td><td>Multicellular; hyphae; conidia</td><td>Aspergillus, Rhizopus, Penicillium</td></tr>
+            <tr><td>Dimorphic</td><td>Yeast at 37°C; mould at 25°C</td><td>Histoplasma, Blastomyces, Coccidioides</td></tr>
+            <tr><td>Pseudohyphae</td><td>Elongated buds</td><td>Candida albicans</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- Card 6.3 -->
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-header">
+          <span class="card-emoji">💅</span>
+          <div class="card-title-wrap">
+            <div class="card-title">Dermatophytes: Types & Diagnosis</div>
+            <div class="card-tag">Unit VI · Short/Long</div>
+          </div>
+          <span class="card-arrow">▾</span>
+        </div>
+        <div class="card-body">
+          <h4>Definition</h4>
+          <ul>
+            <li>Dermatophytes = keratinophilic fungi that infect keratinised tissues (skin, hair, nails)</li>
+            <li>Three genera: <strong>Trichophyton, Microsporum, Epidermophyton</strong></li>
+            <li>Infections collectively called <strong>Tinea (ringworm)</strong> or <strong>Dermatophytosis</strong></li>
+          </ul>
+          <h4>Three Genera</h4>
+          <table class="table-small">
+            <tr><th>Genus</th><th>Infects</th><th>Species (Common)</th></tr>
+            <tr><td>Trichophyton</td><td>Skin, hair, nails</td><td>T. rubrum (most common), T. violaceum, T. tonsurans</td></tr>
+            <tr><td>Microsporum</td><td>Skin, hair (NOT nails)</td><td>M. canis (from cats/dogs), M. audouinii</td></tr>
+            <tr><td>Epidermophyton</td><td>Skin, nails (NOT hair)</td><td>E. floccosum</td></tr>
+          </table>
+          <h4>Types of Tinea (by Body Site)</h4>
+          <ul>
+            <li><strong>Tinea capitis:</strong> Scalp and hair; children; circular bald patches; Wood's lamp fluorescence (green — Microsporum)</li>
+            <li><strong>Tinea corporis:</strong> Smooth skin; ring-shaped scaly itchy patches with raised border and central clearing</li>
+            <li><strong>Tinea pedis (Athlete's foot):</strong> Between toes; scaling, maceration, itching; T. rubrum</li>
+            <li><strong>Tinea unguium (Onychomycosis):</strong> Nails; yellow, brittle, thickened nails; T. rubrum</li>
+            <li><strong>Tinea cruris (Jock itch):</strong> Groin; E. floccosum, T. rubrum; more in males</li>
+            <li><strong>Tinea barbae:</strong> Beard area; T. violaceum</li>
+            <li><strong>Tinea manuum:</strong> Hands; T. rubrum</li>
+          </ul>
+          <h4>Diagnosis</h4>
+          <ul>
+            <li><strong>KOH preparation (10–20%):</strong> Skin scraping, hair, nail clipping dissolved in KOH; see branching septate hyphae and arthrospores under microscope — rapid and simple</li>
+            <li><strong>Wood's lamp (UV 365 nm):</strong> Microsporum causes green fluorescence of infected hair</li>
+            <li><strong>Culture (Sabouraud's Dextrose Agar — SDA):</strong> With cycloheximide + chloramphenicol; 25°C; 1–4 weeks; identify by colony morphology and microscopy (macro/microconidia)</li>
+            <li><strong>Histopathology:</strong> PAS stain for hyphae in nail/skin sections</li>
+          </ul>
+          <h4>Treatment</h4>
+          <ul>
+            <li>Topical: Clotrimazole, Miconazole, Terbinafine — for skin infections</li>
+            <li>Systemic (oral): Griseofulvin (hair/nail), Terbinafine, Itraconazole, Fluconazole</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- /unit-6 -->
+
+  <!-- ===================== UNIT 7 ===================== -->
+  <div class="unit-section" data-unit="7" id="unit-7">
+    <div class="unit-header" onclick="toggleUnit('unit-7')">
+      <div class="unit-header-left">
+        <span class="unit-badge">Unit VII</span>
+        <span class="unit-title">Immunology</span>
+        <span class="unit-count">4 topics</span>
+      </div>
+      <span class="unit-chevron">▾</span>
+    </div>
+    <div class="cards-grid">
+
+      <!-- Card 7.1 -->
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-header">
+          <span class="card-emoji">⚡</span>
+          <div class="card-title-wrap">
+            <div class="card-title">Hypersensitivity: Types & Examples</div>
+            <div class="card-tag">Unit VII · Most Important</div>
+          </div>
+          <span class="card-arrow">▾</span>
+        </div>
+        <div class="card-body">
+          <h4>Definition</h4>
+          <ul>
+            <li>Hypersensitivity = exaggerated or inappropriate immune response to an antigen (allergen) causing tissue damage</li>
+            <li>Classified by <strong>Gell and Coombs (1963)</strong> into 4 types</li>
+          </ul>
+          <h4>Type I — Immediate/Anaphylactic (IgE-mediated)</h4>
+          <ul>
+            <li><strong>Mechanism:</strong> Allergen → IgE produced → binds to mast cells/basophils → re-exposure → cross-linking → degranulation → histamine, leukotrienes, prostaglandins</li>
+            <li><strong>Onset:</strong> Within minutes (15–30 min)</li>
+            <li><strong>Cells:</strong> Mast cells, basophils, eosinophils; IgE antibody</li>
+            <li><strong>Examples:</strong> Anaphylaxis (penicillin, bee sting), bronchial asthma, allergic rhinitis (hay fever), urticaria, food allergy (peanuts), atopic eczema</li>
+            <li><strong>Treatment:</strong> Epinephrine (anaphylaxis emergency); antihistamines, corticosteroids; desensitization</li>
+          </ul>
+          <h4>Type II — Cytotoxic/Antibody-mediated (IgG/IgM)</h4>
+          <ul>
+            <li><strong>Mechanism:</strong> Antibody binds to antigen on cell surface → complement activation or ADCC → cell destruction</li>
+            <li><strong>Onset:</strong> Hours</li>
+            <li><strong>Examples:</strong> Blood transfusion reactions (ABO incompatibility), hemolytic disease of newborn (Rh incompatibility), autoimmune hemolytic anemia, Goodpasture's syndrome (anti-GBM), Graves' disease (stimulatory), Myasthenia gravis</li>
+          </ul>
+          <h4>Type III — Immune Complex-mediated</h4>
+          <ul>
+            <li><strong>Mechanism:</strong> Ag-Ab complexes deposited in tissues → complement activation → neutrophil infiltration → tissue damage</li>
+            <li><strong>Onset:</strong> 6–12 hours</li>
+            <li><strong>Examples:</strong> SLE (systemic lupus erythematosus), post-streptococcal glomerulonephritis, serum sickness, farmer's lung (extrinsic allergic alveolitis), Arthus reaction (local)</li>
+            <li><strong>Hallmark:</strong> Low complement (C3, C4) levels in serum</li>
+          </ul>
+          <h4>Type IV — Delayed-Type/Cell-mediated (T-cell mediated)</h4>
+          <ul>
+            <li><strong>Mechanism:</strong> Sensitized T-lymphocytes (CD4+ Th1) → release cytokines (IFN-γ, TNF) → macrophage activation → granuloma formation; no antibody involved</li>
+            <li><strong>Onset:</strong> 48–72 hours (delayed)</li>
+            <li><strong>Examples:</strong> Contact dermatitis (nickel, poison ivy, latex gloves), Tuberculin/Mantoux reaction, granulomatous reactions (TB, leprosy, sarcoidosis), graft rejection, multiple sclerosis, Type 1 diabetes</li>
+          </ul>
+          <table class="table-small">
+            <tr><th>Type</th><th>Mediator</th><th>Timing</th><th>Classic Example</th></tr>
+            <tr><td>I (Anaphylactic)</td><td>IgE + Mast cells</td><td>&lt;30 min</td><td>Anaphylaxis</td></tr>
+            <tr><td>II (Cytotoxic)</td><td>IgG/IgM + Complement</td><td>Hours</td><td>Transfusion rxn</td></tr>
+            <tr><td>III (Complex)</td><td>Ag-Ab complexes</td><td>6–12 hrs</td><td>SLE, serum sickness</td></tr>
+            <tr><td>IV (Delayed)</td><td>T cells (no Ab)</td><td>48–72 hrs</td><td>Mantoux, contact derm.</td></tr>
+          </table>
+          <div class="mnemonic-box">
+            <strong>🧠 Types: "ACID" — Anaphylactic, Cytotoxic, Immune-complex, Delayed</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 7.2 -->
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-header">
+          <span class="card-emoji">🔗</span>
+          <div class="card-title-wrap">
+            <div class="card-title">Antigen-Antibody Reactions</div>
+            <div class="card-tag">Unit VII · Theory</div>
+          </div>
+          <span class="card-arrow">▾</span>
+        </div>
+        <div class="card-body">
+          <h4>Definitions</h4>
+          <ul>
+            <li><strong>Antigen (Ag):</strong> Any substance (protein, polysaccharide, lipid, nucleic acid) that can stimulate an immune response and react with specific antibody; usually foreign</li>
+            <li><strong>Antibody (Ab) / Immunoglobulin (Ig):</strong> Glycoprotein produced by plasma cells in response to antigen; 5 classes: IgG, IgA, IgM, IgD, IgE</li>
+            <li><strong>Epitope:</strong> Specific part of antigen that binds antibody (antigenic determinant)</li>
+          </ul>
+          <h4>Properties of Ag-Ab Reactions</h4>
+          <ul>
+            <li><strong>Specificity:</strong> Antibody reacts only with its homologous antigen (lock and key)</li>
+            <li><strong>Reversibility:</strong> Reaction is reversible; governed by affinity and avidity</li>
+            <li><strong>Non-covalent bonds:</strong> Hydrogen bonds, Van der Waals, electrostatic, hydrophobic</li>
+            <li><strong>Equivalent zone:</strong> Optimal ratio of Ag and Ab for maximum precipitation</li>
+          </ul>
+          <h4>Types of Ag-Ab Reactions (In Vitro Tests)</h4>
+          <ul>
+            <li><strong>Agglutination:</strong> Antibody clumps particulate antigens (bacteria, RBCs) — Widal (typhoid), blood grouping, ABO typing</li>
+            <li><strong>Precipitation:</strong> Soluble antigen + antibody → visible precipitate — Ouchterlony double diffusion</li>
+            <li><strong>Complement fixation:</strong> Detects Ab by complement consumption — Wassermann for syphilis</li>
+            <li><strong>Neutralization:</strong> Ab neutralizes toxins or viruses — ASO titre (anti-streptolysin O)</li>
+            <li><strong>ELISA:</strong> Enzyme-linked immunosorbent assay; very sensitive; used for HIV, HBsAg, dengue NS1</li>
+            <li><strong>Western Blot:</strong> Confirmatory for HIV; detects specific protein bands</li>
+            <li><strong>RIA (Radioimmunoassay):</strong> Uses radioactive labels; very sensitive</li>
+            <li><strong>Immunofluorescence:</strong> Direct (DIF) and indirect (IIF); detects Ag or Ab in tissue sections</li>
+            <li><strong>Coomb's test:</strong> Direct (detects Ab on RBCs) and Indirect (detects Ab in serum) — for hemolytic disease of newborn</li>
+          </ul>
+          <h4>IgG vs IgM vs IgA (Key Differences)</h4>
+          <table class="table-small">
+            <tr><th>Property</th><th>IgG</th><th>IgM</th><th>IgA</th></tr>
+            <tr><td>Most abundant</td><td>Yes (80%)</td><td>No</td><td>Secretory</td></tr>
+            <tr><td>First produced</td><td>No</td><td>Yes (primary)</td><td>No</td></tr>
+            <tr><td>Crosses placenta</td><td>Yes</td><td>No</td><td>No</td></tr>
+            <tr><td>Found in secretions</td><td>No</td><td>No</td><td>Yes (sIgA)</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- Card 7.3 -->
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-header">
+          <span class="card-emoji">🛡️</span>
+          <div class="card-title-wrap">
+            <div class="card-title">Immunity: Types & Significance</div>
+            <div class="card-tag">Unit VII · Important</div>
+          </div>
+          <span class="card-arrow">▾</span>
+        </div>
+        <div class="card-body">
+          <h4>Definition</h4>
+          <ul>
+            <li>Immunity = the ability of the body to resist disease-causing agents and their harmful products</li>
+          </ul>
+          <h4>Classification of Immunity</h4>
+          <ul>
+            <li><strong>A. Innate (Non-Specific) Immunity:</strong>
+              <ul class="sub-ul">
+                <li>Present at birth; not antigen-specific; no memory; immediate response</li>
+                <li>Physical barriers: Skin, mucous membranes, cilia, gastric acid</li>
+                <li>Chemical barriers: Lysozyme (tears, saliva), defensins, complement</li>
+                <li>Cellular: Phagocytes (neutrophils, macrophages), NK cells</li>
+                <li>Inflammatory response; fever</li>
+              </ul>
+            </li>
+            <li><strong>B. Acquired (Adaptive/Specific) Immunity:</strong>
+              <ul class="sub-ul">
+                <li>Develops after exposure to antigen; specific; has memory; slower (days)</li>
+                <li><strong>Active immunity:</strong> Body produces its own antibodies
+                  <ul class="sub-ul">
+                    <li>Natural active: After infection (e.g., measles — lifelong immunity)</li>
+                    <li>Artificial active: After vaccination (e.g., BCG, OPV, MMR)</li>
+                  </ul>
+                </li>
+                <li><strong>Passive immunity:</strong> Ready-made antibodies received from outside
+                  <ul class="sub-ul">
+                    <li>Natural passive: IgG crosses placenta; IgA in colostrum (first 3 months of life)</li>
+                    <li>Artificial passive: Injection of antiserum/immunoglobulin (ATS for tetanus, HBIG for Hep B, rabies Ig)</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <h4>Herd Immunity</h4>
+          <ul>
+            <li>When a sufficient proportion of a population is immune, it indirectly protects non-immune individuals</li>
+            <li>Threshold varies: Measles ~95%, Polio ~80–85%</li>
+            <li>Important for disease elimination and eradication programs</li>
+          </ul>
+          <h4>Types of Vaccines</h4>
+          <ul>
+            <li><strong>Live attenuated:</strong> BCG, OPV, MMR, Varicella — strong long-lasting immunity; contraindicated in immunocompromised</li>
+            <li><strong>Killed/Inactivated:</strong> IPV, Hepatitis A, whole-cell pertussis — safer; needs boosters</li>
+            <li><strong>Toxoid:</strong> Inactivated toxins — TT, DT for tetanus and diphtheria</li>
+            <li><strong>Subunit/Recombinant:</strong> HBsAg (Hepatitis B), HPV vaccine</li>
+            <li><strong>Conjugate:</strong> Hib, PCV, MenACWY — polysaccharide conjugated to protein carrier; effective in infants</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Card 7.4 -->
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-header">
+          <span class="card-emoji">⚔️</span>
+          <div class="card-title-wrap">
+            <div class="card-title">Innate vs Acquired Immunity (Differences)</div>
+            <div class="card-tag">Unit VII · Comparison Table</div>
+          </div>
+          <span class="card-arrow">▾</span>
+        </div>
+        <div class="card-body">
+          <table class="table-small">
+            <tr><th>Feature</th><th>Innate Immunity</th><th>Acquired Immunity</th></tr>
+            <tr><td>Also called</td><td>Non-specific, Natural</td><td>Specific, Adaptive</td></tr>
+            <tr><td>Present at birth?</td><td>Yes</td><td>No — develops with exposure</td></tr>
+            <tr><td>Specificity</td><td>Non-specific (general)</td><td>Highly specific to antigen</td></tr>
+            <tr><td>Memory</td><td>No immunological memory</td><td>Yes — faster on re-exposure</td></tr>
+            <tr><td>Response time</td><td>Immediate (minutes–hours)</td><td>Days (primary); hours (secondary)</td></tr>
+            <tr><td>Components</td><td>Skin, mucosa, phagocytes, NK cells, complement, fever</td><td>B cells, T cells, antibodies</td></tr>
+            <tr><td>Diversity</td><td>Limited</td><td>Vast diversity (millions of specificities)</td></tr>
+            <tr><td>Antigen recognition</td><td>Pattern recognition (PRRs, TLRs) — PAMPs</td><td>Antigen-specific receptors (BCR, TCR)</td></tr>
+            <tr><td>Examples</td><td>Phagocytosis, inflammation, lysozyme</td><td>Antibodies, cytotoxic T cells, vaccination</td></tr>
+          </table>
+          <h4>Key Components of Acquired Immunity</h4>
+          <ul>
+            <li><strong>Humoral immunity (B cells → plasma cells):</strong> Antibody production; protects against extracellular pathogens</li>
+            <li><strong>Cell-mediated immunity (T cells):</strong>
+              <ul class="sub-ul">
+                <li>CD4+ (Helper T cells): Coordinate immune response; target of HIV</li>
+                <li>CD8+ (Cytotoxic T cells): Kill virus-infected cells and tumour cells</li>
+                <li>Regulatory T cells: Prevent autoimmunity</li>
+              </ul>
+            </li>
+            <li><strong>Memory cells:</strong> Long-lived B and T memory cells; basis of vaccine immunity and secondary response</li>
+            <li><strong>MHC molecules:</strong> MHC class I (all nucleated cells; present to CD8+); MHC class II (APCs; present to CD4+)</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- /unit-7 -->
+
+  <!-- ===================== UNIT 8 ===================== -->
+  <div class="unit-section" data-unit="8" id="unit-8">
+    <div class="unit-header" onclick="toggleUnit('unit-8')">
+      <div class="unit-header-left">
+        <span class="unit-badge">Unit VIII</span>
+        <span class="unit-title">Parasitology</span>
+        <span class="unit-count">5 topics</span>
+      </div>
+      <span class="unit-chevron">▾</span>
+    </div>
+    <div class="cards-grid">
+
+      <!-- Card 8.1 -->
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-header">
+          <span class="card-emoji">🪱</span>
+          <div class="card-title-wrap">
+            <div class="card-title">Definition of Parasites & Vectors</div>
+            <div class="card-tag">Unit VIII · Definitions</div>
+          </div>
+          <span class="card-arrow">▾</span>
+        </div>
+        <div class="card-body">
+          <h4>Parasite</h4>
+          <ul>
+            <li>An organism that lives on or within another organism (host) from which it obtains nutrients, causing harm to the host</li>
+            <li><strong>Host:</strong> Organism that harbours the parasite</li>
+            <li><strong>Definitive host:</strong> Host in which sexual reproduction of parasite occurs (e.g., humans for Plasmodium in erythrocytic schizogony)</li>
+            <li><strong>Intermediate host:</strong> Host for asexual stage — Anopheles mosquito for Plasmodium (sporogony)</li>
+            <li><strong>Reservoir host:</strong> Animal that maintains parasite but is not the primary host — pigs for T. solium</li>
+          </ul>
+          <h4>Types of Parasites</h4>
+          <ul>
+            <li><strong>Ectoparasite:</strong> Lives on surface — lice, ticks, mites, fleas</li>
+            <li><strong>Endoparasite:</strong> Lives inside host — worms, protozoa</li>
+            <li><strong>Obligate parasite:</strong> Cannot survive without host — Plasmodium, Leishmania</li>
+            <li><strong>Facultative parasite:</strong> Can live as free-living or as parasite — Naegleria, Strongyloides</li>
+            <li><strong>Accidental/incidental parasite:</strong> Infects an unusual host</li>
+          </ul>
+          <h4>Vector</h4>
+          <ul>
+            <li>A living carrier (usually arthropod) that transmits infectious agents from one host to another</li>
+            <li><strong>Biological vector:</strong> Parasite undergoes multiplication/development inside vector — Anopheles (malaria), Aedes (dengue), Culex (filariasis)</li>
+            <li><strong>Mechanical vector:</strong> Transmits pathogen without parasite development — housefly (typhoid, dysentery)</li>
+          </ul>
+          <h4>Important Vectors & Diseases</h4>
+          <table class="table-small">
+            <tr><th>Vector</th><th>Disease</th><th>Parasite/Pathogen</th></tr>
+            <tr><td>Anopheles mosquito</td><td>Malaria</td><td>Plasmodium spp.</td></tr>
+            <tr><td>Aedes mosquito</td><td>Dengue, Zika, Chikungunya, YF</td><td>Arboviruses</td></tr>
+            <tr><td>Culex mosquito</td><td>Lymphatic filariasis, Japanese encephalitis</td><td>W. bancrofti, JEV</td></tr>
+            <tr><td>Sandfly (Phlebotomus)</td><td>Kala-azar (Leishmaniasis)</td><td>Leishmania donovani</td></tr>
+            <tr><td>Tsetse fly</td><td>Sleeping sickness</td><td>Trypanosoma brucei</td></tr>
+            <tr><td>Body louse</td><td>Epidemic typhus, Relapsing fever</td><td>Rickettsia, Borrelia</td></tr>
+            <tr><td>Rat flea</td><td>Plague, Endemic typhus</td><td>Y. pestis, R. typhi</td></tr>
+            <tr><td>Ticks</td><td>Rocky Mountain SF, Lyme disease, RMSF</td><td>Rickettsia, Borrelia</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- Card 8.2 -->
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-header">
+          <span class="card-emoji">🔖</span>
+          <div class="card-title-wrap">
+            <div class="card-title">Classification of Parasites</div>
+            <div class="card-tag">Unit VIII · Classification</div>
+          </div>
+          <span class="card-arrow">▾</span>
+        </div>
+        <div class="card-body">
+          <h4>Major Groups</h4>
+          <ul>
+            <li><strong>1. Protozoa (unicellular):</strong> Single-celled eukaryotes
+              <ul class="sub-ul">
+                <li>Amoeba: Entamoeba histolytica (amoebic dysentery)</li>
+                <li>Flagellates: Giardia, Leishmania, Trypanosoma, Trichomonas</li>
+                <li>Sporozoa/Apicomplexa: Plasmodium (malaria), Cryptosporidium, Toxoplasma</li>
+                <li>Ciliates: Balantidium coli</li>
+              </ul>
+            </li>
+            <li><strong>2. Helminths (multicellular worms):</strong>
+              <ul class="sub-ul">
+                <li><strong>Nematodes (roundworms):</strong> Ascaris, Hookworm, Pinworm (Enterobius), Trichinella, Filaria (Wuchereria), Strongyloides</li>
+                <li><strong>Trematodes (flukes):</strong> Schistosoma (blood fluke), Fasciola hepatica (liver fluke), Paragonimus (lung fluke)</li>
+                <li><strong>Cestodes (tapeworms):</strong> Taenia solium (pork), T. saginata (beef), Echinococcus (hydatid cyst), Diphyllobothrium</li>
+              </ul>
+            </li>
+            <li><strong>3. Ectoparasites (Arthropods):</strong>
+              <ul class="sub-ul">
+                <li>Insects: Lice (Pediculus), Fleas (Pulex), Flies, Mosquitoes, Bugs</li>
+                <li>Arachnids: Ticks (Ixodes, Dermacentor), Mites (Sarcoptes scabiei), Spiders</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Card 8.3 -->
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-header">
+          <span class="card-emoji">🦠</span>
+          <div class="card-title-wrap">
+            <div class="card-title">Protozoal Infections</div>
+            <div class="card-tag">Unit VIII · Long Answer</div>
+          </div>
+          <span class="card-arrow">▾</span>
+        </div>
+        <div class="card-body">
+          <h4>1. Malaria</h4>
+          <ul>
+            <li><strong>Organism:</strong> Plasmodium vivax (benign tertian), P. falciparum (malignant tertian — most dangerous), P. malariae (quartan), P. ovale</li>
+            <li><strong>Vector:</strong> Female Anopheles mosquito (dusk-to-dawn biter)</li>
+            <li><strong>Life cycle:</strong> Sporozoites → liver (exo-erythrocytic schizogony) → merozoites → RBCs (erythrocytic schizogony) → trophozoites → schizonts → merozoites (fever) / gametocytes</li>
+            <li><strong>Clinical:</strong> Classical triad — cold stage + hot stage + sweating stage; cyclic fever; splenomegaly; anaemia</li>
+            <li><strong>P. falciparum complications:</strong> Cerebral malaria, blackwater fever (haemoglobinuria), severe anaemia, ARDS, renal failure</li>
+            <li><strong>Diagnosis:</strong> Peripheral blood smear (thick + thin) — most important; RDT (rapid antigen test); PCR; Quantitative Buffy Coat (QBC)</li>
+            <li><strong>Diagnosis on smear:</strong> Ring forms (all species); "Schüffner's dots" (P. vivax/ovale); "Maurer's clefts" (P. falciparum); banana-shaped gametocytes (P. falciparum)</li>
+            <li><strong>Treatment:</strong> Chloroquine (P. vivax); ACT - Artemisinin Combination Therapy for P. falciparum; Primaquine for radical cure of P. vivax/ovale (kills hypnozoites)</li>
+            <li><strong>Prevention:</strong> Vector control (insecticides, ITNs); chemoprophylaxis; indoor residual spraying</li>
+          </ul>
+          <h4>2. Amoebiasis</h4>
+          <ul>
+            <li><strong>Organism:</strong> Entamoeba histolytica</li>
+            <li><strong>Transmission:</strong> Faecal-oral; contaminated food/water; cysts are infective form</li>
+            <li><strong>Disease:</strong> Amoebic dysentery (bloody mucoid stool, flask-shaped ulcers in colon); amoebic liver abscess (most common extra-intestinal — "anchovy sauce" aspirate)</li>
+            <li><strong>Diagnosis:</strong> Stool microscopy (cysts, trophozoites with ingested RBCs — pathognomonic); serology (ELISA) for liver abscess; ultrasound</li>
+            <li><strong>Treatment:</strong> Metronidazole (tissue amoebiasis); Diloxanide furoate (luminal cysts)</li>
+          </ul>
+          <h4>3. Kala-azar (Visceral Leishmaniasis)</h4>
+          <ul>
+            <li><strong>Organism:</strong> Leishmania donovani</li>
+            <li><strong>Vector:</strong> Female sandfly (Phlebotomus)</li>
+            <li><strong>Features:</strong> Prolonged fever, massive splenomegaly, hepatomegaly, lymphadenopathy, anaemia, wasting (kala-azar = black fever)</li>
+            <li><strong>Diagnosis:</strong> Splenic aspirate smear (most sensitive), bone marrow biopsy, rK39 antigen card test; LD bodies (amastigotes in macrophages)</li>
+            <li><strong>Treatment:</strong> Liposomal Amphotericin B (first-line in India); Miltefosine</li>
+          </ul>
+          <h4>4. Giardiasis</h4>
+          <ul>
+            <li>Giardia lamblia — pear-shaped, bilateral symmetry ("falling leaf" motility); traveller's diarrhoea; malabsorption; steatorrhoea; cysts in stool (infective form)</li>
+            <li>Diagnosis: Stool microscopy (cysts/trophozoites); antigen detection</li>
+            <li>Treatment: Metronidazole/Tinidazole</li>
+          </ul>
+          <h4>5. Toxoplasmosis</h4>
+          <ul>
+            <li>Toxoplasma gondii — definitive host = cat; toxoplasmosis in pregnancy → congenital toxoplasmosis (TORCH); intracranial calcifications, retinochoroiditis, hydrocephalus</li>
+            <li>Diagnosis: Serology (IgM for acute); CT brain in AIDS (ring-enhancing lesions)</li>
+            <li>Treatment: Pyrimethamine + Sulfadiazine</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Card 8.4 -->
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-header">
+          <span class="card-emoji">🪱</span>
+          <div class="card-title-wrap">
+            <div class="card-title">Helminthic Infections (Short Notes)</div>
+            <div class="card-tag">Unit VIII · Short Notes</div>
+          </div>
+          <span class="card-arrow">▾</span>
+        </div>
+        <div class="card-body">
+          <h4>1. Ascariasis (Roundworm)</h4>
+          <ul>
+            <li>Ascaris lumbricoides; largest intestinal nematode; faecal-oral transmission</li>
+            <li>Loeffler's syndrome (pulmonary eosinophilia) during larval migration; intestinal obstruction in heavy infection</li>
+            <li>Diagnosis: Stool microscopy (eggs); adult worm passed in stool/vomit</li>
+            <li>Treatment: Albendazole / Mebendazole</li>
+          </ul>
+          <h4>2. Hookworm (Ancylostomiasis)</h4>
+          <ul>
+            <li>Ancylostoma duodenale (Old World), Necator americanus (New World)</li>
+            <li>Larva penetrates skin (ground itch) → lungs → intestine; sucks blood → iron-deficiency anaemia</li>
+            <li>Diagnosis: Stool microscopy (eggs); eosinophilia</li>
+            <li>Treatment: Albendazole; iron supplementation</li>
+          </ul>
+          <h4>3. Pinworm (Enterobiasis)</h4>
+          <ul>
+            <li>Enterobius vermicularis; perianal itching (especially night — pruritus ani)</li>
+            <li>Diagnosis: Scotch tape test (morning, before bathing) — eggs on perianal skin</li>
+            <li>Treatment: Mebendazole/Albendazole; treat entire family</li>
+          </ul>
+          <h4>4. Tapeworm (Taeniasis)</h4>
+          <ul>
+            <li>Taenia solium (pork); Taenia saginata (beef)</li>
+            <li>Cysticercosis: When humans ingest T. solium eggs → larvae (cysticerci) in muscles, brain (neurocysticercosis — seizures), eyes</li>
+            <li>Diagnosis: Stool for proglottids/eggs; CT/MRI brain for neurocysticercosis</li>
+            <li>Treatment: Praziquantel; Albendazole + steroids for neurocysticercosis</li>
+          </ul>
+          <h4>5. Lymphatic Filariasis (Elephantiasis)</h4>
+          <ul>
+            <li>Wuchereria bancrofti; vector = Culex mosquito</li>
+            <li>Microfilariae circulate in blood (nocturnal periodicity); adult worms in lymphatics → lymphedema → elephantiasis of legs, scrotum; hydrocoele</li>
+            <li>Diagnosis: Midnight blood smear (microfilariae); ICT card test (antigen)</li>
+            <li>Treatment: DEC (Diethylcarbamazine) + Albendazole; MDA (Mass Drug Administration)</li>
+          </ul>
+          <h4>6. Schistosomiasis</h4>
+          <ul>
+            <li>Schistosoma mansoni (intestinal), S. haematobium (urinary — haematuria)</li>
+            <li>Transmission: Cercariae penetrate skin in freshwater (swimmer's itch)</li>
+            <li>Treatment: Praziquantel</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Card 8.5 -->
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-header">
+          <span class="card-emoji">🦗</span>
+          <div class="card-title-wrap">
+            <div class="card-title">Vector & Vector-Borne Diseases</div>
+            <div class="card-tag">Unit VIII · Applied</div>
+          </div>
+          <span class="card-arrow">▾</span>
+        </div>
+        <div class="card-body">
+          <h4>Control of Vector-Borne Diseases</h4>
+          <ul>
+            <li><strong>Environmental control:</strong> Eliminate breeding sites; drainage of stagnant water; waste management</li>
+            <li><strong>Biological control:</strong> Introduce natural predators — Gambusia fish eats mosquito larvae; Bacillus thuringiensis israelensis (Bti) — larvicide</li>
+            <li><strong>Chemical control:</strong> Insecticides (DDT, malathion, deltamethrin); indoor residual spraying (IRS); space spraying</li>
+            <li><strong>Personal protection:</strong> Insecticide-treated nets (ITNs/LLINs), repellents (DEET), protective clothing</li>
+            <li><strong>Host-targeted:</strong> Vaccines (dengue vaccine, malaria vaccine RTS,S); chemoprophylaxis (chloroquine); mass drug administration (filariasis)</li>
+          </ul>
+          <h4>Key Vector Control Principles</h4>
+          <ul>
+            <li>Anopheles mosquito: Active at dusk/dawn; breeds in clean stagnant water; ITNs most effective</li>
+            <li>Aedes aegypti: Day biter; breeds in small collections of clear water (flower pots, tyres); dengue, Zika</li>
+            <li>Culex: Breeds in dirty water, drains; filariasis, JE</li>
+            <li>Sandfly: Nocturnal; breeds in soil, rubble; kala-azar; DDT IRS effective</li>
+          </ul>
+          <h4>Nursing Role in Vector Control</h4>
+          <ul>
+            <li>Educate community about breeding sites elimination (source reduction)</li>
+            <li>Promote use of bed nets; protective clothing; repellents</li>
+            <li>Ensure proper disposal of waste water; community surveillance</li>
+            <li>Participate in active fever case detection during outbreaks</li>
+            <li>Administer chemoprophylaxis and vaccines as part of prevention programs</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- /unit-8 -->
+
+  <!-- ===================== UNIT 9 ===================== -->
+  <div class="unit-section" data-unit="9" id="unit-9">
+    <div class="unit-header" onclick="toggleUnit('unit-9')">
+      <div class="unit-header-left">
+        <span class="unit-badge">Unit IX</span>
+        <span class="unit-title">Virology</span>
+        <span class="unit-count">3 topics</span>
+      </div>
+      <span class="unit-chevron">▾</span>
+    </div>
+    <div class="cards-grid">
+
+      <!-- Card 9.1 -->
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-header">
+          <span class="card-emoji">🧬</span>
+          <div class="card-title-wrap">
+            <div class="card-title">Viral Properties & Classification</div>
+            <div class="card-tag">Unit IX · Theory</div>
+          </div>
+          <span class="card-arrow">▾</span>
+        </div>
+        <div class="card-body">
+          <h4>Definition & Properties of Viruses</h4>
+          <ul>
+            <li>Viruses are <strong>obligate intracellular parasites</strong> — cannot replicate outside living host cells</li>
+            <li>Contain only ONE type of nucleic acid (DNA or RNA) — not both</li>
+            <li>No cell wall, no ribosomes, no metabolic enzymes of their own</li>
+            <li>Range: 20–300 nm (smaller than bacteria; visible only by electron microscopy)</li>
+            <li>Not killed by antibiotics; treated by specific antiviral drugs</li>
+          </ul>
+          <h4>Structure of Virus (Virion)</h4>
+          <ul>
+            <li><strong>Nucleic acid (genome):</strong> DNA or RNA; single-stranded (ss) or double-stranded (ds)</li>
+            <li><strong>Capsid:</strong> Protein coat surrounding nucleic acid; made of capsomeres; protects genome</li>
+            <li><strong>Nucleocapsid:</strong> Nucleic acid + capsid</li>
+            <li><strong>Envelope:</strong> Lipid bilayer (from host cell membrane) + glycoproteins; not present in all viruses; enveloped = sensitive to ether/detergent</li>
+            <li><strong>Spikes:</strong> Surface glycoproteins used for attachment (e.g., Haemagglutinin and Neuraminidase of influenza)</li>
+          </ul>
+          <h4>Classification of Viruses</h4>
+          <ul>
+            <li><strong>By nucleic acid type:</strong>
+              <ul class="sub-ul">
+                <li>DNA viruses: Herpesviruses (HSV, VZV, CMV, EBV), Adenovirus, Papillomavirus (HPV), Poxvirus (smallpox), Hepatitis B</li>
+                <li>RNA viruses: Influenza, HIV, Hepatitis A/C/E, Rabies, Measles, Mumps, Rubella, Dengue, Polio, Rotavirus</li>
+              </ul>
+            </li>
+            <li><strong>By presence of envelope:</strong>
+              <ul class="sub-ul">
+                <li>Enveloped: HIV, Influenza, HSV, Rabies, Hepatitis B/C — sensitive to detergents and drying</li>
+                <li>Non-enveloped (Naked): Poliovirus, Adenovirus, Rotavirus, Hepatitis A — more resistant to environment</li>
+              </ul>
+            </li>
+            <li><strong>By capsid symmetry:</strong> Icosahedral (spherical), Helical (tubular), Complex (poxvirus)</li>
+            <li><strong>Baltimore Classification:</strong> Based on mRNA production strategy (Classes I–VII)</li>
+          </ul>
+          <h4>Viral Replication Cycle (APABRS)</h4>
+          <ul>
+            <li><strong>A</strong>ttachment (adsorption) to specific host cell receptor</li>
+            <li><strong>P</strong>enetration (endocytosis or membrane fusion)</li>
+            <li><strong>U</strong>ncoating (release of nucleic acid)</li>
+            <li><strong>B</strong>iosynthesis (replication of nucleic acid + protein synthesis)</li>
+            <li><strong>A</strong>ssembly (maturation of new virions)</li>
+            <li><strong>R</strong>elease (budding for enveloped; lysis for non-enveloped)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Card 9.2 -->
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-header">
+          <span class="card-emoji">💉</span>
+          <div class="card-title-wrap">
+            <div class="card-title">Common Viral Diseases: Polio, Rabies, Hepatitis, AIDS</div>
+            <div class="card-tag">Unit IX · Most Important</div>
+          </div>
+          <span class="card-arrow">▾</span>
+        </div>
+        <div class="card-body">
+          <h4>1. Poliomyelitis</h4>
+          <ul>
+            <li><strong>Virus:</strong> Poliovirus — Enterovirus; ssRNA; 3 serotypes (1,2,3); type 1 most common cause of paralysis</li>
+            <li><strong>Transmission:</strong> Faecal-oral route; waterborne</li>
+            <li><strong>Pathogenesis:</strong> Replicates in gut → viraemia → motor neurons of anterior horn → irreversible flaccid paralysis</li>
+            <li><strong>Clinical:</strong> Asymptomatic (90%); minor illness (fever, sore throat); non-paralytic aseptic meningitis; flaccid asymmetric paralysis of limbs (1%); bulbar polio</li>
+            <li><strong>Diagnosis:</strong> Stool virus isolation (most important); CSF, serology</li>
+            <li><strong>Vaccines:</strong> OPV (oral — Sabin; live attenuated; cheap; herd immunity; rare VAPP); IPV (Salk; killed; injected; no VAPP)</li>
+            <li>India declared polio-free in 2014</li>
+          </ul>
+          <h4>2. Rabies</h4>
+          <ul>
+            <li><strong>Virus:</strong> Rabies lyssavirus — RNA; bullet-shaped; Rhabdoviridae</li>
+            <li><strong>Transmission:</strong> Bite of infected animal (dog, bat, wolf); virus in saliva</li>
+            <li><strong>Pathogenesis:</strong> Virus enters through wound → travels along peripheral nerves → brain → encephalitis → death; centrifugal spread to salivary glands, cornea, skin</li>
+            <li><strong>Incubation:</strong> 10 days–1 year (average 1–3 months); longer if bite distal</li>
+            <li><strong>Clinical:</strong> Prodrome (fever, pain at bite site) → Encephalitic (hydrophobia, aerophobia, photophobia, spasms, agitation) → Paralytic (ascending paralysis) → Coma → Death (99.9% fatal once symptomatic)</li>
+            <li><strong>Negri bodies:</strong> Pathognomonic intracytoplasmic inclusions in hippocampal neurons; seen on post-mortem brain biopsy</li>
+            <li><strong>Post-exposure prophylaxis (PEP):</strong> Wound washing (soap + water 15 min → iodine); Rabies vaccine (5 doses: Day 0,3,7,14,28 — Essen schedule); Rabies immunoglobulin (RIG — infiltrated into wound) for category III exposure</li>
+            <li><strong>Pre-exposure prophylaxis:</strong> For veterinarians, lab workers</li>
+          </ul>
+          <h4>3. Viral Hepatitis</h4>
+          <table class="table-small">
+            <tr><th>Type</th><th>Virus</th><th>Transmission</th><th>Chronic?</th><th>Key Feature</th></tr>
+            <tr><td>Hep A</td><td>HAV (RNA)</td><td>Faecal-oral</td><td>No</td><td>Commonest; vaccine available; epidemic jaundice</td></tr>
+            <tr><td>Hep B</td><td>HBV (DNA)</td><td>Blood, sexual, vertical</td><td>Yes (5–10%)</td><td>HBsAg; vaccine available; cirrhosis, HCC</td></tr>
+            <tr><td>Hep C</td><td>HCV (RNA)</td><td>Blood (IV drug use)</td><td>Yes (80%)</td><td>No vaccine; DAA drugs (sofosbuvir); "silent epidemic"</td></tr>
+            <tr><td>Hep D</td><td>HDV (defective RNA)</td><td>Blood; needs HBV</td><td>Yes</td><td>Only with HBV; HBV vaccine protects</td></tr>
+            <tr><td>Hep E</td><td>HEV (RNA)</td><td>Faecal-oral; water</td><td>No</td><td>Fatal in pregnancy (20%); vaccine in China</td></tr>
+          </table>
+          <h4>4. HIV/AIDS</h4>
+          <ul>
+            <li><strong>Virus:</strong> Human Immunodeficiency Virus — Lentivirus; ssRNA; two types: HIV-1 (worldwide), HIV-2 (West Africa)</li>
+            <li><strong>Transmission:</strong> Unprotected sex (most common), blood transfusion/needles, mother-to-child (perinatal)</li>
+            <li><strong>Pathogenesis:</strong> HIV binds CD4 receptor + CCR5/CXCR4 co-receptor → infects CD4+ T cells, macrophages, dendritic cells → reverse transcriptase converts RNA → DNA → integrates into host genome (provirus) → gradual CD4 cell destruction → immunodeficiency</li>
+            <li><strong>Stages:</strong> Primary HIV infection (seroconversion illness) → Asymptomatic latent phase (years) → Symptomatic (PGL, oral thrush) → AIDS (CD4 &lt;200 cells/µL)</li>
+            <li><strong>AIDS-defining illnesses:</strong> PCP, CMV retinitis, Toxoplasmosis, Cryptococcal meningitis, TB, Kaposi's sarcoma, MAC</li>
+            <li><strong>Diagnosis:</strong> ELISA (screening) → Western Blot (confirmatory); CD4 count; viral load (PCR)</li>
+            <li><strong>Treatment — ART:</strong> Antiretroviral therapy; minimum 3 drugs; NRTIs + NNRTI or PI; suppresses viral load to undetectable; lifelong</li>
+            <li><strong>Prevention:</strong> Condoms; clean needles (NSEP); blood screening; PMTCT; PrEP; PEP within 72 hours after exposure</li>
+            <li>India: NACO oversees AIDS control programme</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Card 9.3 -->
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-header">
+          <span class="card-emoji">🚫</span>
+          <div class="card-title-wrap">
+            <div class="card-title">Control & Prevention of Viral Diseases</div>
+            <div class="card-tag">Unit IX · Nursing Application</div>
+          </div>
+          <span class="card-arrow">▾</span>
+        </div>
+        <div class="card-body">
+          <h4>General Principles of Viral Disease Control</h4>
+          <ul>
+            <li><strong>1. Vaccination (most effective):</strong>
+              <ul class="sub-ul">
+                <li>Smallpox: First disease eradicated by vaccination (1980)</li>
+                <li>Polio: Near eradication; OPV + IPV campaigns</li>
+                <li>Measles, Mumps, Rubella: MMR vaccine</li>
+                <li>Influenza: Annual vaccine (antigenic shift/drift)</li>
+                <li>Rabies, Hepatitis A, B, HPV, Varicella, Yellow Fever, JE</li>
+              </ul>
+            </li>
+            <li><strong>2. Antiviral Drugs:</strong>
+              <ul class="sub-ul">
+                <li>Acyclovir/Valacyclovir: HSV, VZV</li>
+                <li>Oseltamivir (Tamiflu): Influenza A/B</li>
+                <li>ART: HIV</li>
+                <li>DAAs (sofosbuvir, ledipasvir): Hepatitis C — curative</li>
+                <li>Tenofovir/Entecavir: Hepatitis B</li>
+                <li>Remdesivir: COVID-19 (hospitalised)</li>
+              </ul>
+            </li>
+            <li><strong>3. Passive Immunization (post-exposure):</strong>
+              <ul class="sub-ul">
+                <li>HRIG: Rabies post-exposure</li>
+                <li>HBIG: Hepatitis B post-exposure, newborns of HBsAg+ mothers</li>
+                <li>VZIg: Varicella in immunocompromised/pregnant</li>
+              </ul>
+            </li>
+            <li><strong>4. Vector Control:</strong> Eliminate Aedes (dengue, Zika); Anopheles (arboviral)</li>
+            <li><strong>5. Breaking Transmission:</strong> Safe sex, clean needles, blood product screening, hand hygiene (enteric viruses)</li>
+            <li><strong>6. Surveillance and Reporting:</strong> Compulsory notification; contact tracing; outbreak investigation</li>
+            <li><strong>7. Isolation:</strong> Airborne (measles, chickenpox, influenza, TB); standard precautions</li>
+          </ul>
+          <h4>Universal Precautions (Standard Precautions)</h4>
+          <ul>
+            <li>Treat every patient's blood/body fluids as potentially infectious</li>
+            <li>Gloves for contact with blood/body fluids; mask if splash risk; eye protection; gown</li>
+            <li>Safe handling and disposal of sharps — never recap needles</li>
+            <li>Immediate PEP after needlestick (HIV, HBV)</li>
+            <li>OSHA guidelines and WHO standard precautions</li>
+          </ul>
+          <h4>Nurse's Role in Prevention</h4>
+          <ul>
+            <li>Administer vaccines as per schedule (NIS); cold chain maintenance</li>
+            <li>Educate patients on safe sex, needle safety, blood exposure risks</li>
+            <li>Follow airborne/droplet/contact isolation precautions correctly</li>
+            <li>Report notifiable diseases (polio, measles, hepatitis, rabies)</li>
+            <li>Support ART adherence counselling for HIV patients</li>
+            <li>Manage needlestick injury protocol — wash, report, PEP within 2 hours</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- /unit-9 -->
+
+  <!-- ===================== UNIT 10 ===================== -->
+  <div class="unit-section" data-unit="10" id="unit-10">
+    <div class="unit-header" onclick="toggleUnit('unit-10')">
+      <div class="unit-header-left">
+        <span class="unit-badge">Unit X</span>
+        <span class="unit-title">Food Microbiology</span>
+        <span class="unit-count">3 topics</span>
+      </div>
+      <span class="unit-chevron">▾</span>
+    </div>
+    <div class="cards-grid">
+
+      <!-- Card 10.1 -->
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-header">
+          <span class="card-emoji">🍽️</span>
+          <div class="card-title-wrap">
+            <div class="card-title">Food Poisoning: Explanation</div>
+            <div class="card-tag">Unit X · Long Answer</div>
+          </div>
+          <span class="card-arrow">▾</span>
+        </div>
+        <div class="card-body">
+          <h4>Definition</h4>
+          <ul>
+            <li>Food poisoning = illness caused by ingestion of food or water containing pathogenic microorganisms, their toxins, or chemical poisons</li>
+            <li>Characterized by acute onset of GI symptoms: nausea, vomiting, diarrhoea, abdominal cramps</li>
+            <li>Multiple people eating the same food fall ill simultaneously (point-source outbreak)</li>
+          </ul>
+          <h4>Classification</h4>
+          <ul>
+            <li><strong>1. Bacterial food poisoning (most common):</strong>
+              <ul class="sub-ul">
+                <li><strong>Staphylococcal FP:</strong> S. aureus enterotoxin (heat-stable); cooked meats, custard, dairy; vomiting within 1–6 hrs; self-limiting; no fever; MOST RAPID onset</li>
+                <li><strong>Botulism:</strong> C. botulinum toxin (most potent); home-canned food; descending flaccid paralysis, diplopia, dysphagia; treat with antitoxin</li>
+                <li><strong>Salmonella FP:</strong> Eggs, poultry, milk; 12–48 hrs; fever, diarrhoea, vomiting; treat with fluids ± antibiotics</li>
+                <li><strong>Bacillus cereus:</strong> Two syndromes: emetic (fried rice, 1–5 hrs) and diarrhoeal (meats/vegetables, 8–16 hrs)</li>
+                <li><strong>Clostridium perfringens:</strong> Cooked meat/poultry rewarmed; 8–12 hrs; diarrhoea, cramps; no vomiting; self-limiting</li>
+                <li><strong>E. coli (EHEC/ETEC):</strong> ETEC (traveller's diarrhoea); EHEC O157:H7 (haemorrhagic colitis, HUS — haemolytic uremic syndrome)</li>
+                <li><strong>Vibrio parahaemolyticus:</strong> Raw/undercooked seafood; coastal regions; diarrhoea, vomiting</li>
+                <li><strong>Listeria monocytogenes:</strong> Unpasteurized dairy, deli meats; dangerous in pregnancy (crosses placenta) and elderly</li>
+              </ul>
+            </li>
+            <li><strong>2. Viral food poisoning:</strong> Norovirus (most common cause of epidemic gastroenteritis), Rotavirus, Hepatitis A, Astrovirus</li>
+            <li><strong>3. Chemical food poisoning:</strong> Heavy metals (lead, mercury), pesticides, mycotoxins (Aflatoxin from Aspergillus flavus in peanuts/maize)</li>
+          </ul>
+          <h4>Incubation Periods (Key for Diagnosis)</h4>
+          <table class="table-small">
+            <tr><th>Organism</th><th>Incubation</th><th>Key Feature</th></tr>
+            <tr><td>S. aureus toxin</td><td>1–6 hours</td><td>Sudden onset vomiting</td></tr>
+            <tr><td>B. cereus (emetic)</td><td>1–5 hours</td><td>Fried rice</td></tr>
+            <tr><td>C. perfringens</td><td>8–12 hours</td><td>Rewarmed meat, diarrhoea</td></tr>
+            <tr><td>Salmonella</td><td>12–48 hours</td><td>Fever + diarrhoea + vomiting</td></tr>
+            <tr><td>C. botulinum</td><td>12–36 hours</td><td>Flaccid paralysis</td></tr>
+          </table>
+          <h4>Investigation of Food Poisoning Outbreak</h4>
+          <ul>
+            <li>Collect history: Food eaten, time of onset, symptoms of all affected</li>
+            <li>Collect samples: Stool, vomitus, blood cultures from patients; food samples from kitchen</li>
+            <li>Notify health authorities; isolate contaminated food batch</li>
+            <li>Calculate attack rates; identify common food vehicle</li>
+            <li>Report to Surveillance Cell</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Card 10.2 -->
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-header">
+          <span class="card-emoji">👩‍⚕️</span>
+          <div class="card-title-wrap">
+            <div class="card-title">Nurse's Role in Prevention of Food Poisoning</div>
+            <div class="card-tag">Unit X · Nursing Application</div>
+          </div>
+          <span class="card-arrow">▾</span>
+        </div>
+        <div class="card-body">
+          <h4>Role in Patient Care</h4>
+          <ul>
+            <li>Assess and monitor hydration status; IV fluids for dehydration</li>
+            <li>Record food intake history and correlate with symptom onset</li>
+            <li>Collect and send appropriate specimens (stool, blood cultures, vomitus) before antibiotics</li>
+            <li>Maintain enteric precautions; isolation if required</li>
+            <li>Monitor for complications: Haemolytic uremic syndrome (EHEC), paralysis (botulism), electrolyte imbalance</li>
+          </ul>
+          <h4>Patient & Community Education (WHO 5 Keys)</h4>
+          <ul>
+            <li><strong>1. Keep CLEAN:</strong> Wash hands before handling food; wash fruits/vegetables; clean food preparation surfaces; prevent contamination from kitchen pests</li>
+            <li><strong>2. Separate RAW and COOKED:</strong> Avoid cross-contamination; separate cutting boards for meat and vegetables; store raw meat below cooked food in refrigerator</li>
+            <li><strong>3. COOK thoroughly:</strong> Cook meat, poultry, eggs, seafood to safe temperatures (70°C core); ensure juices run clear</li>
+            <li><strong>4. Keep food at SAFE temperatures:</strong> Don't leave cooked food at room temperature &gt;2 hours; keep cold foods below 5°C (danger zone: 5–60°C)</li>
+            <li><strong>5. Use SAFE water and raw materials:</strong> Use clean/treated water; select fresh, seasonal food; avoid unpasteurized milk</li>
+          </ul>
+          <h4>Hospital Food Safety</h4>
+          <ul>
+            <li>Ensure hospital kitchen follows HACCP (Hazard Analysis Critical Control Points) principles</li>
+            <li>Monitor food handlers' health — screen for typhoid, TB, skin infections</li>
+            <li>Ensure proper refrigeration of ward diets; avoid batch cooking kept warm for hours</li>
+            <li>Report suspected foodborne outbreaks in ward immediately to infection control</li>
+            <li>Maintain cold chain for immunocompromised patients' special diets</li>
+          </ul>
+          <h4>Outbreak Response</h4>
+          <ul>
+            <li>Identify and isolate suspected food; stop serving; notify kitchen</li>
+            <li>Document all affected persons; collect stool samples urgently</li>
+            <li>Notify Medical Officer in Charge and Infection Control Nurse</li>
+            <li>Submit food samples to Public Health Laboratory</li>
+            <li>Assist in contact tracing and follow-up</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Card 10.3 -->
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-header">
+          <span class="card-emoji">🦠</span>
+          <div class="card-title-wrap">
+            <div class="card-title">Foodborne Infections: Causes & Prevention</div>
+            <div class="card-tag">Unit X · Short/Long</div>
+          </div>
+          <span class="card-arrow">▾</span>
+        </div>
+        <div class="card-body">
+          <h4>Food Poisoning vs Foodborne Infection</h4>
+          <ul>
+            <li><strong>Food poisoning (Intoxication):</strong> Caused by pre-formed toxin in food; short incubation; S. aureus, C. botulinum</li>
+            <li><strong>Foodborne infection:</strong> Caused by ingesting viable organisms that then multiply and cause disease in the host; longer incubation; Salmonella, Shigella, Cholera, Hepatitis A, Typhoid</li>
+          </ul>
+          <h4>Important Foodborne Infections</h4>
+          <ul>
+            <li><strong>Typhoid Fever (Enteric Fever):</strong>
+              <ul class="sub-ul">
+                <li>Salmonella typhi; faecal-oral; contaminated water/food; incubation 1–3 weeks</li>
+                <li>Stepladder fever; rose spots on abdomen; relative bradycardia; splenomegaly</li>
+                <li>Widal test (O+H agglutinins); blood culture (1st week), stool/urine (2nd week)</li>
+                <li>Treatment: Azithromycin/Cephalosporins; chloramphenicol (historical)</li>
+              </ul>
+            </li>
+            <li><strong>Cholera:</strong>
+              <ul class="sub-ul">
+                <li>Vibrio cholerae O1 (El Tor); faecal-oral; contaminated water</li>
+                <li>Rice-water stools (profuse, painless watery diarrhoea); rapid dehydration</li>
+                <li>Treatment: Rapid oral/IV rehydration (ORS); Doxycycline/Azithromycin</li>
+              </ul>
+            </li>
+            <li><strong>Hepatitis A:</strong> HAV; faecal-oral; contaminated shellfish; jaundice; self-limiting; vaccine available</li>
+            <li><strong>Brucellosis:</strong> Brucella; unpasteurized milk/cheese; undulant fever; treat with Doxycycline + Rifampicin</li>
+            <li><strong>Bacillary Dysentery:</strong> Shigella; faecal-oral; bloody diarrhoea (dysentery); HUS with S. dysenteriae; treat with Azithromycin/Ciprofloxacin</li>
+          </ul>
+          <h4>Prevention of Foodborne Infections</h4>
+          <ul>
+            <li><strong>Safe water:</strong> Chlorination; boiling; filtration; WHO safe water standards</li>
+            <li><strong>Food hygiene:</strong> Pasteurization of milk; proper cooking; refrigeration</li>
+            <li><strong>Personal hygiene:</strong> Hand washing; food handler screening and vaccination</li>
+            <li><strong>Environmental sanitation:</strong> Proper sewage disposal; fly control; garbage management</li>
+            <li><strong>Vaccination:</strong> Typhoid vaccine (Vi polysaccharide); Hepatitis A vaccine; Cholera vaccine (OCV)</li>
+            <li><strong>Food safety legislation:</strong> FSSAI (India) standards; HACCP; food labelling</li>
+            <li><strong>Surveillance:</strong> Integrated Disease Surveillance Programme (IDSP) for foodborne outbreak detection</li>
+          </ul>
+          <h4>Microbial Load in Food</h4>
+          <ul>
+            <li>Total viable count (TVC) — indicates freshness/contamination level</li>
+            <li>Coliform count — indicates faecal contamination</li>
+            <li>Safe limits: Drinking water must have 0 coliform/100 mL; food has variable limits by type</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- /unit-10 -->
+
+  <!-- FOOTER -->
+  <div style="text-align:center; padding: 30px 0 10px; color: var(--text-muted); font-size: 0.8rem; border-top: 1px solid var(--border); margin-top: 20px;">
+    <p>📖 Post Basic BSc Nursing · Microbiology PYQ Study Guide · All 10 Units Covered</p>
+    <p style="margin-top:4px;">Prepare thoroughly · Good Luck with your Examination! 🎓</p>
+  </div>
+
+</main>
+
+<script>
+// ===== THEME =====
+function toggleTheme() {
+  const html = document.documentElement;
+  const isDark = html.getAttribute('data-theme') === 'dark';
+  const newTheme = isDark ? 'light' : 'dark';
+  html.setAttribute('data-theme', newTheme);
+  localStorage.setItem('micro-theme', newTheme);
+  updateThemeBtn(newTheme);
+}
+function updateThemeBtn(theme) {
+  document.getElementById('themeIcon').textContent = theme === 'dark' ? '☀️' : '🌙';
+  document.getElementById('themeLabel').textContent = theme === 'dark' ? ' Light Mode' : ' Dark Mode';
+}
+// Auto-detect on load
+(function() {
+  const saved = localStorage.getItem('micro-theme');
+  const system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  const theme = saved || system;
+  document.documentElement.setAttribute('data-theme', theme);
+  updateThemeBtn(theme);
+})();
+
+// ===== CARD TOGGLE =====
+function toggleCard(card) {
+  card.classList.toggle('open');
+}
+
+// ===== UNIT COLLAPSE =====
+function toggleUnit(id) {
+  const section = document.getElementById(id);
+  section.classList.toggle('collapsed');
+}
+
+// ===== EXPAND / COLLAPSE ALL =====
+function expandAll() {
+  document.querySelectorAll('.unit-section:not([data-hidden="true"])').forEach(s => s.classList.remove('collapsed'));
+  document.querySelectorAll('.unit-section:not([data-hidden="true"]) .card').forEach(c => c.classList.add('open'));
+}
+function collapseAll() {
+  document.querySelectorAll('.card').forEach(c => c.classList.remove('open'));
+}
+
+// ===== SEARCH =====
+function handleSearch(query) {
+  const clearBtn = document.getElementById('searchClear');
+  const countEl = document.getElementById('searchCount');
+  clearBtn.style.display = query ? 'block' : 'none';
+
+  // Remove previous highlights
+  document.querySelectorAll('mark.hl').forEach(m => {
+    m.replaceWith(document.createTextNode(m.textContent));
+  });
+  // Normalize text nodes
+  document.querySelectorAll('.card-body, .card-title').forEach(el => el.normalize());
+
+  if (!query.trim()) {
+    document.querySelectorAll('.card').forEach(c => {
+      c.classList.remove('search-hidden');
+    });
+    document.querySelectorAll('.unit-section').forEach(s => {
+      if (!s.getAttribute('data-hidden')) s.style.display = '';
+    });
+    countEl.textContent = '';
+    return;
+  }
+
+  const q = query.trim().toLowerCase();
+  let matchCount = 0;
+
+  document.querySelectorAll('.card').forEach(card => {
+    const text = card.textContent.toLowerCase();
+    if (text.includes(q)) {
+      card.classList.remove('search-hidden');
+      card.classList.add('open');
+      matchCount++;
+      // Highlight in card body
+      highlightInElement(card.querySelector('.card-body'), q);
+      highlightInElement(card.querySelector('.card-title'), q);
+    } else {
+      card.classList.add('search-hidden');
+    }
+  });
+
+  // Show/hide unit sections based on visible cards
+  document.querySelectorAll('.unit-section').forEach(section => {
+    const visible = section.querySelectorAll('.card:not(.search-hidden)');
+    section.style.display = visible.length > 0 ? '' : 'none';
+    if (visible.length > 0) section.classList.remove('collapsed');
+  });
+
+  countEl.textContent = matchCount > 0 ? matchCount + ' result' + (matchCount !== 1 ? 's' : '') : 'No results';
+}
+
+function highlightInElement(el, q) {
+  if (!el) return;
+  const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null, false);
+  const nodes = [];
+  let node;
+  while ((node = walker.nextNode())) nodes.push(node);
+  nodes.forEach(textNode => {
+    const idx = textNode.textContent.toLowerCase().indexOf(q);
+    if (idx === -1) return;
+    const before = textNode.textContent.slice(0, idx);
+    const match = textNode.textContent.slice(idx, idx + q.length);
+    const after = textNode.textContent.slice(idx + q.length);
+    const mark = document.createElement('mark');
+    mark.className = 'hl';
+    mark.textContent = match;
+    const frag = document.createDocumentFragment();
+    if (before) frag.appendChild(document.createTextNode(before));
+    frag.appendChild(mark);
+    if (after) frag.appendChild(document.createTextNode(after));
+    textNode.parentNode.replaceChild(frag, textNode);
+  });
+}
+
+function clearSearch() {
+  document.getElementById('searchInput').value = '';
+  handleSearch('');
+}
+
+function filterUnits(unit, btn) {
+  // Update active button
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  
+  const sections = document.querySelectorAll('.unit-section');
+  sections.forEach(section => {
+    if (unit === 'all') {
+      section.removeAttribute('data-hidden');
+    } else {
+      if (section.getAttribute('data-unit') === unit) {
+        section.removeAttribute('data-hidden');
+        section.classList.remove('collapsed');
+      } else {
+        section.setAttribute('data-hidden', 'true');
+      }
+    }
+  });
+}
+</script>
+</body>
+</html>

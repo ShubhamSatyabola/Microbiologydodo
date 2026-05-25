@@ -316,6 +316,28 @@ body {
   .card-arrow { display: none; }
 }
 
+/* ── PYQ BUTTON ─────────────────────────────────────────────── */
+.btn-pyq {
+  background: linear-gradient(135deg, #f59e0b, #f97316);
+  color: #1a1a2e;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  border: none;
+  box-shadow: 0 2px 10px rgba(249,115,22,0.40);
+  position: relative;
+  overflow: hidden;
+}
+.btn-pyq::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.18), transparent);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.btn-pyq:hover { background: linear-gradient(135deg, #fbbf24, #fb923c); box-shadow: 0 4px 16px rgba(249,115,22,0.55); transform: translateY(-1px); }
+.btn-pyq:hover::before { opacity: 1; }
+.btn-pyq:active { transform: translateY(0); }
+
 /* ── RESPONSIVE ─────────────────────────────────────────────── */
 @media (max-width: 600px) {
   .site-header { padding: 0 14px; }
@@ -337,6 +359,7 @@ body {
     <span class="site-sub">Interactive Revision Mind Map · 10 Units</span>
   </div>
   <div class="toolbar">
+    <button class="btn btn-pyq no-print" onclick="window.open('nursing_microbiology_pyq.html','_blank')">📋 PYQ Answers</button>
     <button class="btn btn-expand" onclick="toggleAll(true)">⊞ Expand All</button>
     <button class="btn btn-expand" onclick="toggleAll(false)">⊟ Collapse All</button>
     <button class="btn btn-print no-print" onclick="window.print()">🖨️ Print / PDF</button>
